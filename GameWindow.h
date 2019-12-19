@@ -55,9 +55,10 @@ private:
     ALLEGRO_SAMPLE_INSTANCE *loseSound = NULL;
 
     //LEVEL *level = NULL;
-    Menu *menu = NULL;
+
+    /*Menu *menu = NULL;
     Slider *slider = NULL;
-    Player *player = NULL;
+    Player *player = NULL;*/
 
     bool redraw = false;
     bool mute = false;
