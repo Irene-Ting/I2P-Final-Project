@@ -1,9 +1,11 @@
-#include <iostream>
-
-using namespace std;
+#include "GameWindow.h"
 
 int main()
 {
-    cout << "Hello world!" << endl;
+
+    GameWindow *BurrowGame = new GameWindow();
+    BurrowGame->game_play();
+    delete BurrowGame;
+
     return 0;
 }
