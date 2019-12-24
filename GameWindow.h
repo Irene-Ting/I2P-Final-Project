@@ -1,71 +1,124 @@
-#ifndef GAMEWINDOW_H_INCLUDED
-#define GAMEWINDOW_H_INCLUDED
+#ifndef MAINWINDOW_H_INCLUDED
+#define MAINWINDOW_H_INCLUDED
+#include <ctime>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include <vector>
+#include <list>
+#include <time.h>
+#include "Menu.h"
+#include "Level.h"
+#include "WolfKnight.h"
+#include "CaveMan.h"
+#include "Wolf.h"
+#include "DemonNijia.h"
+#include "Ntower.h"
+#include "Arcane.h"
+#include "Archer.h"
+#include "Canon.h"
+#include "Poison.h"
+#include "Storm.h"
+#include "Attack.h"
+#include "Slider.h"
+#include "character.h"
+
+#define GAME_INIT -1
+#define GAME_SETTING 0
+#define GAME_SELECT 1
+#define GAME_BEGIN 2
+#define GAME_CONTINUE 3
+#define GAME_FAIL 4
+#define GAME_TERMINATE 5
+#define GAME_NEXT_LEVEL 6
+#define GAME_EXIT 7
+
+// clock rate
+const float FPS = 60;
+
+// total number of level
+const int LevelNum = 4;
+
+// 1 coin every 2 seconds
+const int CoinSpeed = FPS * 2;
+const int Coin_Time_Gain = 1;
 
 class GameWindow
 {
 public:
+    // constructor
     GameWindow();
-
+    // each process of scene
+    //void game_prepare();
     void game_init();
     void game_reset();
     void game_play();
     void game_begin();
 
+    int Coin_Add_Gain();
     int game_run();
     int game_update();
 
     void show_err_msg(int msg);
     void game_destroy();
 
+    // each drawing scene function
     void draw_running_map();
     void draw_start_map();
-
+    // process of updated event
     int process_event();
+    // detect if mouse hovers over a rectangle
+    bool mouse_hover(int, int, int, int);
+    // detect if a tower will be constructed on road
+    bool isOnRoad();
+
+    //Tower* create_tower(int);
+    //Monster* create_monster();
 
 public:
     bool initial = true;
 
 private:
     ALLEGRO_BITMAP *icon;
-    ALLEGRO_BITMAP *backgroundImg = NULL;
-    ALLEGRO_BITMAP *startImg = NULL;
-    ALLEGRO_BITMAP *endImg = NULL;
-    ALLEGRO_BITMAP *burrowImg;
-    ALLEGRO_BITMAP *softImg;
-    ALLEGRO_BITMAP *hardImg;
-    ALLEGRO_BITMAP *playerImg;
+    //ALLEGRO_BITMAP *tower[Num_TowerType];
+    ALLEGRO_BITMAP *background = NULL;
+    ALLEGRO_BITMAP *start_page = NULL;
+    ALLEGRO_BITMAP *path;
+    ALLEGRO_BITMAP *digImg;
+    ALLEGRO_BITMAP *wallImg;
+    ALLEGRO_BITMAP *charaImg;
 
     ALLEGRO_DISPLAY* display = NULL;
-    //ALLEGRO_FONT *font = NULL;
-    //ALLEGRO_FONT *Medium_font = NULL;
-    //ALLEGRO_FONT *Large_font = NULL;
+    ALLEGRO_FONT *font = NULL;
+    ALLEGRO_FONT *Medium_font = NULL;
+    ALLEGRO_FONT *Large_font = NULL;
 
     ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_EVENT event;
     ALLEGRO_TIMER *timer = NULL;
+    //ALLEGRO_TIMER *monster_pro = NULL;
 
     ALLEGRO_SAMPLE *sample = NULL;
     ALLEGRO_SAMPLE_INSTANCE *startSound = NULL;
-    ALLEGRO_SAMPLE_INSTANCE *digSound = NULL;
-    ALLEGRO_SAMPLE_INSTANCE *walkSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *clearSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *failSound = NULL;
     ALLEGRO_SAMPLE_INSTANCE *backgroundSound = NULL;
-    ALLEGRO_SAMPLE_INSTANCE *winSound = NULL;
-    ALLEGRO_SAMPLE_INSTANCE *loseSound = NULL;
 
-    //LEVEL *level = NULL;
-
-    /*Menu *menu = NULL;
+    LEVEL *level = NULL;
+    Menu *menu = NULL;
     Slider *slider = NULL;
-    Player *player = NULL;*/
+    Character *chara = NULL;
+    //std::vector<Monster*> monsterSet;
+    //std::list<Tower*> towerSet;
+
+    int Monster_Pro_Count = 0;
+    int Coin_Inc_Count = 0;
+    int mouse_x, mouse_y;
+    int selectedTower = -1, lastClicked = -1;
 
     bool redraw = false;
     bool mute = false;
-
-    //bool act = false;
-    int scene = 0;
+    bool act = false;
 };
 
 
-#endif // GAMEWINDOW_H_INCLUDED
+#endif // MAINWINDOW_H_INCLUDED
