@@ -3,9 +3,9 @@
 int main(int argc, char *argv[])
 {
 
-    GameWindow *TowerGame= new GameWindow();
-    TowerGame->game_play();
-    delete TowerGame;
+    GameWindow *BurrowGame= new GameWindow();
+    BurrowGame->game_play();
+    delete BurrowGame;
 
     return 0;
 }

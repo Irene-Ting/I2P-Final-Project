@@ -2363,10 +2363,10 @@
 	<vector>
 	"global.h"
 
-1576323741 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
+1577177477 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
 	"GameWindow.h"
 
-1576379788 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
+1577178345 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
 	<ctime>
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
@@ -2476,4 +2476,9 @@
 
 1576298520 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
 	"Tower.h"
+
+1577177508 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+	"GameWindow.h"
+	"global.h"
+	<iostream>
 

@@ -32,6 +32,8 @@
 #define GAME_NEXT_LEVEL 6
 #define GAME_EXIT 7
 
+enum {ACTIVATE = 0, GAMERUN, GAMEWIN, GAMELOSE};
+
 // clock rate
 const float FPS = 60;
 
@@ -39,8 +41,8 @@ const float FPS = 60;
 const int LevelNum = 4;
 
 // 1 coin every 2 seconds
-const int CoinSpeed = FPS * 2;
-const int Coin_Time_Gain = 1;
+const int TimeSpeed = FPS;
+const int Time_Gain = 1;
 
 class GameWindow
 {
@@ -69,7 +71,7 @@ public:
     // detect if mouse hovers over a rectangle
     bool mouse_hover(int, int, int, int);
     // detect if a tower will be constructed on road
-    bool isOnRoad();
+    //bool isOnRoad();
 
     //Tower* create_tower(int);
     //Monster* create_monster();
@@ -117,7 +119,8 @@ private:
 
     bool redraw = false;
     bool mute = false;
-    bool act = false;
+    //bool act = false;
+    int scene = 0;
 };
 
 

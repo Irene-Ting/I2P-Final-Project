@@ -361,7 +361,8 @@ GameWindow::game_reset()
     Monster_Pro_Count = 0;
     mute = false;
     redraw = false;
-    act = false;
+    //act = false;
+    scene = ACTIVATE;
     menu->Reset();
 
     // stop sample instance
@@ -419,9 +420,9 @@ GameWindow::process_event()
             redraw = true;
 
             if(Coin_Inc_Count == 0)
-                menu->Change_Coin(Coin_Time_Gain);
+                menu->Change_Coin(Time_Gain);
 
-            Coin_Inc_Count = (Coin_Inc_Count + 1) % CoinSpeed;
+            Coin_Inc_Count = (Coin_Inc_Count + 1) % TimeSpeed;
 
             /*if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro))
             {
@@ -458,10 +459,10 @@ GameWindow::process_event()
                 chara->Load_Move(DOWN);
                 break;
             case ALLEGRO_KEY_S:
-                if(!act)
+                if(scene==ACTIVATE)
                 {
-                    printf("here");
-                    act = true;
+                    //act = true;
+                    scene++;
                     al_start_timer(timer);
                     //al_start_timer(monster_pro);
                     al_play_sample_instance(backgroundSound);
@@ -550,7 +551,7 @@ GameWindow::process_event()
     if(redraw) {
         // update each object in game
         // Re-draw map
-        if(act)
+        if(scene==GAMERUN)
         {
             instruction = game_update();
             draw_running_map();
