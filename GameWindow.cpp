@@ -33,9 +33,9 @@ GameWindow::game_init()
     icon = al_load_bitmap("./icon.png");
     background = al_load_bitmap("./StartBackground.jpg");
     start_page = al_load_bitmap("./Material/coollogo_com-435068.png");
-    path = al_load_bitmap("path1.png");
-    digImg = al_load_bitmap("digPoint1.png");
-    wallImg = al_load_bitmap("wallPoint1.png");
+    path = al_load_bitmap("./Material/path1.png");
+    softImg = al_load_bitmap("./Material/soft1.png");
+    hardImg = al_load_bitmap("./Material/hard1.png");
 
     /*for(int i = 0; i < Num_TowerType; i++)
     {
@@ -60,7 +60,7 @@ GameWindow::game_init()
     menu = new Menu();
     slider = new Slider(590, 450);
     slider->set_label_content("Volume");
-    chara = new Character();
+    player = new Player1();
 }
 
 bool
@@ -447,16 +447,16 @@ GameWindow::process_event()
     else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
         switch(event.keyboard.keycode) {
             case ALLEGRO_KEY_LEFT:
-                chara->Load_Move(LEFT);
+                player->Load_Move(LEFT);
                 break;
             case ALLEGRO_KEY_RIGHT:
-                chara->Load_Move(RIGHT);
+                player->Load_Move(RIGHT);
                 break;
             case ALLEGRO_KEY_UP:
-                chara->Load_Move(UP);
+                player->Load_Move(UP);
                 break;
             case ALLEGRO_KEY_DOWN:
-                chara->Load_Move(DOWN);
+                player->Load_Move(DOWN);
                 break;
             case ALLEGRO_KEY_S:
                 if(scene==ACTIVATE)
@@ -493,7 +493,8 @@ GameWindow::process_event()
     else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
         if(event.mouse.button == 2)
         {
-            menu->Change_Coin(Coin_Add_Gain());
+            //menu->Change_Coin(Coin_Add_Gain);
+            menu->Change_Coin(5);
         }
         /*else if(event.mouse.button == 1) {
             if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
@@ -587,9 +588,9 @@ GameWindow::draw_running_map()
             if(level->levelMap[i*15+j].roadPoint)
                 al_draw_bitmap(path, j*40, i*40, 0);
             else if(level->levelMap[i*15+j].digPoint)
-                al_draw_bitmap(digImg, j*40, i*40, 0);
+                al_draw_bitmap(softImg, j*40, i*40, 0);
             else if(level->levelMap[i*15+j].wallPoint)
-                al_draw_bitmap(wallImg, j*40, i*40, 0);
+                al_draw_bitmap(hardImg, j*40, i*40, 0);
             /*if(level->isRoad(i*15 + j)) {
                 //al_draw_filled_rectangle(j*40, i*40, j*40+40, i*40+40, al_map_rgb(255, 244, 173));
                 al_draw_bitmap(path, j*40, i*40, 0);
@@ -614,7 +615,7 @@ GameWindow::draw_running_map()
 */
     menu->Draw();
     slider->Draw();
-    chara->Draw();
+    player->Draw();
     al_flip_display();
 }
 
@@ -627,12 +628,3 @@ GameWindow::draw_start_map()
     al_flip_display();
 }
 
-int
-GameWindow::Coin_Add_Gain()
-{
-    int x;
-    srand((int) time(0));
-    x = rand() % 2;
-    if(x) return 5;
-    return -5;
-}

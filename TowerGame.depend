@@ -2333,20 +2333,12 @@
 1576381153 source:d:\nthu\programming\practice\allegro\i2p-final-project\character.cpp
 	"character.h"
 
-1576379918 d:\nthu\programming\practice\allegro\i2p-final-project\character.h
-	<stdio.h>
-	<string.h>
-	<allegro5/allegro.h>
-	<allegro5/allegro_primitives.h>
-	<vector>
-	"Object.h"
-	"Circle.h"
-	"global.h"
+1577523923 d:\nthu\programming\practice\allegro\i2p-final-project\character.h
 
 1576311330 d:\nthu\programming\practice\allegro\i2p-final-project\global.h
 	<allegro5/allegro_font.h>
 
-1518073262 source:d:\nthu\programming\practice\allegro\i2p-final-project\circle.cpp
+1577178388 source:d:\nthu\programming\practice\allegro\i2p-final-project\circle.cpp
 	"Circle.h"
 
 1576330423 source:d:\nthu\programming\practice\allegro\i2p-final-project\global.cpp
@@ -2366,7 +2358,7 @@
 1577177477 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
 	"GameWindow.h"
 
-1577178345 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
+1577525818 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
 	<ctime>
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
@@ -2387,7 +2379,8 @@
 	"Storm.h"
 	"Attack.h"
 	"Slider.h"
-	"character.h"
+	"Player1.h"
+	"Player.h"
 
 1576316074 d:\nthu\programming\practice\allegro\i2p-final-project\menu.h
 	<stdio.h>
@@ -2477,8 +2470,25 @@
 1576298520 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
 	"Tower.h"
 
-1577177508 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1577526924 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	<iostream>
+
+1577526730 d:\nthu\programming\practice\allegro\i2p-final-project\player.h
+	<stdio.h>
+	<string.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_primitives.h>
+	<vector>
+	"Object.h"
+	"Circle.h"
+	"global.h"
+	"Object.h"
+
+1577525723 d:\nthu\programming\practice\allegro\i2p-final-project\player1.h
+	"Player.h"
+
+1577526827 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
+	"Player.h"
 

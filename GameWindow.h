@@ -20,7 +20,9 @@
 #include "Storm.h"
 #include "Attack.h"
 #include "Slider.h"
-#include "character.h"
+#include "Player1.h"
+#include "Player.h"
+
 
 #define GAME_INIT -1
 #define GAME_SETTING 0
@@ -85,9 +87,9 @@ private:
     ALLEGRO_BITMAP *background = NULL;
     ALLEGRO_BITMAP *start_page = NULL;
     ALLEGRO_BITMAP *path;
-    ALLEGRO_BITMAP *digImg;
-    ALLEGRO_BITMAP *wallImg;
-    ALLEGRO_BITMAP *charaImg;
+    ALLEGRO_BITMAP *softImg;
+    ALLEGRO_BITMAP *hardImg;
+    ALLEGRO_BITMAP *playerImg;
 
     ALLEGRO_DISPLAY* display = NULL;
     ALLEGRO_FONT *font = NULL;
@@ -108,7 +110,7 @@ private:
     LEVEL *level = NULL;
     Menu *menu = NULL;
     Slider *slider = NULL;
-    Character *chara = NULL;
+    Player *player = NULL;
     //std::vector<Monster*> monsterSet;
     //std::list<Tower*> towerSet;
 
