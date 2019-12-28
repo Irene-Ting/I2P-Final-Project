@@ -33,21 +33,22 @@ public:
     // Check if current coin is not less than needed coin
     bool Enough_Coin(int);
     void Change_Coin(int change) { Coin += change; }
+    void Change_Time(int change) { Time += change; }
     bool Subtract_HP(int escapeNum = 1);
     void Gain_Score(int);
 
     int getTowerCoin(int type) { return need_coin[type]; }
-    int getScore() { return Score; }
+    int getTime() { return Time; }
     int getCoin() { return Coin; }
     int getKilled() { return killedMonster; }
 
 private:
     std::vector<ALLEGRO_BITMAP*> menu_tower;
-    ALLEGRO_BITMAP *love = NULL;
+    ALLEGRO_BITMAP *energy = NULL;
     ALLEGRO_FONT *menuFont;
-    int HealthPoint = 10;
+    int EnergyPoint = 10;
     int killedMonster = 0;
-    int Score = 0;
+    int Time = 0;
     int Coin = 0;
     int selectedTower = -1;
     int need_coin[Num_TowerType] = {-5, -10, -20, -40, -70, -30};

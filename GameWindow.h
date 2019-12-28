@@ -21,8 +21,6 @@
 #include "Attack.h"
 #include "Slider.h"
 #include "Player1.h"
-#include "Player.h"
-
 
 #define GAME_INIT -1
 #define GAME_SETTING 0
@@ -58,7 +56,6 @@ public:
     void game_play();
     void game_begin();
 
-    int Coin_Add_Gain();
     int game_run();
     int game_update();
 
@@ -115,7 +112,8 @@ private:
     //std::list<Tower*> towerSet;
 
     int Monster_Pro_Count = 0;
-    int Coin_Inc_Count = 0;
+    //int Coin_Inc_Count = 0;
+    int Time_Inc_Count = 0;
     int mouse_x, mouse_y;
     int selectedTower = -1, lastClicked = -1;
 

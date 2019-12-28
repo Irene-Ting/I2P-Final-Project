@@ -60,6 +60,13 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="Object.h" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Player1.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Poison.h" />
 		<Unit filename="Slider.cpp" />
 		<Unit filename="Slider.h" />
@@ -68,8 +75,6 @@
 		<Unit filename="Tower.h" />
 		<Unit filename="Wolf.h" />
 		<Unit filename="WolfKnight.h" />
-		<Unit filename="character.cpp" />
-		<Unit filename="character.h" />
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
 		<Extensions>

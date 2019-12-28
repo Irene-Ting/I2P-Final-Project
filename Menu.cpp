@@ -4,8 +4,9 @@ const int ThumbWidth = 50;
 const int ThumbHeight = 50;
 const int gapX = 40, gapY = 30;
 const int offsetX = 30 + field_width, offsetY = 150;
-const int Initial_Health = 100;
+const int Initial_Energy = 10;
 const int Initial_Coin = 100;
+const int Initial_Time = 0;
 
 bool
 Menu::isInRange(int point, int startPos, int length)
@@ -30,9 +31,9 @@ Menu::Menu()
 {
     char filename[50];
 
-    HealthPoint = 10;
+    EnergyPoint = 10;
     Coin = 0;
-    Score = 0;
+    Time = 0;
 
     for(int i=0;i<Num_TowerType; i++)
     {
@@ -43,13 +44,13 @@ Menu::Menu()
         menu_tower.push_back(tower);
     }
 
-    love = al_load_bitmap("./Tower/love.png");
+    energy = al_load_bitmap("./Material/energy1.png");
     menuFont = al_load_ttf_font("pirulen.ttf", 12, 0); // load font
 }
 
 Menu::~Menu()
 {
-    al_destroy_bitmap(love);
+    al_destroy_bitmap(energy);
     al_destroy_font(menuFont);
 
     for(int i=0; i < Num_TowerType; i++)
@@ -61,9 +62,9 @@ Menu::~Menu()
 void
 Menu::Reset()
 {
-    HealthPoint = Initial_Health;
+    EnergyPoint = Initial_Energy;
     Coin = Initial_Coin;
-    Score = 0;
+    Time = Initial_Time;
     killedMonster = 0;
 }
 
@@ -72,14 +73,14 @@ Menu::Draw()
 {
     char buffer[50];
 
-    sprintf(buffer, "%d", HealthPoint);
-    al_draw_bitmap(love, offsetX, 20, 0);
-    al_draw_text(menuFont, al_map_rgb(255, 255, 255), 2*al_get_bitmap_width(love) + offsetX, 20, 0, buffer);
+    sprintf(buffer, "%d", EnergyPoint);
+    al_draw_bitmap(energy, offsetX, 20, 0);
+    al_draw_text(menuFont, al_map_rgb(255, 255, 255), 2*al_get_bitmap_width(energy) + offsetX, 20, 0, buffer);
 
     sprintf(buffer, "Coin: %d", Coin);
     al_draw_text(menuFont, al_map_rgb(255, 255, 255), offsetX, 20 + gapY, 0, buffer);
 
-    sprintf(buffer, "Score: %d", Score);
+    sprintf(buffer, "Time: %d", Time);
     al_draw_text(menuFont, al_map_rgb(255, 255, 255), offsetX, 20 + 2*gapY, 0, buffer);
 
     for(int i=0; i < Num_TowerType; i++)
@@ -121,19 +122,19 @@ Menu::MouseIn(int mouse_x, int mouse_y)
     return selectedTower;
 }
 
-bool
+/*bool
 Menu::Subtract_HP(int escapeNum)
 {
     HealthPoint -= escapeNum;
 
     return (HealthPoint == 0);
-}
+}*/
 
-void
+/*void
 Menu::Gain_Score(int scoreWorth)
 {
     killedMonster++;
     Score += scoreWorth;
-}
+}*/
 
 

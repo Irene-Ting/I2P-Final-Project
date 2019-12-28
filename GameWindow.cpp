@@ -357,7 +357,8 @@ GameWindow::game_reset()
 
     selectedTower = -1;
     lastClicked = -1;
-    Coin_Inc_Count = 0;
+    //Coin_Inc_Count = 0;
+    Time_Inc_Count = 0;
     Monster_Pro_Count = 0;
     mute = false;
     redraw = false;
@@ -419,10 +420,13 @@ GameWindow::process_event()
         if(event.timer.source == timer) {
             redraw = true;
 
-            if(Coin_Inc_Count == 0)
-                menu->Change_Coin(Time_Gain);
+            if(Time_Inc_Count==0)
+                menu->Change_Time(1);
+            Time_Inc_Count = (Time_Inc_Count + 1) % TimeSpeed;
 
-            Coin_Inc_Count = (Coin_Inc_Count + 1) % TimeSpeed;
+            /*if(Coin_Inc_Count == 0)
+                menu->Change_Coin(Time_Gain);
+            Coin_Inc_Count = (Coin_Inc_Count + 1) % TimeSpeed;*/
 
             /*if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro))
             {
@@ -491,11 +495,11 @@ GameWindow::process_event()
         }
     }
     else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-        if(event.mouse.button == 2)
+        /*if(event.mouse.button == 2)
         {
             //menu->Change_Coin(Coin_Add_Gain);
             menu->Change_Coin(5);
-        }
+        }*/
         /*else if(event.mouse.button == 1) {
             if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
                 Tower *t = create_tower(selectedTower);
