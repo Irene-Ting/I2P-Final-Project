@@ -10,7 +10,7 @@ public:
     {
         type = CANON;
 
-        circle->r = 70;
+        square->r = 70;
         attack_frequency = 30;
         attack_velocity = 6;
         attack_harm_point = 15;

@@ -7,7 +7,7 @@ const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 // set counter frequency of drawing moving animation
 const int draw_frequency = 10;
 
-Monster::Monster(std::vector<int> path)
+/*Monster::Monster(std::vector<int> path)
 {
     this->path = path;
     this->step = 0;
@@ -28,9 +28,9 @@ Monster::Monster(std::vector<int> path)
     sprite_pos = 0;
     counter = 0;
     strncpy(class_name, "Wolf", 20);
-}
+}*/
 
-Monster::~Monster()
+/*Monster::~Monster()
 {
     for(unsigned int i=0; i<moveImg.size(); i++)
     {
@@ -44,7 +44,7 @@ Monster::~Monster()
     moveImg.clear();
 
     delete circle;
-}
+}*/
 
 void
 Monster::Load_Move()
@@ -84,12 +84,12 @@ Monster::Draw()
 
 
     // draw bitmap align grid edge
-    al_draw_bitmap(moveImg[offset + sprite_pos], circle->x - w/2, circle->y - (h - grid_height/2), 0);
+    al_draw_bitmap(moveImg[offset + sprite_pos], square->x - w/2, square->y - (h - grid_height/2), 0);
 
     //al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
 }
 
-bool
+/*bool
 Monster::Move()
 {
     int target_grid_x, target_grid_y;
@@ -154,7 +154,7 @@ Monster::Move()
 
     // if not reaching end point, return false
     return false;
-}
+}*/
 
 bool
 Monster::Subtract_HP(int harm_point)

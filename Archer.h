@@ -10,7 +10,7 @@ public:
     {
         type = ARCHER;
 
-        circle->r = 80;
+        square->r = 80;
         attack_frequency = 15;
         attack_velocity = 8;
         attack_harm_point = 7;

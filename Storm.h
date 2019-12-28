@@ -10,7 +10,7 @@ public:
     {
         type = STORM;
 
-        circle->r = 150;
+        //circle->r = 150;
         attack_frequency = 5;
         attack_velocity = 20;
         attack_harm_point = 5;

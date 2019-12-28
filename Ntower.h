@@ -10,7 +10,7 @@ public:
     {
         type = NTOWER;
 
-        circle->r = 90;
+        //circle->r = 90;
         attack_frequency = 120;
         attack_velocity = 5;
         attack_harm_point = 10;

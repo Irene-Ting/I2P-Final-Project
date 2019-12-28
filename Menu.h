@@ -9,7 +9,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <vector>
 #include "Object.h"
-#include "Circle.h"
+#include "Square.h"
 #include "global.h"
 #include "Slider.h"
 class Menu : public Object

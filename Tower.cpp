@@ -2,12 +2,12 @@
 
 Tower::Tower(int pos_x = 0, int pos_y = 0)
 {
-    this->circle = new Circle(pos_x, pos_y, 70);
+    this->square = new Square(pos_x, pos_y, 70);
 }
 
 Tower::~Tower()
 {
-    delete circle;
+    delete square;
 
     al_destroy_bitmap(img);
     al_destroy_bitmap(attack_img);
@@ -21,8 +21,8 @@ Tower::~Tower()
 void
 Tower::Draw()
 {
-    int draw_x = circle->x - (TowerWidth[this->type]/2);
-    int draw_y = circle->y - (TowerHeight[this->type] - (TowerWidth[this->type]/2));
+    int draw_x = square->x - (TowerWidth[this->type]/2);
+    int draw_y = square->y - (TowerHeight[this->type] - (TowerWidth[this->type]/2));
 
 
     al_draw_bitmap(img, draw_x, draw_y, 0);
@@ -32,8 +32,8 @@ Tower::Draw()
 
     if(isClicked)
     {
-        al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
-        al_draw_filled_circle(circle->x, circle->y, 2, al_map_rgb(0, 0, 0));
+        al_draw_filled_circle(square->x, square->y, square->r, al_map_rgba(196, 79, 79, 200));
+        al_draw_filled_circle(square->x, square->y, 2, al_map_rgb(0, 0, 0));
     }
 }
 
@@ -55,19 +55,19 @@ Tower::SelectedTower(int mouse_x, int mouse_y, int type)
     al_destroy_bitmap(bitmap);
 }
 
-bool
+/*bool
 Tower::DetectAttack(Monster *monster)
 {
     bool willAttack = false;
     Attack *attack;
 
-    if(Circle::isOverlap(this->circle, monster->getCircle()))
+    if(Square::isOverlap(this->square, monster->getSquare()))
     {
         if(attack_counter == 0)
         {
             attack = new Attack(
-                this->circle,
-                monster->getCircle(),
+                this->square,
+                monster->getSquare(),
                 this->attack_harm_point,
                 this->attack_velocity,
                 this->attack_img
@@ -81,7 +81,7 @@ Tower::DetectAttack(Monster *monster)
     }
 
     return willAttack;
-}
+}*/
 
 bool
 Tower::TriggerAttack(Monster *monster)
@@ -90,7 +90,7 @@ Tower::TriggerAttack(Monster *monster)
 
     for(unsigned int i = 0; i < this->attack_set.size(); i++)
     {
-        if(Circle::isOverlap(attack_set[i]->getCircle(), monster->getCircle()))
+        if(Square::isOverlap(attack_set[i]->getSquare(), monster->getSquare()))
         {
             /*DONE:*/
             /*1. Reduce the monster HP by the harm point*/
@@ -114,7 +114,7 @@ Tower::UpdateAttack()
 {
     for(unsigned int i=0; i < this->attack_set.size(); i++)
     {
-        if(!Circle::isOverlap(this->attack_set[i]->getCircle(), this->circle))
+        if(!Square::isOverlap(this->attack_set[i]->getSquare(), this->square))
         {
             Attack *attack = this->attack_set[i];
 

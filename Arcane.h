@@ -10,7 +10,7 @@ public:
     {
         type = ARCANE;
 
-        circle->r = 80;
+        square->r = 80;
         attack_frequency = 20;
         attack_velocity = 8;
         attack_harm_point = 5;

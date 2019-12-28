@@ -2312,10 +2312,10 @@
 1576298520 source:d:\nthu\programming\practice\allegro\final_testing\tower.cpp
 	"Tower.h"
 
-1576330818 source:d:\nthu\programming\practice\allegro\i2p-final-project\attack.cpp
+1577539226 source:d:\nthu\programming\practice\allegro\i2p-final-project\attack.cpp
 	"Attack.h"
 
-1528195764 d:\nthu\programming\practice\allegro\i2p-final-project\attack.h
+1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\attack.h
 	<stdio.h>
 	<math.h>
 	<allegro5/allegro.h>
@@ -2323,10 +2323,10 @@
 	<allegro5/allegro_primitives.h>
 	<allegro5/allegro_audio.h>
 	"Object.h"
-	"Circle.h"
+	"Square.h"
 
-1520703508 d:\nthu\programming\practice\allegro\i2p-final-project\object.h
-	"Circle.h"
+1577538642 d:\nthu\programming\practice\allegro\i2p-final-project\object.h
+	"Square.h"
 
 1519028628 d:\nthu\programming\practice\allegro\i2p-final-project\circle.h
 
@@ -2381,7 +2381,7 @@
 	"Slider.h"
 	"Player1.h"
 
-1577537412 d:\nthu\programming\practice\allegro\i2p-final-project\menu.h
+1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\menu.h
 	<stdio.h>
 	<stdlib.h>
 	<allegro5/allegro.h>
@@ -2390,7 +2390,7 @@
 	<allegro5/allegro_primitives.h>
 	<vector>
 	"Object.h"
-	"Circle.h"
+	"Square.h"
 	"global.h"
 	"Slider.h"
 
@@ -2404,14 +2404,14 @@
 1518072820 d:\nthu\programming\practice\allegro\i2p-final-project\wolfknight.h
 	"Monster.h"
 
-1576377608 d:\nthu\programming\practice\allegro\i2p-final-project\monster.h
+1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\monster.h
 	<stdio.h>
 	<string.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_primitives.h>
 	<vector>
 	"Object.h"
-	"Circle.h"
+	"Square.h"
 	"global.h"
 
 1518072764 d:\nthu\programming\practice\allegro\i2p-final-project\caveman.h
@@ -2423,7 +2423,7 @@
 1518869066 d:\nthu\programming\practice\allegro\i2p-final-project\demonnijia.h
 	"Monster.h"
 
-1576330965 d:\nthu\programming\practice\allegro\i2p-final-project\ntower.h
+1577538649 d:\nthu\programming\practice\allegro\i2p-final-project\ntower.h
 	"Tower.h"
 
 1520703300 d:\nthu\programming\practice\allegro\i2p-final-project\tower.h
@@ -2439,26 +2439,26 @@
 	"Monster.h"
 	"global.h"
 
-1518095862 d:\nthu\programming\practice\allegro\i2p-final-project\arcane.h
+1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\arcane.h
 	"Tower.h"
 
-1518095886 d:\nthu\programming\practice\allegro\i2p-final-project\archer.h
+1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\archer.h
 	"Tower.h"
 
-1518095900 d:\nthu\programming\practice\allegro\i2p-final-project\canon.h
+1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\canon.h
 	"Tower.h"
 
-1518095970 d:\nthu\programming\practice\allegro\i2p-final-project\poison.h
+1577538656 d:\nthu\programming\practice\allegro\i2p-final-project\poison.h
 	"Tower.h"
 
-1518095964 d:\nthu\programming\practice\allegro\i2p-final-project\storm.h
+1577538661 d:\nthu\programming\practice\allegro\i2p-final-project\storm.h
 	"Tower.h"
 
 1577536404 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
 	"Menu.h"
 	"Slider.h"
 
-1520543704 source:d:\nthu\programming\practice\allegro\i2p-final-project\monster.cpp
+1577538682 source:d:\nthu\programming\practice\allegro\i2p-final-project\monster.cpp
 	"Monster.h"
 
 1576306539 source:d:\nthu\programming\practice\allegro\i2p-final-project\slider.cpp
@@ -2466,10 +2466,10 @@
 	<string.h>
 	"Slider.h"
 
-1576298520 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
+1577539006 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
 	"Tower.h"
 
-1577536548 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1577537411 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	<iostream>
@@ -2490,4 +2490,9 @@
 
 1577526827 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
 	"Player.h"
+
+1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\square.h
+
+1577539213 source:d:\nthu\programming\practice\allegro\i2p-final-project\square.cpp
+	"Square.h"
 

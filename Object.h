@@ -1,7 +1,7 @@
 #ifndef OBJECT_H_INCLUDED
 #define OBJECT_H_INCLUDED
 
-#include "Circle.h"
+#include "Square.h"
 
 class Object {
 public:
@@ -11,14 +11,14 @@ public:
     // pure function for drawing object
     virtual void Draw() = 0;
 
-    int getX() { return circle->x; }
-    int getY() { return circle->y; }
-    int getRadius() { return circle->r; }
+    int getX() { return square->x; }
+    int getY() { return square->y; }
+    int getRadius() { return square->r; }
 
-    Circle* getCircle() const { return circle; }
+    Square* getSquare() const { return square; }
 
 protected:
-    Circle *circle;
+    Square *square;
 
 };
 

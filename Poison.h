@@ -10,7 +10,7 @@ public:
     {
         type = POISON;
 
-        circle->r = 110;
+        //circle->r = 110;
         attack_frequency = 50;
         attack_velocity = 10;
         attack_harm_point = 3;

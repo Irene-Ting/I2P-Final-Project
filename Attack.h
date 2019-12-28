@@ -8,14 +8,14 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_audio.h>
 #include "Object.h"
-#include "Circle.h"
+#include "Square.h"
 
 #define abs(x) ((x) > 0? (x) : -(x))
 
 class Attack : public Object
 {
 public:
-    Attack(Circle*, Circle*, int, int, ALLEGRO_BITMAP*);
+    Attack(Square*, Square*, int, int, ALLEGRO_BITMAP*);
     virtual ~Attack();
 
     // override virtual function "Object::Draw"

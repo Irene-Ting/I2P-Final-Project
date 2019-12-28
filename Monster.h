@@ -7,7 +7,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <vector>
 #include "Object.h"
-#include "Circle.h"
+#include "Square.h"
 #include "global.h"
 
 enum {LEFT=0, RIGHT, UP, DOWN};
