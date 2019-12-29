@@ -44,8 +44,6 @@
 		<Unit filename="Attack.h" />
 		<Unit filename="Canon.h" />
 		<Unit filename="CaveMan.h" />
-		<Unit filename="Circle.cpp" />
-		<Unit filename="Circle.h" />
 		<Unit filename="DemonNijia.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
@@ -70,11 +68,18 @@
 		<Unit filename="Poison.h" />
 		<Unit filename="Slider.cpp" />
 		<Unit filename="Slider.h" />
+		<Unit filename="Square.cpp" />
+		<Unit filename="Square.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Storm.h" />
 		<Unit filename="Tower.cpp" />
 		<Unit filename="Tower.h" />
 		<Unit filename="Wolf.h" />
 		<Unit filename="WolfKnight.h" />
+		<Unit filename="block.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
 		<Extensions>

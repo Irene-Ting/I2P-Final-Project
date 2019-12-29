@@ -37,11 +37,11 @@ GameWindow::game_init()
     softImg = al_load_bitmap("./Material/soft1.png");
     hardImg = al_load_bitmap("./Material/hard1.png");
 
-    /*for(int i = 0; i < Num_TowerType; i++)
+    for(int i = 0; i < Num_TowerType; i++)
     {
         sprintf(buffer, "./Tower/%s.png", TowerClass[i]);
         tower[i] = al_load_bitmap(buffer);
-    }*/
+    }
 
     al_set_display_icon(display, icon);
     al_reserve_samples(3);
@@ -71,12 +71,17 @@ GameWindow::mouse_hover(int startx, int starty, int width, int height)
             return true;
 
     return false;
+    //return true;
 }
 
-/*bool
+bool
 GameWindow::isOnRoad()
 {
-    int startx, starty;
+    /*if(mouse_x-20 > 0 && mouse_x+20 < 600 && mouse_y-20 > 0 && mouse_y+20 < 600)
+        return false;
+    return true;*/
+    return false;
+    /*int startx, starty;
     int widthOfTower;
 
     widthOfTower = TowerWidth[selectedTower];
@@ -95,10 +100,10 @@ GameWindow::isOnRoad()
                 return true;
         }
     }
-    return false;
-}*/
+    return false;*/
+}
 
-/*Tower*
+Tower*
 GameWindow::create_tower(int type)
 {
     Tower *t = NULL;
@@ -133,7 +138,7 @@ GameWindow::create_tower(int type)
     menu->Change_Coin(menu->getTowerCoin(type));
 
     return t;
-}*/
+}
 
 /*Monster*
 GameWindow::create_monster()
@@ -263,7 +268,6 @@ GameWindow::game_begin()
 int
 GameWindow::game_run()
 {
-    //printf("h");
     int error = GAME_CONTINUE;
 
     if (!al_is_event_queue_empty(event_queue)) {
@@ -348,21 +352,19 @@ void
 GameWindow::game_reset()
 {
     // reset game and begin
-    /*for(auto&& child : towerSet) {
+    for(auto&& child : towerSet) {
         delete child;
     }
     towerSet.clear();
-    monsterSet.clear();*/
+    //monsterSet.clear();
 
 
     selectedTower = -1;
     lastClicked = -1;
-    //Coin_Inc_Count = 0;
     Time_Inc_Count = 0;
-    Monster_Pro_Count = 0;
+    //Monster_Pro_Count = 0;
     mute = false;
     redraw = false;
-    //act = false;
     scene = ACTIVATE;
     menu->Reset();
 
@@ -389,8 +391,8 @@ GameWindow::game_destroy()
     al_destroy_timer(timer);
     //al_destroy_timer(monster_pro);
 
-    /*for(int i=0;i<5; i++)
-        al_destroy_bitmap(tower[i]);*/
+    for(int i=0;i<5; i++)
+        al_destroy_bitmap(tower[i]);
 
     al_destroy_bitmap(icon);
     al_destroy_bitmap(background);
@@ -424,16 +426,11 @@ GameWindow::process_event()
                 menu->Change_Time(1);
             Time_Inc_Count = (Time_Inc_Count + 1) % TimeSpeed;
 
-            /*if(Coin_Inc_Count == 0)
-                menu->Change_Coin(Time_Gain);
-            Coin_Inc_Count = (Coin_Inc_Count + 1) % TimeSpeed;*/
-
             /*if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro))
             {
                 al_stop_timer(timer);
                 return GAME_EXIT;
             }*/
-
         }
         /*else {
             if(Monster_Pro_Count == 0) {
@@ -448,111 +445,122 @@ GameWindow::process_event()
     else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
         return GAME_EXIT;
     }
-    else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
-        switch(event.keyboard.keycode) {
-            case ALLEGRO_KEY_LEFT:
-                player->Load_Move(LEFT);
-                break;
-            case ALLEGRO_KEY_RIGHT:
-                player->Load_Move(RIGHT);
-                break;
-            case ALLEGRO_KEY_UP:
-                player->Load_Move(UP);
-                break;
-            case ALLEGRO_KEY_DOWN:
-                player->Load_Move(DOWN);
-                break;
-            case ALLEGRO_KEY_S:
-                if(scene==ACTIVATE)
-                {
-                    //act = true;
-                    scene++;
-                    al_start_timer(timer);
-                    //al_start_timer(monster_pro);
-                    al_play_sample_instance(backgroundSound);
-                }
-                break;
-            case ALLEGRO_KEY_P:
-                /*DONE: handle pause event here*/
-                if(al_get_timer_started(timer))
-                {
-                    al_stop_timer(timer);
-                    //al_stop_timer(monster_pro);
-                }
-                else
-                {
-                    al_start_timer(timer);
-                    //al_start_timer(monster_pro);
-                }
-                break;
-            case ALLEGRO_KEY_M:
-                mute = !mute;
-                if(mute)
-                    al_stop_sample_instance(backgroundSound);
-                else
-                    al_play_sample_instance(backgroundSound);
-                break;
-        }
-    }
-    else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-        /*if(event.mouse.button == 2)
+    else
+    {
+        switch(scene)
         {
-            //menu->Change_Coin(Coin_Add_Gain);
-            menu->Change_Coin(5);
-        }*/
-        /*else if(event.mouse.button == 1) {
-            if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
-                Tower *t = create_tower(selectedTower);
-
-                if(t == NULL)
-                    printf("Wrong place\n");
-                else {
-                    towerSet.push_back(t);
-                    towerSet.sort(compare);
-                }
-            } else if(selectedTower == -1){
-                std::list<Tower*>::iterator it = towerSet.begin();
-                if(lastClicked != -1)
-                {
-                    std::advance(it, lastClicked);
-                    (*it)->ToggleClicked();
-                }
-                for(i=0, it = towerSet.begin(); it != towerSet.end(); it++, i++)
-                {
-                    Circle *circle = (*it)->getCircle();
-                    int t_width = (*it)->getWidth();
-
-                    if(mouse_hover(circle->x - t_width/2, circle->y, t_width, t_width/2))
+            case ACTIVATE:
+                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+                    switch(event.keyboard.keycode)
                     {
-                        (*it)->ToggleClicked();
-                        lastClicked = i;
-                        break;
-                    } else {
-                        lastClicked = -1;
+                        case ALLEGRO_KEY_S:
+                            scene++;
+                            al_start_timer(timer);
+                            //al_start_timer(monster_pro);
+                            al_play_sample_instance(backgroundSound);
+                            break;
                     }
                 }
+                break;
+            case GAMERUN:
+                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+                    switch(event.keyboard.keycode) {
+                        case ALLEGRO_KEY_LEFT:
+                            player->Load_Move(LEFT);
+                            break;
+                        case ALLEGRO_KEY_RIGHT:
+                            player->Load_Move(RIGHT);
+                            break;
+                        case ALLEGRO_KEY_UP:
+                            player->Load_Move(UP);
+                            break;
+                        case ALLEGRO_KEY_DOWN:
+                            player->Load_Move(DOWN);
+                            break;
 
-            }
-            selectedTower = menu->MouseIn(mouse_x, mouse_y);
-            if(slider->isClicked(mouse_x, mouse_y))
-            {
-                slider->toggleDrag();
-            }
-            // check if user wants to create some kind of tower
-            // if so, show tower image attached to cursor
-        }*/
-    }
-    else if(event.type == ALLEGRO_EVENT_MOUSE_AXES){
-        mouse_x = event.mouse.x;
-        mouse_y = event.mouse.y;
-        menu->MouseIn(mouse_x, mouse_y);
-        if(slider->isDragged())
-        {
-            slider->Drag(mouse_x, mouse_y);
-            al_set_sample_instance_gain(backgroundSound, slider->getDegree());
-        }
-    }
+                        case ALLEGRO_KEY_P:
+                            /*DONE: handle pause event here*/
+                            if(al_get_timer_started(timer))
+                            {
+                                al_stop_timer(timer);
+                                //al_stop_timer(monster_pro);
+                            }
+                            else
+                            {
+                                al_start_timer(timer);
+                                //al_start_timer(monster_pro);
+                            }
+                            break;
+                        case ALLEGRO_KEY_M:
+                            mute = !mute;
+                            if(mute)
+                                al_stop_sample_instance(backgroundSound);
+                            else
+                                al_play_sample_instance(backgroundSound);
+                            break;
+                    }
+                }
+                else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                /*if(event.mouse.button == 2)
+                {
+                    //menu->Change_Coin(Coin_Add_Gain);
+                    menu->Change_Coin(5);
+                }*/
+                    if(event.mouse.button == 1) {
+                        if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
+                            Tower *t = create_tower(selectedTower);
 
+                            if(t == NULL)
+                                printf("Wrong place\n");
+                            else {
+                                towerSet.push_back(t);
+                                towerSet.sort(compare);
+                            }
+                        } else if(selectedTower == -1){
+                            std::list<Tower*>::iterator it = towerSet.begin();
+                            if(lastClicked != -1)
+                            {
+                                std::advance(it, lastClicked);
+                                (*it)->ToggleClicked();
+                            }
+                            for(i=0, it = towerSet.begin(); it != towerSet.end(); it++, i++)
+                            {
+                                Square *square = (*it)->getSquare();
+                                int t_width = (*it)->getWidth();
+
+                                if(mouse_hover(square->x - t_width/2, square->y, t_width, t_width/2))
+                                {
+                                    (*it)->ToggleClicked();
+                                    lastClicked = i;
+                                    break;
+                                } else {
+                                    lastClicked = -1;
+                                }
+                            }
+
+                        }
+                        selectedTower = menu->MouseIn(mouse_x, mouse_y);
+                        if(slider->isClicked(mouse_x, mouse_y))
+                        {
+                            slider->toggleDrag();
+                        }
+                    // check if user wants to create some kind of tower
+                    // if so, show tower image attached to cursor
+                    }
+            }
+            else if(event.type == ALLEGRO_EVENT_MOUSE_AXES){
+                mouse_x = event.mouse.x;
+                mouse_y = event.mouse.y;
+                menu->MouseIn(mouse_x, mouse_y);
+                if(slider->isDragged())
+                {
+                    slider->Drag(mouse_x, mouse_y);
+                    al_set_sample_instance_gain(backgroundSound, slider->getDegree());
+                }
+            }
+                break;
+            }
+    }
     if(redraw) {
         // update each object in game
         // Re-draw map
@@ -562,15 +570,12 @@ GameWindow::process_event()
             draw_running_map();
         }
 
-        else
+        else if(scene==ACTIVATE)
         {
             draw_start_map();
         }
-
-
         redraw = false;
     }
-
     return instruction;
 }
 
@@ -607,7 +612,7 @@ GameWindow::draw_running_map()
     /*for(i=0; i<monsterSet.size(); i++)
     {
         monsterSet[i]->Draw();
-    }
+    }*/
 
     for(std::list<Tower*>::iterator it = towerSet.begin(); it != towerSet.end(); it++)
         (*it)->Draw();
@@ -615,8 +620,8 @@ GameWindow::draw_running_map()
     if(selectedTower != -1)
         Tower::SelectedTower(mouse_x, mouse_y, selectedTower);
 
-    al_draw_filled_rectangle(field_width, 0, window_width, window_height, al_map_rgb(100, 100, 100));
-*/
+    //al_draw_filled_rectangle(field_width, 0, window_width, window_height, al_map_rgb(100, 100, 100));
+
     menu->Draw();
     slider->Draw();
     player->Draw();

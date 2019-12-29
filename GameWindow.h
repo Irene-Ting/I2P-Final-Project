@@ -70,9 +70,9 @@ public:
     // detect if mouse hovers over a rectangle
     bool mouse_hover(int, int, int, int);
     // detect if a tower will be constructed on road
-    //bool isOnRoad();
+    bool isOnRoad();
 
-    //Tower* create_tower(int);
+    Tower* create_tower(int);
     //Monster* create_monster();
 
 public:
@@ -80,7 +80,7 @@ public:
 
 private:
     ALLEGRO_BITMAP *icon;
-    //ALLEGRO_BITMAP *tower[Num_TowerType];
+    ALLEGRO_BITMAP *tower[Num_TowerType];
     ALLEGRO_BITMAP *background = NULL;
     ALLEGRO_BITMAP *start_page = NULL;
     ALLEGRO_BITMAP *path;
@@ -109,9 +109,9 @@ private:
     Slider *slider = NULL;
     Player *player = NULL;
     //std::vector<Monster*> monsterSet;
-    //std::list<Tower*> towerSet;
+    std::list<Tower*> towerSet;
 
-    int Monster_Pro_Count = 0;
+    //int Monster_Pro_Count = 0;
     //int Coin_Inc_Count = 0;
     int Time_Inc_Count = 0;
     int mouse_x, mouse_y;
