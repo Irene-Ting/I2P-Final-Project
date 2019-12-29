@@ -66,6 +66,8 @@ public:
     // each drawing scene function
     void draw_running_map();
     void draw_start_map();
+    void draw_win_map();
+    void draw_lose_map();
     // process of updated event
     int process_event();
     // detect if mouse hovers over a rectangle

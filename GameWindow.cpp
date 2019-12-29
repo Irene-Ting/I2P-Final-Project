@@ -416,6 +416,8 @@ GameWindow::process_event()
     int offsetX = field_width/2 - 200;
     int offsetY = field_height/2 - 200;
 
+    bool win = false;
+
     al_wait_for_event(event_queue, &event);
     redraw = false;
 
@@ -431,6 +433,7 @@ GameWindow::process_event()
                 menu->Change_Energy(-1);
             Energy_Inc_Count = (Energy_Inc_Count + 1) % EnergySpeed;
 
+            if(menu->getEnergy()<0) scene = GAMELOSE;
             /*if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro))
             {
                 al_stop_timer(timer);
@@ -471,16 +474,16 @@ GameWindow::process_event()
                 if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
                     switch(event.keyboard.keycode) {
                         case ALLEGRO_KEY_LEFT:
-                            player->Load_Move(level->levelMap, LEFT);
+                            win = player->Load_Move(level->levelMap, menu, LEFT);
                             break;
                         case ALLEGRO_KEY_RIGHT:
-                            player->Load_Move(level->levelMap, RIGHT);
+                            win = player->Load_Move(level->levelMap, menu, RIGHT);
                             break;
                         case ALLEGRO_KEY_UP:
-                            player->Load_Move(level->levelMap, UP);
+                            win = player->Load_Move(level->levelMap, menu, UP);
                             break;
                         case ALLEGRO_KEY_DOWN:
-                            player->Load_Move(level->levelMap, DOWN);
+                            win = player->Load_Move(level->levelMap, menu, DOWN);
                             break;
 
                         case ALLEGRO_KEY_P:
@@ -566,6 +569,7 @@ GameWindow::process_event()
                 break;
             }
     }
+    if(win) scene = GAMEWIN;
     if(redraw) {
         // update each object in game
         // Re-draw map
@@ -578,6 +582,14 @@ GameWindow::process_event()
         else if(scene==ACTIVATE)
         {
             draw_start_map();
+        }
+        else if(scene==GAMEWIN)
+        {
+            draw_win_map();
+        }
+        else if(scene==GAMELOSE)
+        {
+            draw_lose_map();
         }
         redraw = false;
     }
@@ -639,6 +651,24 @@ GameWindow::draw_start_map()
     al_clear_to_color(BLACK);
     al_draw_bitmap(start_page, 230, 150, 0);
     al_draw_text(Large_font, WHITE, 270, 400, 0, "press S to start");
+    al_flip_display();
+}
+
+void
+GameWindow::draw_win_map()
+{
+    al_clear_to_color(BLACK);
+    al_draw_bitmap(start_page, 230, 150, 0);
+    al_draw_text(Large_font, WHITE, 270, 400, 0, "win");
+    al_flip_display();
+}
+
+void
+GameWindow::draw_lose_map()
+{
+    al_clear_to_color(BLACK);
+    al_draw_bitmap(start_page, 230, 150, 0);
+    al_draw_text(Large_font, WHITE, 270, 400, 0, "lose");
     al_flip_display();
 }
 

@@ -11,13 +11,14 @@
 #include "global.h"
 #include "Object.h"
 #include "level.h"
+#include "Menu.h"
 
 class Player: public Object {
 public:
     Player();
     ~Player();
     void Draw();
-    void Load_Move(Node*, int);
+    bool Load_Move(Node*, Menu*, int);
 protected:
     int cur_x;
     int cur_y;

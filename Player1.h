@@ -8,7 +8,7 @@ class Player1 : public Player
 public:
     Player1() : Player()
     {
-        step = 20;
+        step = 40;
     }
 };
 

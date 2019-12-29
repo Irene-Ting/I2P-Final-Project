@@ -20,19 +20,30 @@ Player::Draw()
     al_draw_bitmap(charaImg, cur_x, cur_y, 0);
 }
 
-void
-Player::Load_Move(Node* levelMap, int d)
+bool
+Player::Load_Move(Node* levelMap, Menu* menu, int d)
 {
     int next_x, next_y;
     next_x = cur_x+axis_x[d]*step;
     next_y = cur_y+axis_y[d]*step;
-    printf("%d %d ", next_x, next_y);
-    printf("%d\n", levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint);
-    if(levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint)
+    //printf("%d %d ", next_x, next_y);
+    //printf("%d %d ", next_x/grid_width, next_y/grid_height);
+    //printf("%d\n", levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint);
+    if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].pathPoint)
     {
         cur_x = next_x;
         cur_y = next_y;
     }
-
+    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint)
+    {
+        cur_x = next_x;
+        cur_y = next_y;
+        //BurrowGame->menu->Change_Energy(-1);
+        menu->Change_Energy(-1);
+        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;
+        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].pathPoint = true;
+    }
+    if(cur_x == 480&&cur_y == 0) return true;
+    return false;
 }
 
