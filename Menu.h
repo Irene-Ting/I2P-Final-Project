@@ -34,12 +34,14 @@ public:
     bool Enough_Coin(int);
     void Change_Coin(int change) { Coin += change; }
     void Change_Time(int change) { Time += change; }
+    void Change_Energy(int change) { EnergyPoint += change; }
     bool Subtract_HP(int escapeNum = 1);
     void Gain_Score(int);
 
     int getTowerCoin(int type) { return need_coin[type]; }
     int getTime() { return Time; }
     int getCoin() { return Coin; }
+    int getEnergy() { return EnergyPoint; }
     int getKilled() { return killedMonster; }
 
 private:

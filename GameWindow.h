@@ -42,6 +42,7 @@ const int LevelNum = 4;
 
 // 1 coin every 2 seconds
 const int TimeSpeed = FPS;
+const int EnergySpeed = FPS*10;
 const int Time_Gain = 1;
 
 class GameWindow
@@ -114,6 +115,7 @@ private:
     //int Monster_Pro_Count = 0;
     //int Coin_Inc_Count = 0;
     int Time_Inc_Count = 0;
+    int Energy_Inc_Count = 0;
     int mouse_x, mouse_y;
     int selectedTower = -1, lastClicked = -1;
 

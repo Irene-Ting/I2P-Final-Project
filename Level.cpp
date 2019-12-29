@@ -10,7 +10,7 @@ LEVEL::~LEVEL()
 {
     for(int i=0;i < NumOfGrid;i++)
     {
-        levelMap[i].roadPoint = false;
+        levelMap[i].pathPoint = false;
     }
 }
 
@@ -28,9 +28,9 @@ LEVEL::setLevel(const int level)
 
     for(int i = 0; i < NumOfGrid; i++)
     {
-        this->levelMap[i].roadPoint = false;
-        this->levelMap[i].wallPoint = false;
-        this->levelMap[i].digPoint = false;
+        this->levelMap[i].pathPoint = false;
+        this->levelMap[i].hardPoint = false;
+        this->levelMap[i].softPoint = false;
     }
 
     /*fscanf(file, "%s", buffer);
@@ -42,9 +42,9 @@ LEVEL::setLevel(const int level)
         int buf;
         fscanf(file, "%s", buffer);
         buf = atoi(buffer);
-        if(buf==0) this->levelMap[i].roadPoint = true;
-        else if(buf==1) this->levelMap[i].digPoint = true;
-        else if(buf==2) this->levelMap[i].wallPoint = true;
+        if(buf==0) this->levelMap[i].pathPoint = true;
+        else if(buf==1) this->levelMap[i].softPoint = true;
+        else if(buf==2) this->levelMap[i].hardPoint = true;
     }
 
     /*while(fscanf(file, "%s", buffer) != EOF) {

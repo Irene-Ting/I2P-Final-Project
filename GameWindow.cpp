@@ -362,6 +362,7 @@ GameWindow::game_reset()
     selectedTower = -1;
     lastClicked = -1;
     Time_Inc_Count = 0;
+    Energy_Inc_Count = 0;
     //Monster_Pro_Count = 0;
     mute = false;
     redraw = false;
@@ -425,6 +426,10 @@ GameWindow::process_event()
             if(Time_Inc_Count==0)
                 menu->Change_Time(1);
             Time_Inc_Count = (Time_Inc_Count + 1) % TimeSpeed;
+
+            if(Energy_Inc_Count==0)
+                menu->Change_Energy(-1);
+            Energy_Inc_Count = (Energy_Inc_Count + 1) % EnergySpeed;
 
             /*if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro))
             {
@@ -594,11 +599,11 @@ GameWindow::draw_running_map()
             char buffer[50];
             sprintf(buffer, "%d", i*15 + j);
             //printf("here\n");
-            if(level->levelMap[i*15+j].roadPoint)
+            if(level->levelMap[i*15+j].pathPoint)
                 al_draw_bitmap(path, j*40, i*40, 0);
-            else if(level->levelMap[i*15+j].digPoint)
+            else if(level->levelMap[i*15+j].softPoint)
                 al_draw_bitmap(softImg, j*40, i*40, 0);
-            else if(level->levelMap[i*15+j].wallPoint)
+            else if(level->levelMap[i*15+j].hardPoint)
                 al_draw_bitmap(hardImg, j*40, i*40, 0);
             /*if(level->isRoad(i*15 + j)) {
                 //al_draw_filled_rectangle(j*40, i*40, j*40+40, i*40+40, al_map_rgb(255, 244, 173));

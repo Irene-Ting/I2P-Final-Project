@@ -10,9 +10,9 @@
 
 typedef struct Node {
     int h, g, f;
-    bool roadPoint;
-    bool wallPoint;
-    bool digPoint;
+    bool pathPoint;
+    bool hardPoint;
+    bool softPoint;
 }Node;
 
 class LEVEL {
@@ -21,7 +21,7 @@ public:
     ~LEVEL();
 
     void setLevel(const int);
-    bool isRoad(int index) { return levelMap[index].roadPoint; }
+    bool isRoad(int index) { return levelMap[index].pathPoint; }
     int getMonsterSpeed() { return MonsterSpeed; }
     int getLevel() { return level; }
     //void search_destination();
