@@ -74,6 +74,7 @@ public:
     bool isOnRoad();
 
     Tower* create_tower(int);
+
     //Monster* create_monster();
 
 public:

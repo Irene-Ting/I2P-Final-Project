@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "GameWindow.h"
+
 const int axis_x[] = {-1, 1, 0, 0};
 const int axis_y[] = {0, 0, -1, 1};
 const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
@@ -19,9 +21,18 @@ Player::Draw()
 }
 
 void
-Player::Load_Move(int d)
+Player::Load_Move(Node* levelMap, int d)
 {
-    cur_x+=axis_x[d]*step;
-    cur_y+=axis_y[d]*step;
+    int next_x, next_y;
+    next_x = cur_x+axis_x[d]*step;
+    next_y = cur_y+axis_y[d]*step;
+    printf("%d %d ", next_x, next_y);
+    printf("%d\n", levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint);
+    if(levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint)
+    {
+        cur_x = next_x;
+        cur_y = next_y;
+    }
+
 }
 

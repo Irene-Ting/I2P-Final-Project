@@ -471,16 +471,16 @@ GameWindow::process_event()
                 if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
                     switch(event.keyboard.keycode) {
                         case ALLEGRO_KEY_LEFT:
-                            player->Load_Move(LEFT);
+                            player->Load_Move(level->levelMap, LEFT);
                             break;
                         case ALLEGRO_KEY_RIGHT:
-                            player->Load_Move(RIGHT);
+                            player->Load_Move(level->levelMap, RIGHT);
                             break;
                         case ALLEGRO_KEY_UP:
-                            player->Load_Move(UP);
+                            player->Load_Move(level->levelMap, UP);
                             break;
                         case ALLEGRO_KEY_DOWN:
-                            player->Load_Move(DOWN);
+                            player->Load_Move(level->levelMap, DOWN);
                             break;
 
                         case ALLEGRO_KEY_P:
