@@ -15,6 +15,8 @@ const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
 float Attack::volume = 1.0;
 
+bool random(int);
+
 void set_attack_volume(float volume)
 {
     Attack::volume = volume;
@@ -36,6 +38,8 @@ GameWindow::game_init()
     path = al_load_bitmap("./Material/path1.png");
     softImg = al_load_bitmap("./Material/soft1.png");
     hardImg = al_load_bitmap("./Material/hard1.png");
+    coinImg = al_load_bitmap("./Material/player1.png");
+    energyImg = al_load_bitmap("./Material/energy1.png");
 
     for(int i = 0; i < Num_TowerType; i++)
     {
@@ -257,6 +261,22 @@ GameWindow::game_begin()
 
     al_play_sample_instance(startSound);
 
+    for(int i = 0; i<NumOfGrid; ++i)
+    {
+        if(level->levelMap[i].type==PATH)
+        {
+            if(random(5)) level->levelMap[i].type = ENERGY;
+        }
+        else if(level->levelMap[i].type==SOFT)
+        {
+            if(random(10)) level->levelMap[i].type = COIN;
+        }
+        else if(level->levelMap[i].type==HARD)
+        {
+            if(random(8)) level->levelMap[i].type = COIN;
+        }
+
+    }
     //while(al_get_sample_instance_playing(startSound));
     //al_play_sample_instance(backgroundSound);
 
@@ -611,12 +631,33 @@ GameWindow::draw_running_map()
             char buffer[50];
             sprintf(buffer, "%d", i*15 + j);
             //printf("here\n");
-            if(level->levelMap[i*15+j].pathPoint)
+            switch(level->levelMap[i*15+j].type)
+            {
+                case PATH:
+                    al_draw_bitmap(path, j*40, i*40, 0);
+                    break;
+                case SOFT:
+                    al_draw_bitmap(softImg, j*40, i*40, 0);
+                    break;
+                case HARD:
+                    al_draw_bitmap(hardImg, j*40, i*40, 0);
+                    break;
+                case ENERGY:
+                    al_draw_bitmap(path, j*40, i*40, 0);
+                    al_draw_bitmap(energyImg, j*40, i*40, 0);
+                    break;
+                case COIN:
+                    al_draw_bitmap(softImg, j*40, i*40, 0);
+                    al_draw_bitmap(coinImg, j*40, i*40, 0);
+                    break;
+
+            }
+            /*if(level->levelMap[i*15+j].pathPoint)
                 al_draw_bitmap(path, j*40, i*40, 0);
             else if(level->levelMap[i*15+j].softPoint)
                 al_draw_bitmap(softImg, j*40, i*40, 0);
             else if(level->levelMap[i*15+j].hardPoint)
-                al_draw_bitmap(hardImg, j*40, i*40, 0);
+                al_draw_bitmap(hardImg, j*40, i*40, 0);*/
             /*if(level->isRoad(i*15 + j)) {
                 //al_draw_filled_rectangle(j*40, i*40, j*40+40, i*40+40, al_map_rgb(255, 244, 173));
                 al_draw_bitmap(path, j*40, i*40, 0);
@@ -670,5 +711,20 @@ GameWindow::draw_lose_map()
     al_draw_bitmap(start_page, 230, 150, 0);
     al_draw_text(Large_font, WHITE, 270, 400, 0, "lose");
     al_flip_display();
+}
+
+bool random(int x)
+{
+    static int seed = 0;
+    //srand((int) time(0));
+    srand((int)time(0)+(seed++));
+    if(rand()%x)
+    {
+        //printf("false\n");
+        return false;
+    }
+
+    //printf("true\n");
+    return true;
 }
 

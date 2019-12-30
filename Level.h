@@ -8,11 +8,16 @@
 #include <vector>
 #include "global.h"
 
+enum {PATH = 0, SOFT, HARD, ENERGY, COIN} ;
+
 typedef struct Node {
     int h, g, f;
-    bool pathPoint;
+    int type;
+    /*bool pathPoint;
     bool hardPoint;
     bool softPoint;
+    bool energy;
+    bool coin;*/
 }Node;
 
 class LEVEL {
@@ -21,7 +26,7 @@ public:
     ~LEVEL();
 
     void setLevel(const int);
-    bool isRoad(int index) { return levelMap[index].pathPoint; }
+    bool isRoad(int index) { return levelMap[index].type==PATH; }
     int getMonsterSpeed() { return MonsterSpeed; }
     int getLevel() { return level; }
     //void search_destination();

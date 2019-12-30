@@ -10,7 +10,7 @@ LEVEL::~LEVEL()
 {
     for(int i=0;i < NumOfGrid;i++)
     {
-        levelMap[i].pathPoint = false;
+        levelMap[i].type = -1;
     }
 }
 
@@ -26,12 +26,12 @@ LEVEL::setLevel(const int level)
     this->level = level;
     this->road_grid.clear();
 
-    for(int i = 0; i < NumOfGrid; i++)
+    /*for(int i = 0; i < NumOfGrid; i++)
     {
         this->levelMap[i].pathPoint = false;
         this->levelMap[i].hardPoint = false;
         this->levelMap[i].softPoint = false;
-    }
+    }*/
 
     /*fscanf(file, "%s", buffer);
     Monster_MAX = atoi(buffer);*/
@@ -42,9 +42,10 @@ LEVEL::setLevel(const int level)
         int buf;
         fscanf(file, "%s", buffer);
         buf = atoi(buffer);
-        if(buf==0) this->levelMap[i].pathPoint = true;
+        this->levelMap[i].type = buf;
+        /*if(buf==0) this->levelMap[i].pathPoint = true;
         else if(buf==1) this->levelMap[i].softPoint = true;
-        else if(buf==2) this->levelMap[i].hardPoint = true;
+        else if(buf==2) this->levelMap[i].hardPoint = true;*/
     }
 
     /*while(fscanf(file, "%s", buffer) != EOF) {

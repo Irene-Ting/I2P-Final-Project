@@ -15,9 +15,9 @@ Player::~Player(){}
 void
 Player::Draw()
 {
-    ALLEGRO_BITMAP *charaImg;
-    charaImg = al_load_bitmap("./Material/Player1.png");
-    al_draw_bitmap(charaImg, cur_x, cur_y, 0);
+    ALLEGRO_BITMAP *playerImg;
+    playerImg = al_load_bitmap("./Material/Player1.png");
+    al_draw_bitmap(playerImg, cur_x, cur_y, 0);
 }
 
 bool
@@ -29,19 +29,37 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
     //printf("%d %d ", next_x, next_y);
     //printf("%d %d ", next_x/grid_width, next_y/grid_height);
     //printf("%d\n", levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint);
-    if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].pathPoint)
+    if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type==PATH)
     {
         cur_x = next_x;
         cur_y = next_y;
     }
-    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint)
+    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type==ENERGY)
+    {
+        cur_x = next_x;
+        cur_y = next_y;
+        menu->Change_Energy(5);
+        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type = PATH;
+        printf("energy\n");
+    }
+    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type==SOFT)
     {
         cur_x = next_x;
         cur_y = next_y;
         //BurrowGame->menu->Change_Energy(-1);
         menu->Change_Energy(-1);
-        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;
-        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].pathPoint = true;
+        //levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;
+        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type = PATH;
+    }
+    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type==COIN)
+    {
+        cur_x = next_x;
+        cur_y = next_y;
+        //BurrowGame->menu->Change_Energy(-1);
+        menu->Change_Coin(5);
+        printf("coin\n");
+        //levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;
+        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type = PATH;
     }
     if(cur_x == 480&&cur_y == 0) return true;
     return false;

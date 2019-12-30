@@ -90,7 +90,8 @@ private:
     ALLEGRO_BITMAP *path;
     ALLEGRO_BITMAP *softImg;
     ALLEGRO_BITMAP *hardImg;
-    ALLEGRO_BITMAP *playerImg;
+    ALLEGRO_BITMAP *coinImg;
+    ALLEGRO_BITMAP *energyImg;
 
     ALLEGRO_DISPLAY* display = NULL;
     ALLEGRO_FONT *font = NULL;
