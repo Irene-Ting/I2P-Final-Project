@@ -56,6 +56,7 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
         cur_x = next_x;
         cur_y = next_y;
         //BurrowGame->menu->Change_Energy(-1);
+        menu->Change_Energy(-1);
         menu->Change_Coin(5);
         printf("coin\n");
         //levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;

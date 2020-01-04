@@ -112,8 +112,8 @@ GameWindow::create_tower(int type)
 {
     Tower *t = NULL;
 
-    if(isOnRoad())
-        return t;
+    /*if(isOnRoad())
+        return t;*/
 
     switch(type)
     {
@@ -271,10 +271,10 @@ GameWindow::game_begin()
         {
             if(random(10)) level->levelMap[i].type = COIN;
         }
-        else if(level->levelMap[i].type==HARD)
+        /*else if(level->levelMap[i].type==HARD)
         {
             if(random(8)) level->levelMap[i].type = COIN;
-        }
+        }*/
 
     }
     //while(al_get_sample_instance_playing(startSound));
@@ -529,13 +529,8 @@ GameWindow::process_event()
                     }
                 }
                 else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                /*if(event.mouse.button == 2)
-                {
-                    //menu->Change_Coin(Coin_Add_Gain);
-                    menu->Change_Coin(5);
-                }*/
                     if(event.mouse.button == 1) {
-                        if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
+                        /*if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
                             Tower *t = create_tower(selectedTower);
 
                             if(t == NULL)
@@ -544,7 +539,7 @@ GameWindow::process_event()
                                 towerSet.push_back(t);
                                 towerSet.sort(compare);
                             }
-                        } else if(selectedTower == -1){
+                        } else*/ if(selectedTower == -1){
                             std::list<Tower*>::iterator it = towerSet.begin();
                             if(lastClicked != -1)
                             {
@@ -575,6 +570,24 @@ GameWindow::process_event()
                     // check if user wants to create some kind of tower
                     // if so, show tower image attached to cursor
                     }
+            }
+            else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
+                if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
+                    Tower *t = create_tower(selectedTower);
+                    if(t == NULL)
+                        printf("Wrong place\n");
+                    else {
+                        towerSet.push_back(t);
+                        towerSet.sort(compare);
+                        selectedTower = -1;
+                        t->Utilize(mouse_x, mouse_y);
+                    }
+                }
+                else if(slider->isDragged())
+                {
+                    slider->toggleDrag();
+                }
+
             }
             else if(event.type == ALLEGRO_EVENT_MOUSE_AXES){
                 mouse_x = event.mouse.x;

@@ -49,8 +49,8 @@ Tower::SelectedTower(int mouse_x, int mouse_y, int type)
     bitmap = al_load_bitmap(filename);
 
     al_draw_bitmap(bitmap, draw_x, draw_y, 0);
-    al_draw_filled_circle(mouse_x, mouse_y, TowerRadius[type], al_map_rgba(196, 79, 79, 200));
-    al_draw_filled_circle(mouse_x, mouse_y, 2, al_map_rgb(0, 0, 0));
+    //al_draw_filled_circle(mouse_x, mouse_y, TowerRadius[type], al_map_rgba(196, 79, 79, 200));
+    //al_draw_filled_circle(mouse_x, mouse_y, 2, al_map_rgb(0, 0, 0));
 
     al_destroy_bitmap(bitmap);
 }

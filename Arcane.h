@@ -20,6 +20,11 @@ public:
 
     int getWidth() override { return TowerWidth[ARCANE]; }
     int getHeight() override { return TowerHeight[ARCANE]; }
+    void Utilize(int x, int y)
+    {
+        printf("%d %d\n", x, y);
+
+    }
 };
 
 #endif // ARCANE_H_INCLUDED

@@ -27,6 +27,7 @@ public:
     // update whole attack set
     // if any attack goes out of the range of tower, delete it
     void UpdateAttack();
+    virtual void Utilize(int x, int y){ puts("here");}
     // detect if tower needs to attack some monster
     bool DetectAttack(Monster*);
     // process if some of attack in set touches monster
