@@ -2347,7 +2347,7 @@
 1577609823 source:d:\nthu\programming\practice\allegro\i2p-final-project\level.cpp
 	"Level.h"
 
-1577609774 d:\nthu\programming\practice\allegro\i2p-final-project\level.h
+1578211305 d:\nthu\programming\practice\allegro\i2p-final-project\level.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -2426,8 +2426,9 @@
 1577538649 d:\nthu\programming\practice\allegro\i2p-final-project\ntower.h
 	"Tower.h"
 
-1578146605 d:\nthu\programming\practice\allegro\i2p-final-project\tower.h
+1578210724 d:\nthu\programming\practice\allegro\i2p-final-project\tower.h
 	<stdio.h>
+	<vector>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_font.h>
@@ -2439,13 +2440,14 @@
 	"Monster.h"
 	"global.h"
 
-1578146930 d:\nthu\programming\practice\allegro\i2p-final-project\arcane.h
+1578210189 d:\nthu\programming\practice\allegro\i2p-final-project\arcane.h
+	<vector>
 	"Tower.h"
 
-1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\archer.h
+1578210306 d:\nthu\programming\practice\allegro\i2p-final-project\archer.h
 	"Tower.h"
 
-1577538627 d:\nthu\programming\practice\allegro\i2p-final-project\canon.h
+1578210560 d:\nthu\programming\practice\allegro\i2p-final-project\canon.h
 	"Tower.h"
 
 1577538656 d:\nthu\programming\practice\allegro\i2p-final-project\poison.h
@@ -2469,7 +2471,7 @@
 1578144672 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
 	"Tower.h"
 
-1578146439 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1578210724 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	<iostream>
@@ -2490,7 +2492,7 @@
 1577606861 d:\nthu\programming\practice\allegro\i2p-final-project\player1.h
 	"Player.h"
 
-1577717080 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
+1578211305 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
 	"Player.h"
 	"GameWindow.h"
 

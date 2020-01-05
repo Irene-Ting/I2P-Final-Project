@@ -8,11 +8,13 @@
 #include <vector>
 #include "global.h"
 
-enum {PATH = 0, SOFT, HARD, ENERGY, COIN} ;
+enum {PATH = 0, SOFT, HARD} ;
+enum {NORMAL = 0, ENERGY, COIN};
 
 typedef struct Node {
     int h, g, f;
     int type;
+    int func;
     /*bool pathPoint;
     bool hardPoint;
     bool softPoint;

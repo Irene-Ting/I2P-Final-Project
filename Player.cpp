@@ -34,14 +34,6 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
         cur_x = next_x;
         cur_y = next_y;
     }
-    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type==ENERGY)
-    {
-        cur_x = next_x;
-        cur_y = next_y;
-        menu->Change_Energy(5);
-        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type = PATH;
-        printf("energy\n");
-    }
     else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type==SOFT)
     {
         cur_x = next_x;
@@ -51,16 +43,19 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
         //levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;
         levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type = PATH;
     }
-    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type==COIN)
+
+    if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].func==COIN)
     {
-        cur_x = next_x;
-        cur_y = next_y;
-        //BurrowGame->menu->Change_Energy(-1);
-        menu->Change_Energy(-1);
         menu->Change_Coin(5);
         printf("coin\n");
         //levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;
-        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].type = PATH;
+        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].func = NORMAL;
+    }
+    else if(levelMap[(next_x/grid_width)+(next_y/grid_height)*15].func==ENERGY)
+    {
+        menu->Change_Energy(5);
+        levelMap[(next_x/grid_width)+(next_y/grid_height)*15].func = NORMAL;
+        printf("energy\n");
     }
     if(cur_x == 480&&cur_y == 0) return true;
     return false;

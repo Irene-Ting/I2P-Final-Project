@@ -263,18 +263,19 @@ GameWindow::game_begin()
 
     for(int i = 0; i<NumOfGrid; ++i)
     {
+        level->levelMap[i].func = NORMAL;
         if(level->levelMap[i].type==PATH)
         {
-            if(random(5)) level->levelMap[i].type = ENERGY;
+            if(random(5)) level->levelMap[i].func = ENERGY;
         }
         else if(level->levelMap[i].type==SOFT)
         {
-            if(random(10)) level->levelMap[i].type = COIN;
+            if(random(10)) level->levelMap[i].func = COIN;
         }
-        /*else if(level->levelMap[i].type==HARD)
+        else if(level->levelMap[i].type==HARD)
         {
-            if(random(8)) level->levelMap[i].type = COIN;
-        }*/
+            if(random(8)) level->levelMap[i].func = COIN;
+        }
 
     }
     //while(al_get_sample_instance_playing(startSound));
@@ -577,10 +578,16 @@ GameWindow::process_event()
                     if(t == NULL)
                         printf("Wrong place\n");
                     else {
+                        //vector<int> change;
+                        std::vector<int> change;
                         towerSet.push_back(t);
                         towerSet.sort(compare);
                         selectedTower = -1;
-                        t->Utilize(mouse_x, mouse_y);
+                        change = t->Utilize(mouse_x, mouse_y);
+                        for(auto i : change)
+                            if(i>=0 && i<=255)
+                                level->levelMap[i].type = PATH;
+
                     }
                 }
                 else if(slider->isDragged())
@@ -655,12 +662,13 @@ GameWindow::draw_running_map()
                 case HARD:
                     al_draw_bitmap(hardImg, j*40, i*40, 0);
                     break;
-                case ENERGY:
-                    al_draw_bitmap(path, j*40, i*40, 0);
+            }
+            switch(level->levelMap[i*15+j].func)
+            {
+                case ENERGY:;
                     al_draw_bitmap(energyImg, j*40, i*40, 0);
                     break;
                 case COIN:
-                    al_draw_bitmap(softImg, j*40, i*40, 0);
                     al_draw_bitmap(coinImg, j*40, i*40, 0);
                     break;
 

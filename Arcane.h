@@ -1,6 +1,6 @@
 #ifndef ARCANE_H_INCLUDED
 #define ARCANE_H_INCLUDED
-
+#include<vector>
 #include "Tower.h"
 
 class Arcane : public Tower
@@ -20,10 +20,16 @@ public:
 
     int getWidth() override { return TowerWidth[ARCANE]; }
     int getHeight() override { return TowerHeight[ARCANE]; }
-    void Utilize(int x, int y)
+    std::vector<int> Utilize(int x, int y)
     {
-        printf("%d %d\n", x, y);
-
+        x/=40;
+        y/=40;
+        //vector<int> change;
+        std::vector<int> change;
+        for(int i = 0; i<15; ++i)
+            change.push_back((y-1)*15+i);
+            //change[i] = (y-1)*15+i;
+        return change;
     }
 };
 

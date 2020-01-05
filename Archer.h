@@ -20,6 +20,17 @@ public:
 
     int getWidth() override { return TowerWidth[ARCHER]; }
     int getHeight() override { return TowerHeight[ARCHER]; }
+    std::vector<int> Utilize(int x, int y)
+    {
+        x/=40;
+        y/=40;
+        //vector<int> change;
+        std::vector<int> change;
+        for(int i = 0; i<15; ++i)
+            change.push_back(i*15+x);
+            //change[i] = (y-1)*15+i;
+        return change;
+    }
 };
 
 #endif // ARCHER_H_INCLUDED

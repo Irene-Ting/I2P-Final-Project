@@ -20,6 +20,18 @@ public:
 
     int getWidth() override { return TowerWidth[CANON]; }
     int getHeight() override { return TowerHeight[CANON]; }
+    std::vector<int> Utilize(int x, int y)
+    {
+        x/=40;
+        y/=40;
+        int gox[3] = {-1, 0, 1};
+        int goy[3] = {-1, 0, 1};
+        std::vector<int> change;
+        for(int i = 0; i<3; ++i)
+            for(int j = 0; j<3; ++j)
+                change.push_back(x+gox[i]+(y+goy[j])*15);
+        return change;
+    }
 };
 
 #endif // CANON_H_INCLUDED

@@ -2,6 +2,7 @@
 #define TOWER_H_INCLUDED
 
 #include <stdio.h>
+#include <vector>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
@@ -27,7 +28,7 @@ public:
     // update whole attack set
     // if any attack goes out of the range of tower, delete it
     void UpdateAttack();
-    virtual void Utilize(int x, int y){ puts("here");}
+    virtual std::vector<int> Utilize(int x, int y){ return {0};}
     // detect if tower needs to attack some monster
     bool DetectAttack(Monster*);
     // process if some of attack in set touches monster
