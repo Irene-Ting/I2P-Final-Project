@@ -657,22 +657,22 @@ GameWindow::draw_running_map()
             switch(level->levelMap[i*field_width/40 + j].type)
             {
                 case PATH:
-                    al_draw_bitmap(path, j*40, (i+2)*40, 0);
+                    al_draw_bitmap(path, j*40, ground+i*40, 0);
                     break;
                 case SOFT:
-                    al_draw_bitmap(softImg, j*40, (i+2)*40, 0);
+                    al_draw_bitmap(softImg, j*40, ground+i*40, 0);
                     break;
                 case HARD:
-                    al_draw_bitmap(hardImg, j*40, (i+2)*40, 0);
+                    al_draw_bitmap(hardImg, j*40, ground+i*40, 0);
                     break;
             }
             switch(level->levelMap[i*field_width/40+j].func)
             {
                 case ENERGY:;
-                    al_draw_bitmap(energyImg, j*40, (i+2)*40, 0);
+                    al_draw_bitmap(energyImg, j*40, ground+i*40, 0);
                     break;
                 case COIN:
-                    al_draw_bitmap(coinImg, j*40, (i+2)*40, 0);
+                    al_draw_bitmap(coinImg, j*40, ground+i*40, 0);
                     break;
 
             }
