@@ -29,7 +29,7 @@ public:
         std::vector<int> change;
         for(int i = 0; i<3; ++i)
             for(int j = 0; j<3; ++j)
-                change.push_back(x+gox[i]+(y+goy[j])*15);
+                change.push_back(x+gox[i]+(y+goy[j])*field_width/40);
         return change;
     }
 };

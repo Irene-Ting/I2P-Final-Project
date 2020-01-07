@@ -16,7 +16,7 @@ const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 float Attack::volume = 1.0;
 
 bool random(int);
-
+int ran[NumOfGrid+5];
 void set_attack_volume(float volume)
 {
     Attack::volume = volume;
@@ -62,7 +62,7 @@ GameWindow::game_init()
 
     level = new LEVEL(1);
     menu = new Menu();
-    slider = new Slider(590, 450);
+    slider = new Slider(790, 450);
     slider->set_label_content("Volume");
     player = new Player1();
 }
@@ -216,7 +216,7 @@ GameWindow::GameWindow()
     printf("Game Initializing...\n");
 
     display = al_create_display(window_width, window_height);
-    al_set_window_position(display, 200, 10);
+    al_set_window_position(display, 10, 10);
     event_queue = al_create_event_queue();
 
     timer = al_create_timer(1.0 / FPS);
@@ -260,13 +260,16 @@ GameWindow::game_begin()
     draw_start_map();
 
     al_play_sample_instance(startSound);
-
+    srand(time(NULL));
+    for(int i = 0; i<NumOfGrid; ++i) ran[i] = rand()%100;
+    //for(int i = 0; i<NumOfGrid; ++i) printf("%d ", ran[i]);
     for(int i = 0; i<NumOfGrid; ++i)
     {
         level->levelMap[i].func = NORMAL;
         if(level->levelMap[i].type==PATH)
         {
-            if(random(5)) level->levelMap[i].func = ENERGY;
+            if(random(5))
+                level->levelMap[i].func = ENERGY;
         }
         else if(level->levelMap[i].type==SOFT)
         {
@@ -585,7 +588,7 @@ GameWindow::process_event()
                         selectedTower = -1;
                         change = t->Utilize(mouse_x, mouse_y);
                         for(auto i : change)
-                            if(i>=0 && i<=255)
+                            if(i>=0 && i<=NumOfGrid)
                                 level->levelMap[i].type = PATH;
 
                     }
@@ -649,27 +652,27 @@ GameWindow::draw_running_map()
         for(j = 0; j < field_width/40; j++)
         {
             char buffer[50];
-            sprintf(buffer, "%d", i*15 + j);
+            sprintf(buffer, "%d", i*field_width/40 + j);
             //printf("here\n");
-            switch(level->levelMap[i*15+j].type)
+            switch(level->levelMap[i*field_width/40 + j].type)
             {
                 case PATH:
-                    al_draw_bitmap(path, j*40, i*40, 0);
+                    al_draw_bitmap(path, j*40, (i+2)*40, 0);
                     break;
                 case SOFT:
-                    al_draw_bitmap(softImg, j*40, i*40, 0);
+                    al_draw_bitmap(softImg, j*40, (i+2)*40, 0);
                     break;
                 case HARD:
-                    al_draw_bitmap(hardImg, j*40, i*40, 0);
+                    al_draw_bitmap(hardImg, j*40, (i+2)*40, 0);
                     break;
             }
-            switch(level->levelMap[i*15+j].func)
+            switch(level->levelMap[i*field_width/40+j].func)
             {
                 case ENERGY:;
-                    al_draw_bitmap(energyImg, j*40, i*40, 0);
+                    al_draw_bitmap(energyImg, j*40, (i+2)*40, 0);
                     break;
                 case COIN:
-                    al_draw_bitmap(coinImg, j*40, i*40, 0);
+                    al_draw_bitmap(coinImg, j*40, (i+2)*40, 0);
                     break;
 
             }
@@ -734,12 +737,13 @@ GameWindow::draw_lose_map()
     al_flip_display();
 }
 
+
 bool random(int x)
 {
     static int seed = 0;
-    //srand((int) time(0));
-    srand((int)time(0)+(seed++));
-    if(rand()%x)
+    //srand(time(NULL)+seed++);
+    //srand((int)time(0)+(seed++));
+    if(ran[seed++]%x)
     {
         //printf("false\n");
         return false;

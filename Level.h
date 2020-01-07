@@ -15,11 +15,6 @@ typedef struct Node {
     int h, g, f;
     int type;
     int func;
-    /*bool pathPoint;
-    bool hardPoint;
-    bool softPoint;
-    bool energy;
-    bool coin;*/
 }Node;
 
 class LEVEL {

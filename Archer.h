@@ -26,8 +26,8 @@ public:
         y/=40;
         //vector<int> change;
         std::vector<int> change;
-        for(int i = 0; i<15; ++i)
-            change.push_back(i*15+x);
+        for(int i = 0; i<field_height/40; ++i)
+            change.push_back(i*field_width/40+x);
             //change[i] = (y-1)*15+i;
         return change;
     }
