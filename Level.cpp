@@ -2,7 +2,6 @@
 
 LEVEL::LEVEL(const int level) {
     char buffer[50];
-
     setLevel(level);
 }
 
@@ -11,6 +10,7 @@ LEVEL::~LEVEL()
     for(int i=0;i < NumOfGrid;i++)
     {
         levelMap[i].type = -1;
+        levelMap[i].func = -1;
     }
 }
 
@@ -24,7 +24,7 @@ LEVEL::setLevel(const int level)
     file = fopen(buffer, "r");
 ;
     this->level = level;
-    this->road_grid.clear();
+    //this->road_grid.clear();
 
     /*for(int i = 0; i < NumOfGrid; i++)
     {

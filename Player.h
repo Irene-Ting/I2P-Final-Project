@@ -19,10 +19,13 @@ public:
     ~Player();
     void Draw();
     bool Load_Move(Node*, Menu*, int);
+    int getWidth() { return 40; }
+    int getHeight() { return 40; }
 protected:
     int cur_x;
     int cur_y;
     int step;
+    ALLEGRO_BITMAP *img;
 };
 
 #endif // PLAYER_H_INCLUDED

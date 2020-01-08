@@ -33,7 +33,7 @@ Menu::Menu()
 {
     char filename[50];
 
-    EnergyPoint = 10;
+    EnergyPoint = 0;
     Coin = 0;
     Time = 0;
 
@@ -69,7 +69,7 @@ Menu::Reset()
     EnergyPoint = Initial_Energy;
     Coin = Initial_Coin;
     Time = Initial_Time;
-    killedMonster = 0;
+    //killedMonster = 0;
 }
 
 void
@@ -106,7 +106,7 @@ Menu::Draw()
 int
 Menu::MouseIn(int mouse_x, int mouse_y)
 {
-    bool enoughCoin;
+    //bool enoughCoin;
 
     selectedTower = -1;
 

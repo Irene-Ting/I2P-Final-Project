@@ -9,6 +9,7 @@ public:
     Player1() : Player()
     {
         step = 40;
+        img = al_load_bitmap("./Material/Player1.png");
     }
 };
 

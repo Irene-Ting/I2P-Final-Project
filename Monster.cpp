@@ -1,6 +1,6 @@
 #include "Monster.h"
 
-const int axis_x[] = {-1, 1, 0, 0};
+/*const int axis_x[] = {-1, 1, 0, 0};
 const int axis_y[] = {0, 0, -1, 1};
 const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
@@ -46,7 +46,7 @@ const int draw_frequency = 10;
     delete circle;
 }*/
 
-void
+/*void
 Monster::Load_Move()
 {
     char buffer[50];
@@ -156,11 +156,11 @@ Monster::Move()
     return false;
 }*/
 
-bool
+/*bool
 Monster::Subtract_HP(int harm_point)
 {
     HealthPoint -= harm_point;
 
     return (HealthPoint <= 0);
-}
+}*/
 

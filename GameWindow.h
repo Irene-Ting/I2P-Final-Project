@@ -73,10 +73,10 @@ public:
     // detect if mouse hovers over a rectangle
     bool mouse_hover(int, int, int, int);
     // detect if a tower will be constructed on road
-    bool isOnRoad();
+    bool isAbove();
 
     Tower* create_tower(int);
-
+    Player* create_player(int);
     //Monster* create_monster();
 
 public:
@@ -114,7 +114,7 @@ private:
     Slider *slider = NULL;
     Player *player = NULL;
     //std::vector<Monster*> monsterSet;
-    std::list<Tower*> towerSet;
+    //std::list<Tower*> towerSet;
 
     //int Monster_Pro_Count = 0;
     //int Coin_Inc_Count = 0;
@@ -127,6 +127,7 @@ private:
     bool mute = false;
     //bool act = false;
     int scene = 0;
+    int theme = 1;
 };
 
 

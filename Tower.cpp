@@ -83,7 +83,7 @@ Tower::DetectAttack(Monster *monster)
     return willAttack;
 }*/
 
-bool
+/*bool
 Tower::TriggerAttack(Monster *monster)
 {
     bool isDestroyed = false;
@@ -97,7 +97,7 @@ Tower::TriggerAttack(Monster *monster)
             /*2. Erase and delete the attack from attack set*/
             /*3. Return true if the monster's HP is reduced to zero*/
 
-            if(monster->Subtract_HP(attack_set[i]->getHarmPoint()))
+            /*if(monster->Subtract_HP(attack_set[i]->getHarmPoint()))
             {
                 //attack_set[i]->~Attack();
                 attack_set.erase(attack_set.begin() + i);
@@ -124,3 +124,4 @@ Tower::UpdateAttack()
         }
     }
 }
+*/

@@ -16,7 +16,7 @@
 #define window_width 1200
 #define window_height 600
 #define field_width 1000
-#define field_height 600
+#define field_height 520
 
 #define Num_TowerType 6
 #define Num_MonsterType 4
@@ -29,5 +29,5 @@ extern int TowerHeight[];
 
 enum {ARCANE = 0, ARCHER, CANON, POISON, STORM, NTOWER};
 enum {WOLF = 0, WOLFKNIGHT, DEMONNIJIA, CAVEMAN};
-
+enum {PLAYER1 = 1};
 #endif // GLOBAL_H_INCLUDED
