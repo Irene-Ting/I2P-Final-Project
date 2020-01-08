@@ -47,6 +47,7 @@ public:
 private:
     std::vector<ALLEGRO_BITMAP*> menu_tower;
     ALLEGRO_BITMAP *energy = NULL;
+    ALLEGRO_BITMAP *coin = NULL;
     ALLEGRO_FONT *menuFont;
     int EnergyPoint = 10;
     int killedMonster = 0;

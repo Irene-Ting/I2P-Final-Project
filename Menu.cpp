@@ -1,5 +1,7 @@
 #include "Menu.h"
 #include "Slider.h"
+#include "Level.h"
+
 const int ThumbWidth = 50;
 const int ThumbHeight = 50;
 const int gapX = 40, gapY = 30;
@@ -38,13 +40,15 @@ Menu::Menu()
     for(int i=0;i<Num_TowerType; i++)
     {
         ALLEGRO_BITMAP *tower;
-        sprintf(filename, "./Tower/%s_Menu.png", TowerClass[i]);
-
+        //sprintf(filename, "./Tower/%s_Menu.png", TowerClass[i]);
+        sprintf(filename, "./Tower/%s.png", TowerClass[i]);
         tower = al_load_bitmap(filename);
         menu_tower.push_back(tower);
     }
-
+    char buffer[50];
+    /*sprintf(buffer, "./Material/energy1.png", level->getlevel());
     energy = al_load_bitmap("./Material/energy1.png");
+    coin = al_load_bitmap(buffer);*/
     menuFont = al_load_ttf_font("pirulen.ttf", 12, 0); // load font
 }
 
@@ -73,9 +77,10 @@ Menu::Draw()
 {
     char buffer[50];
 
-    sprintf(buffer, "%d", EnergyPoint);
-    al_draw_bitmap(energy, offsetX, 20, 0);
-    al_draw_text(menuFont, al_map_rgb(255, 255, 255), 2*al_get_bitmap_width(energy) + offsetX, 20, 0, buffer);
+    sprintf(buffer, "Energy: %d", EnergyPoint);
+    //al_draw_bitmap(energy, offsetX, 20, 0);
+    //al_draw_text(menuFont, al_map_rgb(255, 255, 255), 2*al_get_bitmap_width(energy) + offsetX, 20, 0, buffer);
+    al_draw_text(menuFont, al_map_rgb(255, 255, 255), offsetX, 20, 0, buffer);
 
     sprintf(buffer, "Coin: %d", Coin);
     al_draw_text(menuFont, al_map_rgb(255, 255, 255), offsetX, 20 + gapY, 0, buffer);

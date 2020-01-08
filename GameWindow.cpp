@@ -1,5 +1,6 @@
 #include "GameWindow.h"
 #include "global.h"
+#include "Level.h"
 #include <iostream>
 
 #define WHITE al_map_rgb(255, 255, 255)
@@ -15,8 +16,10 @@ const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
 float Attack::volume = 1.0;
 
+int land = 80;
 bool random(int);
-int ran[NumOfGrid+5];
+int ran[NumOfGrid+5];// store the random numbers
+
 void set_attack_volume(float volume)
 {
     Attack::volume = volume;
@@ -31,15 +34,27 @@ void
 GameWindow::game_init()
 {
     char buffer[50];
+    //int getLevel() { return level; }
+    level = new LEVEL(1);
+    menu = new Menu();
+    slider = new Slider(1000, 450);
+    slider->set_label_content("Volume");
+    player = new Player1();
 
     icon = al_load_bitmap("./icon.png");
-    background = al_load_bitmap("./StartBackground.jpg");
+    background = al_load_bitmap("./StartBackground_.jpg");
     start_page = al_load_bitmap("./Material/coollogo_com-435068.png");
-    path = al_load_bitmap("./Material/path1.png");
-    softImg = al_load_bitmap("./Material/soft1.png");
-    hardImg = al_load_bitmap("./Material/hard1.png");
-    coinImg = al_load_bitmap("./Material/player1.png");
-    energyImg = al_load_bitmap("./Material/energy1.png");
+
+    sprintf(buffer, "./Material/path%d.png", level->getLevel());
+    path = al_load_bitmap(buffer);
+    sprintf(buffer, "./Material/soft%d.png", level->getLevel());
+    softImg = al_load_bitmap(buffer);
+    sprintf(buffer, "./Material/hard%d.png", level->getLevel());
+    hardImg = al_load_bitmap(buffer);
+    sprintf(buffer, "./Material/money%d.png", level->getLevel());
+    coinImg = al_load_bitmap(buffer);
+    sprintf(buffer, "./Material/energy%d.png", level->getLevel());
+    energyImg = al_load_bitmap(buffer);
 
     for(int i = 0; i < Num_TowerType; i++)
     {
@@ -59,12 +74,6 @@ GameWindow::game_init()
     backgroundSound = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(backgroundSound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(backgroundSound, al_get_default_mixer());
-
-    level = new LEVEL(1);
-    menu = new Menu();
-    slider = new Slider(790, 450);
-    slider->set_label_content("Volume");
-    player = new Player1();
 }
 
 bool
@@ -73,7 +82,6 @@ GameWindow::mouse_hover(int startx, int starty, int width, int height)
     if(mouse_x >= startx && mouse_x <= startx + width)
         if(mouse_y >= starty && mouse_y <= starty + height)
             return true;
-
     return false;
     //return true;
 }
@@ -81,10 +89,10 @@ GameWindow::mouse_hover(int startx, int starty, int width, int height)
 bool
 GameWindow::isOnRoad()
 {
-    /*if(mouse_x-20 > 0 && mouse_x+20 < 600 && mouse_y-20 > 0 && mouse_y+20 < 600)
-        return false;
-    return true;*/
+    if(mouse_x > 0 && mouse_x < 1000 && mouse_y > 0 && mouse_y < land)
+        return true;
     return false;
+    //return false;
     /*int startx, starty;
     int widthOfTower;
 
@@ -112,9 +120,9 @@ GameWindow::create_tower(int type)
 {
     Tower *t = NULL;
 
-    /*if(isOnRoad())
-        return t;*/
-
+    if(isOnRoad())
+        return t;
+    printf("mouse_x = %d, mouse_y = %d\n", mouse_x, mouse_y);
     switch(type)
     {
     case ARCANE:
@@ -533,8 +541,8 @@ GameWindow::process_event()
                     }
                 }
                 else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                    if(event.mouse.button == 1) {
-                        /*if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
+                    /*if(event.mouse.button == 1) {
+                        if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
                             Tower *t = create_tower(selectedTower);
 
                             if(t == NULL)
@@ -543,10 +551,11 @@ GameWindow::process_event()
                                 towerSet.push_back(t);
                                 towerSet.sort(compare);
                             }
-                        } else*/ if(selectedTower == -1){
+                        } else if(selectedTower == -1){
                             std::list<Tower*>::iterator it = towerSet.begin();
                             if(lastClicked != -1)
                             {
+                                //printf("lastClicked = -1\n");
                                 std::advance(it, lastClicked);
                                 (*it)->ToggleClicked();
                             }
@@ -565,7 +574,7 @@ GameWindow::process_event()
                                 }
                             }
 
-                        }
+                        }*/
                         selectedTower = menu->MouseIn(mouse_x, mouse_y);
                         if(slider->isClicked(mouse_x, mouse_y))
                         {
@@ -574,14 +583,22 @@ GameWindow::process_event()
                     // check if user wants to create some kind of tower
                     // if so, show tower image attached to cursor
                     }
-            }
+
             else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-                if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
+                //if(/*selectedTower != -1 &&*/ mouse_hover(0, land, field_width, field_height)) {
+                if(selectedTower != -1){
                     Tower *t = create_tower(selectedTower);
                     if(t == NULL)
+                    {
                         printf("Wrong place\n");
+                        /*if(!towerSet.empty())
+                            towerSet.pop_back();*/
+                        selectedTower = -1;
+                    }
+
                     else {
                         //vector<int> change;
+                        printf("here\n");
                         std::vector<int> change;
                         towerSet.push_back(t);
                         towerSet.sort(compare);
@@ -590,7 +607,6 @@ GameWindow::process_event()
                         for(auto i : change)
                             if(i>=0 && i<=NumOfGrid)
                                 level->levelMap[i].type = PATH;
-
                     }
                 }
                 else if(slider->isDragged())
@@ -602,7 +618,7 @@ GameWindow::process_event()
             else if(event.type == ALLEGRO_EVENT_MOUSE_AXES){
                 mouse_x = event.mouse.x;
                 mouse_y = event.mouse.y;
-                menu->MouseIn(mouse_x, mouse_y);
+                //menu->MouseIn(mouse_x, mouse_y);
                 if(slider->isDragged())
                 {
                     slider->Drag(mouse_x, mouse_y);
@@ -669,10 +685,10 @@ GameWindow::draw_running_map()
             switch(level->levelMap[i*field_width/40+j].func)
             {
                 case ENERGY:;
-                    al_draw_bitmap(energyImg, j*40, ground+i*40, 0);
+                    al_draw_bitmap(energyImg, j*40+10, ground+i*40+10, 0);
                     break;
                 case COIN:
-                    al_draw_bitmap(coinImg, j*40, ground+i*40, 0);
+                    al_draw_bitmap(coinImg, j*40+10, ground+i*40+10, 0);
                     break;
 
             }
@@ -748,7 +764,6 @@ bool random(int x)
         //printf("false\n");
         return false;
     }
-
     //printf("true\n");
     return true;
 }

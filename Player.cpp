@@ -17,7 +17,7 @@ Player::Draw()
 {
     ALLEGRO_BITMAP *playerImg;
     playerImg = al_load_bitmap("./Material/Player1.png");
-    al_draw_bitmap(playerImg, cur_x, cur_y, 0);
+    al_draw_bitmap(playerImg, cur_x+2, cur_y+8, 0);
 }
 
 bool
@@ -29,6 +29,7 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
     //printf("%d %d ", next_x, next_y);
     //printf("%d %d ", next_x/grid_width, next_y/grid_height);
     //printf("%d\n", levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint);
+    //menu->Change_Energy(-1);
     if(next_x<0 || next_x>field_width || next_y<0 || next_y>field_height) return false;
     else if(levelMap[(next_x/grid_width)+(next_y/grid_height-2)*field_width/40].type==HARD)
         return false;
