@@ -53,6 +53,8 @@ protected:
     int type;
     bool isClicked = false;
     ALLEGRO_BITMAP *img;
+    ALLEGRO_SAMPLE *sample = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *toolSound = NULL;
 };
 
 #endif // TOWER_H_INCLUDED

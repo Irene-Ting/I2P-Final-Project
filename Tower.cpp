@@ -3,6 +3,7 @@
 Tower::Tower(int pos_x = 0, int pos_y = 0)
 {
     //this->square = new Square(pos_x, pos_y, 70);
+
 }
 
 Tower::~Tower()

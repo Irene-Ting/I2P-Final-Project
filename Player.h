@@ -5,6 +5,8 @@
 #include <string.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 #include <vector>
 #include "Object.h"
 #include "Circle.h"
@@ -28,6 +30,13 @@ protected:
     int cur_y;
     int step;
     ALLEGRO_BITMAP *img;
+private:
+    ALLEGRO_SAMPLE *sample = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *walkSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *softSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *coinSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *energySound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *hitSound = NULL;
 };
 
 #endif // PLAYER_H_INCLUDED

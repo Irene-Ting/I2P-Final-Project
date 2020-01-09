@@ -2426,7 +2426,7 @@
 1578538202 d:\nthu\programming\practice\allegro\i2p-final-project\ntower.h
 	"Tower.h"
 
-1578538189 d:\nthu\programming\practice\allegro\i2p-final-project\tower.h
+1578582085 d:\nthu\programming\practice\allegro\i2p-final-project\tower.h
 	<stdio.h>
 	<vector>
 	<allegro5/allegro.h>
@@ -2440,14 +2440,14 @@
 	"Monster.h"
 	"global.h"
 
-1578538208 d:\nthu\programming\practice\allegro\i2p-final-project\arcane.h
+1578582138 d:\nthu\programming\practice\allegro\i2p-final-project\arcane.h
 	<vector>
 	"Tower.h"
 
-1578538213 d:\nthu\programming\practice\allegro\i2p-final-project\archer.h
+1578582226 d:\nthu\programming\practice\allegro\i2p-final-project\archer.h
 	"Tower.h"
 
-1578538217 d:\nthu\programming\practice\allegro\i2p-final-project\canon.h
+1578582226 d:\nthu\programming\practice\allegro\i2p-final-project\canon.h
 	"Tower.h"
 
 1578538226 d:\nthu\programming\practice\allegro\i2p-final-project\poison.h
@@ -2469,20 +2469,22 @@
 	<string.h>
 	"Slider.h"
 
-1578538239 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
+1578582085 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
 	"Tower.h"
 
-1578537727 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1578581622 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	"Level.h"
 	<iostream>
 
-1578538002 d:\nthu\programming\practice\allegro\i2p-final-project\player.h
+1578582607 d:\nthu\programming\practice\allegro\i2p-final-project\player.h
 	<stdio.h>
 	<string.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
 	<vector>
 	"Object.h"
 	"Circle.h"
@@ -2494,7 +2496,7 @@
 1578495141 d:\nthu\programming\practice\allegro\i2p-final-project\player1.h
 	"Player.h"
 
-1578495946 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
+1578581700 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
 	"Player.h"
 	"GameWindow.h"
 

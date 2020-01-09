@@ -62,9 +62,9 @@ GameWindow::game_init()
     }
 
     al_set_display_icon(display, icon);
-    al_reserve_samples(3);
+    al_reserve_samples(5);///?
 
-    sample = al_load_sample("growl.wav");
+    sample = al_load_sample("./Music/Intro.wav");
     startSound = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(startSound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(startSound, al_get_default_mixer());
@@ -87,9 +87,10 @@ GameWindow::mouse_hover(int startx, int starty, int width, int height)
 bool
 GameWindow::isAbove()
 {
-    if(mouse_x > 0 && mouse_x < field_width && mouse_y > 0 && mouse_y < land)
-        return true;
-    return false;
+    if(mouse_x > 0 && mouse_x < field_width && mouse_y > land && mouse_y < land+field_height)
+        return false;
+
+    return true;
     //return false;
     /*int startx, starty;
     int widthOfTower;
@@ -279,14 +280,14 @@ GameWindow::game_begin()
     //draw_running_map();
     draw_start_map();
 
-    al_play_sample_instance(startSound);
+    ///al_play_sample_instance(startSound);
     srand(time(NULL));
     for(int i = 0; i<1000; ++i) ran[i] = rand()%100;
     //for(int i = 0; i<NumOfGrid; ++i) printf("%d ", ran[i]);
     for(int i = 0; i<NumOfGrid; ++i)
     {
         level->levelMap[i].func = NORMAL;
-        if(level->levelMap[i].type==PATH)
+        if(level->levelMap[i].type==PATH && i!=2)
         {
             if(random(5))
                 level->levelMap[i].func = ENERGY;
@@ -506,8 +507,9 @@ GameWindow::process_event()
                             scene++;
                             al_start_timer(timer);
                             //al_start_timer(monster_pro);
-                            al_play_sample_instance(backgroundSound);
+                            //al_play_sample_instance(backgroundSound);
                             theme = 1;
+                            al_stop_sample_instance(startSound);
                             break;
                     }
                 }
@@ -641,7 +643,20 @@ GameWindow::process_event()
                 break;
             }
     }
-    if(win) scene = GAMEWIN;
+    //if(win) scene = GAMEWIN;
+    if(win)
+    {
+        int curLevel = level->getLevel();
+        if(curLevel<2)
+        {
+            level->setLevel(curLevel+1);
+            player = create_player(theme);
+            game_begin();
+        }
+
+        else scene = GAMEWIN;
+    }
+
     if(redraw) {
         // update each object in game
         // Re-draw map
