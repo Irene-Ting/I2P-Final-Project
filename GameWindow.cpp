@@ -14,7 +14,7 @@
 //#define max(a, b) ((a) > (b)? (a) : (b))
 const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
-float Attack::volume = 1.0;
+//float Attack::volume = 1.0;
 
 int land = 80;
 bool random(int);
@@ -621,6 +621,7 @@ GameWindow::process_event()
                         }
                     }
                     selectedTower = -1;
+                    menu->MouseIn(mouse_x, mouse_y);
                 }
                 else if(slider->isDragged())
                 {

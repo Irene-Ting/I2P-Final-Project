@@ -109,7 +109,8 @@ Menu::MouseIn(int mouse_x, int mouse_y)
     //bool enoughCoin;
 
     selectedTower = -1;
-
+    if(mouse_x>0 && mouse_x<field_width && mouse_y>0 && mouse_y<field_height)
+        return -1;
     for(int i=0; i < Num_TowerType; i++)
     {
         int pos_x = offsetX + (ThumbWidth + gapX) * (i % 2);

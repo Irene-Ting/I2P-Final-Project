@@ -11,11 +11,11 @@ public:
         type = STORM;
 
         //circle->r = 150;
-        attack_frequency = 5;
+        /*attack_frequency = 5;
         attack_velocity = 20;
-        attack_harm_point = 5;
+        attack_harm_point = 5;*/
         img = al_load_bitmap("./Tower/Storm.png");
-        attack_img = al_load_bitmap("./Tower/Storm_Beam.png");
+        //attack_img = al_load_bitmap("./Tower/Storm_Beam.png");
     }
 
     int getWidth() override { return TowerWidth[STORM]; }

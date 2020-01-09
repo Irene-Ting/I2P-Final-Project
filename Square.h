@@ -1,7 +1,7 @@
 #ifndef SQUARE_H_INCLUDED
 #define SQUARE_H_INCLUDED
 
-class Square{
+/*class Square{
 public:
     Square() {}
 
@@ -15,6 +15,6 @@ public:
     static bool isOverlap(Square*, Square*);
 
     int x, y, r;
-};
+};*/
 
 #endif // SQUARE_H_INCLUDED

@@ -10,7 +10,7 @@
 #include "Square.h"
 #include "global.h"
 
-enum {LEFT=0, RIGHT, UP, DOWN};
+/*enum {LEFT=0, RIGHT, UP, DOWN};
 
 class Monster: public Object {
 public:
@@ -58,6 +58,6 @@ private:
     std::vector<int> path;
 
 };
-
+*/
 
 #endif // MONSTER_H_INCLUDED

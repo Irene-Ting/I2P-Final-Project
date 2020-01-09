@@ -22,17 +22,17 @@ public:
 
     // override virtual function "Object::Draw"
     void Draw();
-    void resetAttackCounter() { attack_counter = 0; }
+    //void resetAttackCounter() { attack_counter = 0; }
     void ToggleClicked() { isClicked = !isClicked; }
 
     // update whole attack set
     // if any attack goes out of the range of tower, delete it
-    void UpdateAttack();
+    //void UpdateAttack();
     virtual std::vector<int> Utilize(int x, int y){ return {0};}
     // detect if tower needs to attack some monster
-    bool DetectAttack(Monster*);
+    //bool DetectAttack(Monster*);
     // process if some of attack in set touches monster
-    bool TriggerAttack(Monster*);
+    //bool TriggerAttack(Monster*);
 
     virtual int getWidth() { return 40; }
     virtual int getHeight() { return 40; }
@@ -42,12 +42,12 @@ public:
 
 protected:
     // setting of attack
-    int attack_frequency = 20;
+    /*int attack_frequency = 20;
     int attack_counter = 0;
     int attack_harm_point = 5;
     int attack_velocity = 10;
-    ALLEGRO_BITMAP *attack_img;
-    std::vector<Attack*> attack_set;
+    ALLEGRO_BITMAP *attack_img;*/
+    //std::vector<Attack*> attack_set;
 
     // information of tower
     int type;

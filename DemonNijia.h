@@ -3,7 +3,7 @@
 
 #include "Monster.h"
 
-class DemonNijia : public Monster
+/*class DemonNijia : public Monster
 {
 public:
     DemonNijia(std::vector<int> path) : Monster(path)
@@ -22,6 +22,6 @@ public:
 
         Load_Move();
     }
-};
+};*/
 
 #endif // EAGLE_H_INCLUDED

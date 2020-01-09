@@ -10,12 +10,12 @@ public:
     {
         type = CANON;
 
-        square->r = 70;
-        attack_frequency = 30;
+        //square->r = 70;
+        /*attack_frequency = 30;
         attack_velocity = 6;
-        attack_harm_point = 15;
+        attack_harm_point = 15;*/
         img = al_load_bitmap("./Tower/Canon.png");
-        attack_img = al_load_bitmap("./Tower/Canon_Beam.png");
+        //attack_img = al_load_bitmap("./Tower/Canon_Beam.png");
     }
 
     int getWidth() override { return TowerWidth[CANON]; }

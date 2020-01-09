@@ -3,7 +3,7 @@
 
 #include "Monster.h"
 
-class Wolf : public Monster
+/*class Wolf : public Monster
 {
 public:
     Wolf(std::vector<int> path) : Monster(path)
@@ -23,7 +23,7 @@ public:
         Load_Move();
     }
 
-};
+};*/
 
 
 #endif // CLAW_H_INCLUDED

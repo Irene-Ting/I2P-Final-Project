@@ -3,7 +3,7 @@
 
 #include "Monster.h"
 
-class CaveMan : public Monster
+/*class CaveMan : public Monster
 {
 public:
     CaveMan(std::vector<int> path) : Monster(path)
@@ -27,7 +27,7 @@ public:
 
         Load_Move();
     }
-};
+};*/
 
 
 #endif // BLACKDRAGON_H_INCLUDED

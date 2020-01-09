@@ -3,7 +3,7 @@
 
 #include "Monster.h"
 
-class WolfKnight : public Monster
+/*class WolfKnight : public Monster
 {
 public:
     WolfKnight(std::vector<int> path) : Monster(path)
@@ -23,5 +23,5 @@ public:
         Load_Move();
     }
 
-};
+};*/
 #endif // REDDRAGON_H_INCLUDED

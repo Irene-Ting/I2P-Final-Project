@@ -13,6 +13,8 @@
 #include "level.h"
 #include "Menu.h"
 
+enum {LEFT=0, RIGHT, UP, DOWN};
+
 class Player: public Object {
 public:
     Player();

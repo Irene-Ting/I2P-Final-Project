@@ -12,7 +12,7 @@
 
 #define abs(x) ((x) > 0? (x) : -(x))
 
-class Attack : public Object
+/*class Attack : public Object
 {
 public:
     Attack(Square*, Square*, int, int, ALLEGRO_BITMAP*);
@@ -34,6 +34,6 @@ private:
     int harm_point = 5;
     float pos_x, pos_y;
     float direction_x, direction_y;
-};
+};*/
 
 #endif // ATTACK_H_INCLUDED

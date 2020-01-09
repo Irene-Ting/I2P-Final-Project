@@ -11,11 +11,11 @@ public:
         type = POISON;
 
         //circle->r = 110;
-        attack_frequency = 50;
+        /*attack_frequency = 50;
         attack_velocity = 10;
-        attack_harm_point = 3;
+        attack_harm_point = 3;*/
         img = al_load_bitmap("./Tower/Poison.png");
-        attack_img = al_load_bitmap("./Tower/Poison_Beam.png");
+        //attack_img = al_load_bitmap("./Tower/Poison_Beam.png");
     }
 
     int getWidth() override { return TowerWidth[POISON]; }

@@ -42,7 +42,7 @@ public:
     int getTime() { return Time; }
     int getCoin() { return Coin; }
     int getEnergy() { return EnergyPoint; }
-    int getKilled() { return killedMonster; }
+    //int getKilled() { return killedMonster; }
 
 private:
     std::vector<ALLEGRO_BITMAP*> menu_tower;
@@ -50,7 +50,7 @@ private:
     ALLEGRO_BITMAP *coin = NULL;
     ALLEGRO_FONT *menuFont;
     int EnergyPoint = 10;
-    int killedMonster = 0;
+    //int killedMonster = 0;
     int Time = 0;
     int Coin = 0;
     int selectedTower = -1;

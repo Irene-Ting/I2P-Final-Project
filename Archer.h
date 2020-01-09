@@ -10,12 +10,12 @@ public:
     {
         type = ARCHER;
 
-        square->r = 80;
-        attack_frequency = 15;
+        //square->r = 80;
+        /*attack_frequency = 15;
         attack_velocity = 8;
-        attack_harm_point = 7;
+        attack_harm_point = 7;*/
         img = al_load_bitmap("./Tower/Archer.png");
-        attack_img = al_load_bitmap("./Tower/Archer_Beam.png");
+        //attack_img = al_load_bitmap("./Tower/Archer_Beam.png");
     }
 
     int getWidth() override { return TowerWidth[ARCHER]; }

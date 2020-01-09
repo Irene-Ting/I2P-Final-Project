@@ -1,6 +1,5 @@
 #include "Square.h"
-
-bool
+/*bool
 Square::isOverlap(Square *square_1, Square *square_2)
 {
     int A_X_UR = square_1->x+square_1->r;
@@ -16,4 +15,4 @@ Square::isOverlap(Square *square_1, Square *square_2)
         return true;
     }
     return false;
-}
+}*/

@@ -28,6 +28,6 @@ extern int TowerWidth[];
 extern int TowerHeight[];
 
 enum {ARCANE = 0, ARCHER, CANON, POISON, STORM, NTOWER};
-enum {WOLF = 0, WOLFKNIGHT, DEMONNIJIA, CAVEMAN};
+//enum {WOLF = 0, WOLFKNIGHT, DEMONNIJIA, CAVEMAN};
 enum {PLAYER1 = 1};
 #endif // GLOBAL_H_INCLUDED

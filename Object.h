@@ -11,14 +11,14 @@ public:
     // pure function for drawing object
     virtual void Draw() = 0;
 
-    int getX() { return square->x; }
+    /*int getX() { return square->x; }
     int getY() { return square->y; }
-    int getRadius() { return square->r; }
+    int getRadius() { return square->r; }*/
 
-    Square* getSquare() const { return square; }
+    //Square* getSquare() const { return square; }
 
-protected:
-    Square *square;
+//protected:
+    //Square *square;
 
 };
 

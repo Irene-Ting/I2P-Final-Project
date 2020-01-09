@@ -10,12 +10,12 @@ public:
     {
         type = ARCANE;
 
-        square->r = 80;
-        attack_frequency = 20;
+        //square->r = 80;
+        /*attack_frequency = 20;
         attack_velocity = 8;
-        attack_harm_point = 5;
+        attack_harm_point = 5;*/
         img = al_load_bitmap("./Tower/Arcane.png");
-        attack_img = al_load_bitmap("./Tower/Arcane_Beam.png");
+        //attack_img = al_load_bitmap("./Tower/Arcane_Beam.png");
     }
 
     int getWidth() override { return TowerWidth[ARCANE]; }
@@ -27,8 +27,7 @@ public:
         //vector<int> change;
         std::vector<int> change;
         for(int i = 0; i<field_width/40; ++i)
-            change.push_back((y-2)*field_width/40+i);
-            //change[i] = (y-1)*15+i;
+            change.push_back((y-ground/40)*field_width/40+i);
         return change;
     }
 };

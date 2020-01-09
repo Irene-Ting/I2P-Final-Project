@@ -2,26 +2,26 @@
 
 Tower::Tower(int pos_x = 0, int pos_y = 0)
 {
-    this->square = new Square(pos_x, pos_y, 70);
+    //this->square = new Square(pos_x, pos_y, 70);
 }
 
 Tower::~Tower()
 {
-    delete square;
+    //delete square;
 
     al_destroy_bitmap(img);
-    al_destroy_bitmap(attack_img);
+    //al_destroy_bitmap(attack_img);
 
-    for(auto&& child : this->attack_set) {
+    /*for(auto&& child : this->attack_set) {
         delete child;
-    }
-    this->attack_set.clear();
+    }*/
+    //this->attack_set.clear();
 }
 
 void
 Tower::Draw()
 {
-    int draw_x = square->x - (TowerWidth[this->type]/2);
+    /*int draw_x = square->x - (TowerWidth[this->type]/2);
     int draw_y = square->y - (TowerHeight[this->type] - (TowerWidth[this->type]/2));
 
 
@@ -34,7 +34,7 @@ Tower::Draw()
     {
         al_draw_filled_circle(square->x, square->y, square->r, al_map_rgba(196, 79, 79, 200));
         al_draw_filled_circle(square->x, square->y, 2, al_map_rgb(0, 0, 0));
-    }
+    }*/
 }
 
 void

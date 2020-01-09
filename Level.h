@@ -24,12 +24,12 @@ public:
 
     void setLevel(const int);
     bool isRoad(int index) { return levelMap[index].type==PATH; }
-    int getMonsterSpeed() { return MonsterSpeed; }
+    //int getMonsterSpeed() { return MonsterSpeed; }
     int getLevel() { return level; }
     //void search_destination();
     std::vector<int> ReturnPath() { return road_grid; }
 
-    int MonsterNum[Num_MonsterType];
+    //int MonsterNum[Num_MonsterType];
     Node levelMap[NumOfGrid];
 private:
 
@@ -37,9 +37,9 @@ private:
     // current level number
     int level = 1;
     // maximum number of monster of a level
-    int Monster_MAX = 50;
+    //int Monster_MAX = 50;
     // frequency of producing  monster
-    int MonsterSpeed = 80;
+    //int MonsterSpeed = 80;
 };
 
 
