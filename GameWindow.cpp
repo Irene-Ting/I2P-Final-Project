@@ -16,7 +16,7 @@ const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
 //float Attack::volume = 1.0;
 
-int land = 80;
+//int land = 120;
 bool random(int);
 int ran[1000];// store the random numbers
 
@@ -42,7 +42,7 @@ GameWindow::game_init()
 
     icon = al_load_bitmap("./icon.png");
     background = al_load_bitmap("./StartBackground_.jpg");
-    start_page = al_load_bitmap("./Material/coollogo_com-435068.png");
+    start_page = al_load_bitmap("./Material/Start.png");
 
 
 
@@ -59,7 +59,7 @@ GameWindow::game_init()
     al_reserve_samples(10);///?
     //printf("theme = %d\n", theme);
     sample = al_load_sample("./Music/Intro.wav");
-    //sample = al_load_sample("./Music/Theme2Level1.wav");
+    //sample = al_load_sample("./Music/phone.wav");
     startSound = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(startSound, ALLEGRO_PLAYMODE_LOOP);
     al_attach_sample_instance_to_mixer(startSound, al_get_default_mixer());
@@ -73,6 +73,11 @@ GameWindow::game_init()
     loseSound = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(loseSound, ALLEGRO_PLAYMODE_LOOP);
     al_attach_sample_instance_to_mixer(loseSound, al_get_default_mixer());
+
+    sample = al_load_sample("./Music/phone.wav");
+    alarm = al_create_sample_instance(sample);
+    al_set_sample_instance_playmode(alarm, ALLEGRO_PLAYMODE_ONCE);
+    al_attach_sample_instance_to_mixer(alarm, al_get_default_mixer());
 }
 
 /*bool
@@ -87,7 +92,7 @@ GameWindow::mouse_hover(int startx, int starty, int width, int height)
 bool
 GameWindow::isAbove()
 {
-    if(mouse_x > 0 && mouse_x < field_width && mouse_y > land && mouse_y < land+field_height)
+    if(mouse_x > 0 && mouse_x < field_width && mouse_y > ground && mouse_y < ground+field_height)
         return false;
 
     return true;
@@ -542,7 +547,17 @@ GameWindow::process_event()
                 menu->Change_Energy(-1);
             Energy_Inc_Count = (Energy_Inc_Count + 1) % EnergySpeed;
 
-            if(menu->getEnergy()<0) scene = GAMELOSE;
+            if(menu->getEnergy()<=0) scene = GAMELOSE;
+            else if(menu->getEnergy()<=5)
+            {
+                if(!al_get_sample_instance_playing(alarm))
+                    al_play_sample_instance(alarm);
+            }
+            else if(menu->getEnergy()>5)
+            {
+                if(al_get_sample_instance_playing(alarm))
+                    al_stop_sample_instance(alarm);
+            }
             /*if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro))
             {
                 al_stop_timer(timer);
@@ -876,8 +891,8 @@ void
 GameWindow::draw_start_map()
 {
     al_clear_to_color(BLACK);
-    al_draw_bitmap(start_page, 230, 150, 0);
-    al_draw_text(Large_font, WHITE, 270, 400, 0, "press S to start");
+    al_draw_bitmap(start_page, 0, 0, 0);
+    //al_draw_text(Large_font, WHITE, 270, 400, 0, "press S to start");
     al_flip_display();
 }
 
@@ -887,7 +902,7 @@ GameWindow::draw_win_map()
     al_stop_sample_instance(backgroundSound);
     al_play_sample_instance(winSound);
     al_clear_to_color(BLACK);
-    al_draw_bitmap(start_page, 230, 150, 0);
+    //al_draw_bitmap(start_page, 230, 150, 0);
     al_draw_text(Large_font, WHITE, 270, 400, 0, "win");
     al_flip_display();
 }
@@ -898,7 +913,7 @@ GameWindow::draw_lose_map()
     al_stop_sample_instance(backgroundSound);
     al_play_sample_instance(loseSound);
     al_clear_to_color(BLACK);
-    al_draw_bitmap(start_page, 230, 150, 0);
+    //al_draw_bitmap(start_page, 230, 150, 0);
     al_draw_text(Large_font, WHITE, 270, 400, 0, "lose");
     al_flip_display();
 }

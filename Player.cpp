@@ -58,7 +58,7 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
     //printf("%d %d ", next_x/grid_width, next_y/grid_height);
     //printf("%d\n", levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint);
     //menu->Change_Energy(-1);
-    if(next_x<0 || next_x>field_width || next_y<ground || next_y>ground+field_height)
+    if(next_x<0 || next_x>=field_width || next_y<ground || next_y>=ground+field_height)
     {
         al_attach_sample_instance_to_mixer(hitSound, al_get_default_mixer());
         al_stop_sample_instance(hitSound);

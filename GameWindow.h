@@ -114,6 +114,7 @@ private:
     ALLEGRO_SAMPLE_INSTANCE *gapSound = NULL;
     ALLEGRO_SAMPLE_INSTANCE *winSound = NULL;
     ALLEGRO_SAMPLE_INSTANCE *loseSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *alarm = NULL;
 
     LEVEL *level = NULL;
     Menu *menu = NULL;

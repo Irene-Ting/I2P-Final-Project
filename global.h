@@ -6,7 +6,7 @@
 #define font_size 12
 #define grid_width 40
 #define grid_height 40
-#define ground 80
+#define ground 120
 
 /*#define window_width 800
 #define window_height 600
@@ -16,7 +16,7 @@
 #define window_width 1200
 #define window_height 600
 #define field_width 1000
-#define field_height 520
+#define field_height 480
 
 #define Num_TowerType 6
 #define Num_MonsterType 4
