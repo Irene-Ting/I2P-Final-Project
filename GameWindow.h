@@ -21,6 +21,9 @@
 #include "Attack.h"
 #include "Slider.h"
 #include "Player1.h"
+#include "Hua.h"
+#include "HuaHua.h"
+#include "NUNU.h"
 
 #define GAME_INIT -1
 #define GAME_SETTING 0
@@ -105,9 +108,12 @@ private:
 
     ALLEGRO_SAMPLE *sample = NULL;
     ALLEGRO_SAMPLE_INSTANCE *startSound = NULL;
-    ALLEGRO_SAMPLE_INSTANCE *clearSound = NULL;
-    ALLEGRO_SAMPLE_INSTANCE *failSound = NULL;
+    //ALLEGRO_SAMPLE_INSTANCE *clearSound = NULL;
+    //ALLEGRO_SAMPLE_INSTANCE *failSound = NULL;
     ALLEGRO_SAMPLE_INSTANCE *backgroundSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *gapSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *winSound = NULL;
+    ALLEGRO_SAMPLE_INSTANCE *loseSound = NULL;
 
     LEVEL *level = NULL;
     Menu *menu = NULL;

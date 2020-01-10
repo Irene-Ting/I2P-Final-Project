@@ -44,16 +44,7 @@ GameWindow::game_init()
     background = al_load_bitmap("./StartBackground_.jpg");
     start_page = al_load_bitmap("./Material/coollogo_com-435068.png");
 
-    sprintf(buffer, "./Material/path%d.png", theme);
-    path = al_load_bitmap(buffer);
-    sprintf(buffer, "./Material/soft%d.png", theme);
-    softImg = al_load_bitmap(buffer);
-    sprintf(buffer, "./Material/hard%d.png", theme);
-    hardImg = al_load_bitmap(buffer);
-    sprintf(buffer, "./Material/money%d.png", theme);
-    coinImg = al_load_bitmap(buffer);
-    sprintf(buffer, "./Material/energy%d.png", theme);
-    energyImg = al_load_bitmap(buffer);
+
 
     for(int i = 0; i < Num_TowerType; i++)
     {
@@ -61,18 +52,27 @@ GameWindow::game_init()
         tower[i] = al_load_bitmap(buffer);
     }
 
-    al_set_display_icon(display, icon);
-    al_reserve_samples(5);///?
+    srand(time(NULL));
+    for(int i = 0; i<1000; ++i) ran[i] = rand()%100;
 
+    al_set_display_icon(display, icon);
+    al_reserve_samples(10);///?
+    //printf("theme = %d\n", theme);
     sample = al_load_sample("./Music/Intro.wav");
+    //sample = al_load_sample("./Music/Theme2Level1.wav");
     startSound = al_create_sample_instance(sample);
-    al_set_sample_instance_playmode(startSound, ALLEGRO_PLAYMODE_ONCE);
+    al_set_sample_instance_playmode(startSound, ALLEGRO_PLAYMODE_LOOP);
     al_attach_sample_instance_to_mixer(startSound, al_get_default_mixer());
 
-    sample = al_load_sample("BackgroundMusic.ogg");
-    backgroundSound = al_create_sample_instance(sample);
-    al_set_sample_instance_playmode(backgroundSound, ALLEGRO_PLAYMODE_ONCE);
-    al_attach_sample_instance_to_mixer(backgroundSound, al_get_default_mixer());
+    sample = al_load_sample("./Music/gameWin.wav");
+    winSound = al_create_sample_instance(sample);
+    al_set_sample_instance_playmode(winSound, ALLEGRO_PLAYMODE_LOOP);
+    al_attach_sample_instance_to_mixer(winSound, al_get_default_mixer());
+
+    sample = al_load_sample("./Music/gameLose.wav");
+    loseSound = al_create_sample_instance(sample);
+    al_set_sample_instance_playmode(loseSound, ALLEGRO_PLAYMODE_LOOP);
+    al_attach_sample_instance_to_mixer(loseSound, al_get_default_mixer());
 }
 
 /*bool
@@ -160,6 +160,14 @@ GameWindow::create_player(int type)
     {
     case PLAYER1:
         p = new Player1();
+        break;
+    case HuaHua:
+        p = new Hua();
+        break;
+    case NUNU:
+        p = new Nunu();
+        break;
+
     default:
         break;
     }
@@ -203,11 +211,12 @@ GameWindow::game_play()
 {
     int msg;
 
-    srand(time(NULL));
+    //srand(time(NULL));
 
     msg = -1;
     game_reset();
     game_begin();
+
     //printf("&");
     while(msg != GAME_EXIT)
     {
@@ -278,34 +287,92 @@ GameWindow::game_begin()
 {
     printf(">>> Start Level[%d]\n", level->getLevel());
     //draw_running_map();
-    draw_start_map();
+    char buffer[50];
 
-    ///al_play_sample_instance(startSound);
-    srand(time(NULL));
-    for(int i = 0; i<1000; ++i) ran[i] = rand()%100;
-    //for(int i = 0; i<NumOfGrid; ++i) printf("%d ", ran[i]);
-    for(int i = 0; i<NumOfGrid; ++i)
-    {
-        level->levelMap[i].func = NORMAL;
-        if(level->levelMap[i].type==PATH && i!=2)
-        {
-            if(random(5))
-                level->levelMap[i].func = ENERGY;
-        }
-        else if(level->levelMap[i].type==SOFT)
-        {
-            if(random(10)) level->levelMap[i].func = COIN;
-        }
-        /*else if(level->levelMap[i].type==HARD)
-        {
-            if(random(8)) level->levelMap[i].func = COIN;
-        }*/
-    }
+    //al_reserve_samples(5);///?
+    /*printf("theme = %d\n", theme);
+    sprintf(buffer, "./Music/Theme%dLevel%d.wav", theme, level->getLevel());
+    sample = al_load_sample(buffer);
+    backgroundSound = al_create_sample_instance(sample);
+    al_set_sample_instance_playmode(backgroundSound, ALLEGRO_PLAYMODE_LOOP);
+    al_attach_sample_instance_to_mixer(backgroundSound, al_get_default_mixer());*/
+
+    /*al_play_sample_instance(backgroundSound);
+    char buffer[50];
+    sprintf(buffer, "./Music/Theme%dgap.wav", theme);
+    sample = al_load_sample(buffer);
+    gapSound = al_create_sample_instance(sample);
+    al_set_sample_instance_playmode(gapSound, ALLEGRO_PLAYMODE_ONCE);
+    al_attach_sample_instance_to_mixer(gapSound, al_get_default_mixer());*/
+
+
     //while(al_get_sample_instance_playing(startSound));
     //al_play_sample_instance(backgroundSound);
 
     //al_start_timer(timer);
     //al_start_timer(monster_pro);
+
+    if(scene==ACTIVATE)
+    {
+        al_play_sample_instance(startSound);
+        level->setLevel(1);
+        draw_start_map();
+    }
+    else
+    {
+        //for(int i = 0; i<NumOfGrid; ++i) printf("%d ", ran[i]);
+        for(int i = 0; i<NumOfGrid; ++i)
+        {
+            level->levelMap[i].func = NORMAL;
+            if(level->levelMap[i].type==PATH && i!=2)
+            {
+                if(random(5))
+                    level->levelMap[i].func = ENERGY;
+            }
+            else if(level->levelMap[i].type==SOFT)
+            {
+                if(random(10)) level->levelMap[i].func = COIN;
+            }
+        }
+        printf("-theme = %d\n", theme);
+        player = create_player(theme);
+        sprintf(buffer, "./Material/path%d.png", theme);
+        path = al_load_bitmap(buffer);
+        sprintf(buffer, "./Material/soft%d.png", theme);
+        softImg = al_load_bitmap(buffer);
+        sprintf(buffer, "./Material/hard%d.png", theme);
+        hardImg = al_load_bitmap(buffer);
+        sprintf(buffer, "./Material/money%d.png", theme);
+        coinImg = al_load_bitmap(buffer);
+        sprintf(buffer, "./Material/energy%d.png", theme);
+        energyImg = al_load_bitmap(buffer);
+
+        //printf("1\n");
+        draw_running_map();
+        //printf("2\n");
+        printf("%d\n", al_get_timer_started(timer));
+        if(level->getLevel()!=1)
+        {
+            while(al_get_sample_instance_playing(gapSound));
+        }
+        else
+        {
+            sprintf(buffer, "./Music/Theme%dgap.wav", theme);
+            sample = al_load_sample(buffer);
+            gapSound = al_create_sample_instance(sample);
+            al_set_sample_instance_playmode(gapSound, ALLEGRO_PLAYMODE_ONCE);
+            al_attach_sample_instance_to_mixer(gapSound, al_get_default_mixer());
+        }
+        al_start_timer(timer);
+        printf("%d\n", al_get_timer_started(timer));
+        sprintf(buffer, "./Music/Theme%dLevel%d.wav", theme, level->getLevel());
+        sample = al_load_sample(buffer);
+        backgroundSound = al_create_sample_instance(sample);
+        al_set_sample_instance_playmode(backgroundSound, ALLEGRO_PLAYMODE_LOOP);
+        al_attach_sample_instance_to_mixer(backgroundSound, al_get_default_mixer());
+        al_play_sample_instance(backgroundSound);
+    }
+
 }
 
 int
@@ -411,7 +478,7 @@ GameWindow::game_reset()
     menu->Reset();
 
     // stop sample instance
-    al_stop_sample_instance(backgroundSound);
+    //al_stop_sample_instance(backgroundSound);
     al_stop_sample_instance(startSound);
 
     // stop timer
@@ -501,21 +568,36 @@ GameWindow::process_event()
         {
             case ACTIVATE:
                 if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+                    bool func = false;
                     switch(event.keyboard.keycode)
                     {
                         case ALLEGRO_KEY_S:
-                            scene++;
-                            al_start_timer(timer);
-                            //al_start_timer(monster_pro);
-                            //al_play_sample_instance(backgroundSound);
+                            func = true;
                             theme = 1;
-                            al_stop_sample_instance(startSound);
                             break;
+                        case ALLEGRO_KEY_D:
+                            func = true;
+                            theme = 2;
+                            break;
+                        case ALLEGRO_KEY_F:
+                            func = true;
+                            theme = 3;
+                            break;
+                    }
+                    if(func)
+                    {
+                        scene++;
+                        al_stop_sample_instance(startSound);
+                        al_start_timer(timer);
+                        printf("timer\n");
+                        game_begin();
                     }
                 }
                 break;
             case GAMERUN:
-                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+                if(event.type == ALLEGRO_EVENT_KEY_DOWN && al_get_timer_started(timer)) {
+                    //if(!al_get_timer_started(timer)) break;
+                    printf("move\n");
                     switch(event.keyboard.keycode) {
                         case ALLEGRO_KEY_LEFT:
                             win = player->Load_Move(level->levelMap, menu, LEFT);
@@ -641,16 +723,51 @@ GameWindow::process_event()
                 }
             }
                 break;
+            case GAMEWIN:
+                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+                    switch(event.keyboard.keycode)
+                    {
+                        case ALLEGRO_KEY_R:
+                            scene = ACTIVATE;
+                            al_stop_sample_instance(winSound);
+                            game_reset();
+                            game_begin();
+                            break;
+                        case ALLEGRO_KEY_L:
+                            return GAME_EXIT;
+                    }
+                }
+                break;
+            case GAMELOSE:
+                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+                    switch(event.keyboard.keycode)
+                    {
+                        case ALLEGRO_KEY_R:
+                            scene = ACTIVATE;
+                            al_stop_sample_instance(loseSound);
+                            game_reset();
+                            game_begin();
+
+                            break;
+                        case ALLEGRO_KEY_L:
+                            return GAME_EXIT;
+                    }
+                }
+                break;
+
             }
     }
     //if(win) scene = GAMEWIN;
     if(win)
     {
         int curLevel = level->getLevel();
-        if(curLevel<2)
+        printf("curLevel = %d\n", curLevel);
+        if(curLevel<3)
         {
             level->setLevel(curLevel+1);
-            player = create_player(theme);
+            al_stop_sample_instance(backgroundSound);
+            al_stop_timer(timer);
+            al_play_sample_instance(gapSound);
             game_begin();
         }
 
@@ -689,17 +806,17 @@ GameWindow::draw_running_map()
     unsigned int i, j;
 
     //al_clear_to_color(al_map_rgb(100, 100, 100));
-    al_draw_bitmap(background, 0, 0, 0);
 
+    al_draw_bitmap(background, 0, 0, 0);
     for(i = 0; i < field_height/40; i++)
     {
         for(j = 0; j < field_width/40; j++)
         {
             char buffer[50];
-            sprintf(buffer, "%d", i*field_width/40 + j);
-            //printf("here\n");
+            //sprintf(buffer, "%d", i*field_width/40 + j);
             switch(level->levelMap[i*field_width/40 + j].type)
             {
+                //printf("here");
                 case PATH:
                     al_draw_bitmap(path, j*40, ground+i*40, 0);
                     break;
@@ -751,6 +868,7 @@ GameWindow::draw_running_map()
     menu->Draw();
     slider->Draw();
     player->Draw();
+    //printf("here\n");///
     al_flip_display();
 }
 
@@ -766,6 +884,8 @@ GameWindow::draw_start_map()
 void
 GameWindow::draw_win_map()
 {
+    al_stop_sample_instance(backgroundSound);
+    al_play_sample_instance(winSound);
     al_clear_to_color(BLACK);
     al_draw_bitmap(start_page, 230, 150, 0);
     al_draw_text(Large_font, WHITE, 270, 400, 0, "win");
@@ -775,6 +895,8 @@ GameWindow::draw_win_map()
 void
 GameWindow::draw_lose_map()
 {
+    al_stop_sample_instance(backgroundSound);
+    al_play_sample_instance(loseSound);
     al_clear_to_color(BLACK);
     al_draw_bitmap(start_page, 230, 150, 0);
     al_draw_text(Large_font, WHITE, 270, 400, 0, "lose");

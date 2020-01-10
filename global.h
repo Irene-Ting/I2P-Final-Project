@@ -29,5 +29,5 @@ extern int TowerHeight[];
 
 enum {ARCANE = 0, ARCHER, CANON, POISON, STORM, NTOWER};
 //enum {WOLF = 0, WOLFKNIGHT, DEMONNIJIA, CAVEMAN};
-enum {PLAYER1 = 1};
+enum {PLAYER1 = 1, HuaHua, NUNU};
 #endif // GLOBAL_H_INCLUDED

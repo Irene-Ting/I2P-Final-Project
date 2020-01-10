@@ -2335,7 +2335,7 @@
 
 1577523923 d:\nthu\programming\practice\allegro\i2p-final-project\character.h
 
-1578537843 d:\nthu\programming\practice\allegro\i2p-final-project\global.h
+1578644595 d:\nthu\programming\practice\allegro\i2p-final-project\global.h
 	<allegro5/allegro_font.h>
 
 1577178388 source:d:\nthu\programming\practice\allegro\i2p-final-project\circle.cpp
@@ -2358,7 +2358,7 @@
 1577606586 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
 	"GameWindow.h"
 
-1578490084 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
+1578647523 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
 	<ctime>
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
@@ -2380,6 +2380,9 @@
 	"Attack.h"
 	"Slider.h"
 	"Player1.h"
+	"Hua.h"
+	"HuaHua.h"
+	"NUNU.h"
 
 1578537930 d:\nthu\programming\practice\allegro\i2p-final-project\menu.h
 	<stdio.h>
@@ -2456,7 +2459,7 @@
 1578538231 d:\nthu\programming\practice\allegro\i2p-final-project\storm.h
 	"Tower.h"
 
-1578537532 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
+1578632999 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
 	"Menu.h"
 	"Slider.h"
 	"Level.h"
@@ -2472,7 +2475,7 @@
 1578582085 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
 	"Tower.h"
 
-1578581622 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1578647523 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	"Level.h"
@@ -2496,7 +2499,7 @@
 1578495141 d:\nthu\programming\practice\allegro\i2p-final-project\player1.h
 	"Player.h"
 
-1578581700 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
+1578647523 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
 	"Player.h"
 	"GameWindow.h"
 
@@ -2504,4 +2507,13 @@
 
 1578536251 source:d:\nthu\programming\practice\allegro\i2p-final-project\square.cpp
 	"Square.h"
+
+1578644774 d:\nthu\programming\practice\allegro\i2p-final-project\huahua.h
+	"Player.h"
+
+1578644774 d:\nthu\programming\practice\allegro\i2p-final-project\nunu.h
+	"Player.h"
+
+1578645357 d:\nthu\programming\practice\allegro\i2p-final-project\hua.h
+	"Player.h"
 

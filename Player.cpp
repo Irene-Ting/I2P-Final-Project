@@ -54,8 +54,6 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
     next_x = cur_x+axis_x[d]*step;
     next_y = cur_y+axis_y[d]*step;
 
-
-
     //printf("%d %d ", next_x, next_y);
     //printf("%d %d ", next_x/grid_width, next_y/grid_height);
     //printf("%d\n", levelMap[(next_x/grid_width)*15+(next_y/grid_height)].pathPoint);

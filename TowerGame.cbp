@@ -47,6 +47,10 @@
 		<Unit filename="DemonNijia.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
+		<Unit filename="Hua.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="HuaHua.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
 		<Unit filename="Main.cpp" />
@@ -54,6 +58,9 @@
 		<Unit filename="Menu.h" />
 		<Unit filename="Monster.cpp" />
 		<Unit filename="Monster.h" />
+		<Unit filename="NUNU.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Ntower.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
