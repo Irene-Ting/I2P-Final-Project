@@ -398,6 +398,10 @@ GameWindow::game_begin()
         al_attach_sample_instance_to_mixer(backgroundSound, al_get_default_mixer());
         al_play_sample_instance(backgroundSound);
         al_set_sample_instance_gain(backgroundSound, slider_back->getDegree());
+        al_set_sample_instance_gain(gapSound, slider_back->getDegree());
+        al_set_sample_instance_gain(alarm, slider_eff->getDegree());
+        player->adjustVolume(slider_eff->getDegree());
+        menu->adjustVolume(slider_eff->getDegree());
     }
 }
 
@@ -792,6 +796,7 @@ GameWindow::process_event()
                 {
                     slider_back->Drag(mouse_x, mouse_y);
                     al_set_sample_instance_gain(backgroundSound, slider_back->getDegree());
+                    al_set_sample_instance_gain(gapSound, slider_back->getDegree());
                 }
                 if(slider_eff->isDragged())
                 {
