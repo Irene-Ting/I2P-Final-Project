@@ -2358,7 +2358,7 @@
 1577606586 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
 	"GameWindow.h"
 
-1578652642 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
+1578700490 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
 	<ctime>
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
@@ -2475,7 +2475,7 @@
 1578582085 source:d:\nthu\programming\practice\allegro\i2p-final-project\tower.cpp
 	"Tower.h"
 
-1578672837 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1578698608 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	"Level.h"

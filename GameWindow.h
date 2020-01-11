@@ -90,6 +90,8 @@ private:
     ALLEGRO_BITMAP *tower[Num_TowerType];
     ALLEGRO_BITMAP *background = NULL;
     ALLEGRO_BITMAP *start_page = NULL;
+    ALLEGRO_BITMAP *win_page = NULL;
+    ALLEGRO_BITMAP *lose_page = NULL;
     ALLEGRO_BITMAP *path;
     ALLEGRO_BITMAP *softImg;
     ALLEGRO_BITMAP *hardImg;

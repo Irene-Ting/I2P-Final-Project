@@ -42,6 +42,8 @@ GameWindow::game_init()
 
     icon = al_load_bitmap("./icon.png");
     background = al_load_bitmap("./StartBackground_.jpg");
+    win_page = al_load_bitmap("./Material/youWin.png");
+    lose_page = al_load_bitmap("./Material/Start.png");
     start_page = al_load_bitmap("./Material/Start.png");
 
 
@@ -80,14 +82,14 @@ GameWindow::game_init()
     al_attach_sample_instance_to_mixer(alarm, al_get_default_mixer());
 }
 
-/*bool
+bool
 GameWindow::mouse_hover(int startx, int starty, int width, int height)
 {
     if(mouse_x >= startx && mouse_x <= startx + width)
         if(mouse_y >= starty && mouse_y <= starty + height)
             return true;
     return false;
-}*/
+}
 
 bool
 GameWindow::isAbove()
@@ -582,23 +584,26 @@ GameWindow::process_event()
         switch(scene)
         {
             case ACTIVATE:
-                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+                if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                    mouse_x = event.mouse.x;
+                    mouse_y = event.mouse.y;
                     bool func = false;
-                    switch(event.keyboard.keycode)
+                    if(mouse_hover(60, 200, 336, 225))
                     {
-                        case ALLEGRO_KEY_S:
-                            func = true;
-                            theme = 1;
-                            break;
-                        case ALLEGRO_KEY_D:
-                            func = true;
-                            theme = 2;
-                            break;
-                        case ALLEGRO_KEY_F:
-                            func = true;
-                            theme = 3;
-                            break;
+                        func = true;
+                        theme = 1;
                     }
+                    else if(mouse_hover(60+3.1*120, 200, 336, 225))
+                    {
+                        func = true;
+                        theme = 2;
+                    }
+                    else if(mouse_hover(60+6.2*120, 200, 336, 225))
+                    {
+                        func = true;
+                        theme = 3;
+                    }
+
                     if(func)
                     {
                         scene++;
@@ -739,17 +744,21 @@ GameWindow::process_event()
             }
                 break;
             case GAMEWIN:
-                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
-                    switch(event.keyboard.keycode)
+                if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                    mouse_x = event.mouse.x;
+                    mouse_y = event.mouse.y;
+                    printf("%d %d\n", mouse_x, mouse_y);
+                    if(mouse_hover(550, 100, 350, 170))
                     {
-                        case ALLEGRO_KEY_R:
-                            scene = ACTIVATE;
-                            al_stop_sample_instance(winSound);
-                            game_reset();
-                            game_begin();
-                            break;
-                        case ALLEGRO_KEY_L:
-                            return GAME_EXIT;
+                        //printf("here");
+                        scene = ACTIVATE;
+                        al_stop_sample_instance(winSound);
+                        game_reset();
+                        game_begin();
+                    }
+                    else if(mouse_hover(550, 330, 350, 170))
+                    {
+                        return GAME_EXIT;
                     }
                 }
                 break;
@@ -901,9 +910,10 @@ GameWindow::draw_win_map()
 {
     al_stop_sample_instance(backgroundSound);
     al_play_sample_instance(winSound);
-    al_clear_to_color(BLACK);
+    //al_clear_to_color(BLACK);
     //al_draw_bitmap(start_page, 230, 150, 0);
-    al_draw_text(Large_font, WHITE, 270, 400, 0, "win");
+    //al_draw_text(Large_font, WHITE, 270, 400, 0, "win");
+    al_draw_bitmap(win_page, 0, 0, 0);
     al_flip_display();
 }
 
@@ -912,9 +922,10 @@ GameWindow::draw_lose_map()
 {
     al_stop_sample_instance(backgroundSound);
     al_play_sample_instance(loseSound);
-    al_clear_to_color(BLACK);
+    //al_clear_to_color(BLACK);
     //al_draw_bitmap(start_page, 230, 150, 0);
-    al_draw_text(Large_font, WHITE, 270, 400, 0, "lose");
+    //al_draw_text(Large_font, WHITE, 270, 400, 0, "lose");
+    al_draw_bitmap(lose_page, 0, 0, 0);
     al_flip_display();
 }
 
