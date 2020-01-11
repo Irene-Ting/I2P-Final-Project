@@ -120,7 +120,8 @@ private:
 
     LEVEL *level = NULL;
     Menu *menu = NULL;
-    Slider *slider = NULL;
+    Slider *slider_back = NULL;
+    Slider *slider_eff = NULL;
     Player *player = NULL;
     //std::vector<Monster*> monsterSet;
     //std::list<Tower*> towerSet;

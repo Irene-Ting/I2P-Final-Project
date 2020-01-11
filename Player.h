@@ -25,6 +25,8 @@ public:
     bool Load_Move(Node*, Menu*, int);
     int getWidth() { return 40; }
     int getHeight() { return 40; }
+    void goHere(Node*, Menu*, int, int);
+    void adjustVolume(double);
 protected:
     int cur_x;
     int cur_y;

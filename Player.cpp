@@ -45,6 +45,7 @@ Player::Draw()
     //int draw_x
     //int draw_y
     al_draw_bitmap(img, cur_x, cur_y, 0);
+    if(cur_x==21*grid_width) printf("yes\n");
 }
 
 bool
@@ -113,5 +114,40 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
     //destination
     if(cur_x == 22*grid_width && cur_y == ground) return true;
     return false;
+}
+
+void
+Player::adjustVolume(double d)
+{
+    al_set_sample_instance_gain(walkSound, d);
+    al_set_sample_instance_gain(softSound, d);
+    al_set_sample_instance_gain(coinSound, d);
+    al_set_sample_instance_gain(energySound, d);
+    al_set_sample_instance_gain(hitSound, d);
+}
+
+void
+Player::goHere(Node* levelMap, Menu* menu, int x, int y)
+{
+    cur_x = x*grid_width;
+    cur_y = y*grid_height;
+
+    if(levelMap[(cur_x/grid_width)+((cur_y-ground)/grid_height)*field_width/40].func==COIN)
+    {
+        al_attach_sample_instance_to_mixer(coinSound, al_get_default_mixer());
+        al_stop_sample_instance(coinSound);
+        al_play_sample_instance(coinSound);
+        menu->Change_Coin(5);
+        //levelMap[(next_x/grid_width)+(next_y/grid_height)*15].softPoint = false;
+        levelMap[(cur_x/grid_width)+((cur_y-ground)/grid_height)*field_width/40].func = NORMAL;
+    }
+    else if(levelMap[(cur_x/grid_width)+((cur_y-ground)/grid_height)*field_width/40].func==ENERGY)
+    {
+        al_attach_sample_instance_to_mixer(energySound, al_get_default_mixer());
+        al_stop_sample_instance(energySound);
+        al_play_sample_instance(energySound);
+        menu->Change_Energy(5);
+        levelMap[(cur_x/grid_width)+((cur_y-ground)/grid_height)*field_width/40].func = NORMAL;
+    }
 }
 

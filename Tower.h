@@ -24,11 +24,10 @@ public:
     void Draw();
     //void resetAttackCounter() { attack_counter = 0; }
     void ToggleClicked() { isClicked = !isClicked; }
-
     // update whole attack set
     // if any attack goes out of the range of tower, delete it
     //void UpdateAttack();
-    virtual std::vector<int> Utilize(int x, int y){ return {0};}
+    virtual std::vector<int> Utilize(int x, int y, double){ return {0};}
     // detect if tower needs to attack some monster
     //bool DetectAttack(Monster*);
     // process if some of attack in set touches monster

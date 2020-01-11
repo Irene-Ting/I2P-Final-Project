@@ -29,7 +29,7 @@ public:
 private:
     int target_x, target_y;
     int track_x, track_y;
-    int lengthOftrack = 200;
+    int lengthOftrack = 150;
     float degree = 1.0;
     bool dragged = false;
     char label[20];

@@ -15,4 +15,9 @@ grass https://images.app.goo.gl/u8YGAaLtTQbGPHki8
 marmot https://images.app.goo.gl/WQ6AiWMx7yFCyFPTA
 dig1 https://images.app.goo.gl/EMskQarH7oUMo4W57
 dig2 https://images.app.goo.gl/RaHSWEC63VdB16vG6
+bomb1 https://images.app.goo.gl/3vBGJE8YuiwwwAqW6
+bomb2 https://images.app.goo.gl/33LpeXcm7sFDXh7Z7
+任意門 新的 https://images.app.goo.gl/SxYSWJVyJKG4BuxC8
+pause https://images.app.goo.gl/9ie71Vn5w5DqgvMS8
+start_end https://images.app.goo.gl/xrE5EfDryegvaodp7
 任意門 音效http://tony.doracity.com/2014-01-28-15-05-25/2014-01-28-15-08-18/117-3
