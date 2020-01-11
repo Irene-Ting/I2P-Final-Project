@@ -1,9 +1,9 @@
 #include "Player.h"
 #include "GameWindow.h"
 
-const int axis_x[] = {-1, 1, 0, 0};
-const int axis_y[] = {0, 0, -1, 1};
-const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
+const int axis_x[] = {-1, 1, 0, 0, 0};
+const int axis_y[] = {0, 0, -1, 1, 0};
+const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN", "STOP"};
 
 Player::Player()
 {
@@ -45,7 +45,7 @@ Player::Draw()
     //int draw_x
     //int draw_y
     al_draw_bitmap(img, cur_x, cur_y, 0);
-    if(cur_x==21*grid_width) printf("yes\n");
+    if(cur_x==22*grid_width) printf("yes\n");
 }
 
 bool
@@ -112,7 +112,12 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
         levelMap[(next_x/grid_width)+((next_y-ground)/grid_height)*field_width/40].func = NORMAL;
     }
     //destination
-    if(cur_x == 22*grid_width && cur_y == ground) return true;
+    if(cur_x == 22*grid_width && cur_y == ground)
+    {
+        //Draw();
+        printf("destination\n");
+        return true;
+    }
     return false;
 }
 
@@ -126,7 +131,7 @@ Player::adjustVolume(double d)
     al_set_sample_instance_gain(hitSound, d);
 }
 
-void
+bool
 Player::goHere(Node* levelMap, Menu* menu, int x, int y)
 {
     cur_x = x*grid_width;
@@ -148,6 +153,12 @@ Player::goHere(Node* levelMap, Menu* menu, int x, int y)
         al_play_sample_instance(energySound);
         menu->Change_Energy(5);
         levelMap[(cur_x/grid_width)+((cur_y-ground)/grid_height)*field_width/40].func = NORMAL;
+    }
+    if(cur_x == 22*grid_width && cur_y == ground)
+    {
+        //Draw();
+        printf("destination\n");
+        return true;
     }
 }
 

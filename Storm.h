@@ -29,6 +29,7 @@ public:
         al_stop_sample_instance(toolSound);
         al_play_sample_instance(toolSound);
         al_set_sample_instance_gain(toolSound, d);
+        while(al_get_sample_instance_playing(toolSound));
         x/=40;
         y/=40;
         //vector<int> change;

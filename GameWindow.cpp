@@ -12,7 +12,7 @@
 
 //#define min(a, b) ((a) < (b)? (a) : (b))
 //#define max(a, b) ((a) > (b)? (a) : (b))
-const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
+const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN", "STOP"};
 
 //float Attack::volume = 1.0;
 
@@ -43,12 +43,12 @@ GameWindow::game_init()
     player = create_player(theme);
 
     icon = al_load_bitmap("./icon.png");
-    background = al_load_bitmap("./StartBackground_.png");
+    //background = al_load_bitmap("./StartBackground_.png");
     win_page = al_load_bitmap("./Material/youWin.png");
     lose_page = al_load_bitmap("./Material/youLose.png");
     start_page = al_load_bitmap("./Material/Start.png");
-
-
+    background = al_load_bitmap("./Material/Background.png");
+    finish = al_load_bitmap("./Material/end_60.png");
 
     for(int i = 0; i < Num_TowerType; i++)
     {
@@ -123,6 +123,20 @@ GameWindow::isAbove()
     return false;*/
 }
 
+bool
+GameWindow::pauseClicked()
+{
+    if((mouse_x-(field_width+28))*(mouse_x-(field_width+28))+(mouse_y-460)*(mouse_y-460)<=400)
+        return true;
+    return false;
+}
+bool
+GameWindow::stopClicked()
+{
+    if((mouse_x-(field_width+74))*(mouse_x-(field_width+74))+(mouse_y-460)*(mouse_y-460)<=400)
+        return true;
+    return false;
+}
 Tower*
 GameWindow::create_tower(int type)
 {
@@ -298,6 +312,7 @@ GameWindow::game_begin()
     menu->Set_Level(level->getLevel());
     //draw_running_map();
     char buffer[50];
+    win = false;
     //al_reserve_samples(5);///?
     /*printf("theme = %d\n", theme);
     sprintf(buffer, "./Music/Theme%dLevel%d.wav", theme, level->getLevel());
@@ -355,6 +370,8 @@ GameWindow::game_begin()
         coinImg = al_load_bitmap(buffer);
         sprintf(buffer, "./Material/energy%d.png", theme);
         energyImg = al_load_bitmap(buffer);
+        sprintf(buffer, "./Material/theme%d.png", theme);
+        themeImg = al_load_bitmap(buffer);
 
         //printf("1\n");
         draw_running_map();
@@ -485,7 +502,7 @@ GameWindow::game_reset()
     redraw = false;
     scene = ACTIVATE;
     menu->Reset();
-
+    win = false;
     // stop sample instance
     //al_stop_sample_instance(backgroundSound);
     al_stop_sample_instance(startSound);
@@ -535,7 +552,6 @@ GameWindow::process_event()
     //int offsetX = field_width/2 - 200;
     //int offsetY = field_height/2 - 200;
 
-    bool win = false;
     int coin_bef = menu->getCoin();
     int energy_bef = menu->getEnergy();
     al_wait_for_event(event_queue, &event);
@@ -614,15 +630,15 @@ GameWindow::process_event()
                         al_stop_sample_instance(startSound);
                         al_start_timer(timer);
                         menu->Reset();
-                        printf("timer\n");
+                        //printf("timer\n");
                         game_begin();
                     }
                 }
                 break;
             case GAMERUN:
-                if(event.type == ALLEGRO_EVENT_KEY_DOWN && al_get_timer_started(timer)) {
+                if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
                     //if(!al_get_timer_started(timer)) break;
-                    printf("move\n");
+                    //printf("move\n");
                     switch(event.keyboard.keycode) {
                         case ALLEGRO_KEY_LEFT:
                             win = player->Load_Move(level->levelMap, menu, LEFT);
@@ -637,19 +653,21 @@ GameWindow::process_event()
                             win = player->Load_Move(level->levelMap, menu, DOWN);
                             break;
 
-                        case ALLEGRO_KEY_P:
-                            /*DONE: handle pause event here*/
+                        /*case ALLEGRO_KEY_P:
+                            DONE: handle pause event here
                             if(al_get_timer_started(timer))
                             {
+                                menu->setResumeIcon();
                                 al_stop_timer(timer);
                                 //al_stop_timer(monster_pro);
                             }
                             else
                             {
+                                menu->setPauseIcon();
                                 al_start_timer(timer);
                                 //al_start_timer(monster_pro);
                             }
-                            break;
+                            break;*/
                         case ALLEGRO_KEY_M:
                             mute = !mute;
                             if(mute)
@@ -699,9 +717,28 @@ GameWindow::process_event()
                         {
                             slider_back->toggleDrag();
                         }
-                        if(slider_eff->isClicked(mouse_x, mouse_y))
+                        else if(slider_eff->isClicked(mouse_x, mouse_y))
                         {
                             slider_eff->toggleDrag();
+                        }
+                        else if(pauseClicked())
+                        {
+                            if(al_get_timer_started(timer))
+                            {
+                                menu->setResumeIcon();
+                                al_stop_timer(timer);
+                                //al_stop_timer(monster_pro);
+                            }
+                            else
+                            {
+                                menu->setPauseIcon();
+                                al_start_timer(timer);
+                                //al_start_timer(monster_pro);
+                            }
+                        }
+                        else if(stopClicked())
+                        {
+                            scene = GAMELOSE;
                         }
                     // check if user wants to create some kind of tower
                     // if so, show tower image attached to cursor
@@ -719,7 +756,6 @@ GameWindow::process_event()
                     }
 
                     else {
-                        if(selectedTower==4) player->goHere(level->levelMap, menu, mouse_x/40, mouse_y/40);
                         std::vector<int> change;
                         //towerSet.push_back(t);
                         //towerSet.sort(compare);
@@ -733,6 +769,8 @@ GameWindow::process_event()
                                 level->levelMap[i].type = PATH;
                             }
                         }
+                        if(selectedTower==4) win = player->goHere(level->levelMap, menu, mouse_x/40, mouse_y/40);
+                        //win = (player->Load_Move(level->levelMap, menu, STOP));
                     }
                     selectedTower = -1;
                     menu->MouseIn(mouse_x, mouse_y);
@@ -823,7 +861,24 @@ GameWindow::process_event()
         if(scene==GAMERUN)
         {
             //instruction = game_update();
+            //if(level->getLevel()==1) printf("draw_map\n");
             draw_running_map();
+            if(win)
+            {
+                int curLevel = level->getLevel();
+                al_stop_sample_instance(backgroundSound);
+                al_stop_timer(timer);
+                al_play_sample_instance(gapSound);
+                while(al_get_sample_instance_playing(gapSound));
+                al_start_timer(timer);
+                //printf("here");
+                if(curLevel<3)
+                {
+                    level->setLevel(curLevel+1);
+                    game_begin();
+                }
+                else scene = GAMEWIN;
+            }
         }
 
         else if(scene==ACTIVATE)
@@ -841,22 +896,6 @@ GameWindow::process_event()
         redraw = false;
     }
 
-    if(win)
-    {
-        int curLevel = level->getLevel();
-        al_stop_sample_instance(backgroundSound);
-        al_stop_timer(timer);
-        al_play_sample_instance(gapSound);
-        while(al_get_sample_instance_playing(gapSound));
-        printf("here");
-        if(curLevel<3)
-        {
-            level->setLevel(curLevel+1);
-
-            game_begin();
-        }
-        else scene = GAMEWIN;
-    }
     return instruction;
 }
 
@@ -868,6 +907,8 @@ GameWindow::draw_running_map()
     //al_clear_to_color(al_map_rgb(100, 100, 100));
 
     al_draw_bitmap(background, 0, 0, 0);
+    al_draw_bitmap(themeImg, 0, 0, 0);
+    al_draw_bitmap(finish, 21.7*grid_width, 60, 0);
     for(i = 0; i < field_height/40; i++)
     {
         for(j = 0; j < field_width/40; j++)
@@ -927,9 +968,9 @@ GameWindow::draw_running_map()
     menu->Draw();
     slider_back->Draw();
     slider_eff->Draw();
-    player->Draw();
     if(selectedTower != -1)
         Tower::SelectedTower(mouse_x, mouse_y, selectedTower);
+    player->Draw();
     al_flip_display();
 }
 

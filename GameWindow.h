@@ -77,6 +77,8 @@ public:
     bool mouse_hover(int, int, int, int);
     // detect if a tower will be constructed on road
     bool isAbove();
+    bool pauseClicked();
+    bool stopClicked();
 
     Tower* create_tower(int);
     Player* create_player(int);
@@ -89,6 +91,8 @@ private:
     ALLEGRO_BITMAP *icon;
     ALLEGRO_BITMAP *tower[Num_TowerType];
     ALLEGRO_BITMAP *background = NULL;
+    ALLEGRO_BITMAP *themeImg = NULL;
+    ALLEGRO_BITMAP *finish = NULL;
     ALLEGRO_BITMAP *start_page = NULL;
     ALLEGRO_BITMAP *win_page = NULL;
     ALLEGRO_BITMAP *lose_page = NULL;
@@ -135,6 +139,7 @@ private:
 
     bool redraw = false;
     bool mute = false;
+    bool win = false;
     //bool act = false;
     int scene = 0;
     int theme = 1;

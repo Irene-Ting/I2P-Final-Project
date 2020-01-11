@@ -53,7 +53,7 @@ Menu::Menu()
     //menuFont = al_load_ttf_font("pirulen.ttf", 20, 0); // load font
     stopIcon = al_load_bitmap("./Material/stop_40.png");
     pauseIcon = al_load_bitmap("./Material/pause_40.png");
-    resumeIcon = al_load_bitmap("./Material/resume_40.png");
+    //resumeIcon = al_load_bitmap("./Material/resume_40.png");
     menuFont = al_load_ttf_font("Caviar_Dreams_Bold.ttf", 18, 0);
     introFont = al_load_ttf_font("Caviar_Dreams_Bold.ttf", 14, 0);
 }
@@ -151,6 +151,20 @@ Menu::MouseIn(int mouse_x, int mouse_y)
     return selectedTower;
 }
 
+void
+Menu::setPauseIcon()
+{
+    pauseIcon = al_load_bitmap("./Material/pause_40.png");
+    al_draw_bitmap(pauseIcon, field_width+8, 440, 0);
+    al_flip_display();
+}
+void
+Menu::setResumeIcon()
+{
+    pauseIcon = al_load_bitmap("./Material/resume_40.png");
+    al_draw_bitmap(pauseIcon, field_width+8, 440, 0);
+    al_flip_display();
+}
 /*bool
 Menu::Subtract_HP(int escapeNum)
 {

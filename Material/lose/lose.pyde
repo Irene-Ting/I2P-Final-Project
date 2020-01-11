@@ -1,7 +1,0 @@
-size(1200, 600)
-background(0)
-fill(255)
-rect(200, 150, 300, 300)
-rect(550, 150, 450, 130)
-rect(550, 320, 450, 130)
-saveFrame("data/###.png")

@@ -47,6 +47,8 @@ public:
     int getScore() {return score; }
     double getVolume() {return volume; }
     void adjustVolume(double d){volume = d;}
+    void setPauseIcon();
+    void setResumeIcon();
     //int getKilled() { return killedMonster; }
 
 private:
@@ -55,7 +57,7 @@ private:
     ALLEGRO_BITMAP *coin = NULL;
     ALLEGRO_BITMAP *stopIcon = NULL;
     ALLEGRO_BITMAP *pauseIcon = NULL;
-    ALLEGRO_BITMAP *resumeIcon = NULL;
+    //ALLEGRO_BITMAP *resumeIcon = NULL;
     ALLEGRO_FONT *menuFont;
     ALLEGRO_FONT *introFont;
     int EnergyPoint = 10;
