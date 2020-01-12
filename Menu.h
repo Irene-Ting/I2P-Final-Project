@@ -31,7 +31,7 @@ public:
     void Set_Level(int num) { level = num; }
     void Gain_Score(int n) {score+=n; };
 
-    int getTowerCoin(int type) { return need_coin[type]; }
+    int getToolCoin(int type) { return need_coin[type]; }
     int getTime() { return Time; }
     int getCoin() { return Coin; }
     int getEnergy() { return EnergyPoint; }
@@ -43,18 +43,19 @@ public:
     void setResumeIcon();
 
 private:
-    std::vector<ALLEGRO_BITMAP*> menu_tower;
+    std::vector<ALLEGRO_BITMAP*> menu_tool;
     ALLEGRO_BITMAP *energy = NULL;
     ALLEGRO_BITMAP *coin = NULL;
     ALLEGRO_BITMAP *stopIcon = NULL;
     ALLEGRO_BITMAP *pauseIcon = NULL;
+    ALLEGRO_BITMAP *infoIcon = NULL;
     ALLEGRO_FONT *menuFont;
     ALLEGRO_FONT *introFont;
     int EnergyPoint = 10;
     int Time = 0;
     int Coin = 0;
-    int selectedTower = -1;
-    int need_coin[NumOfToolType] = {-5, -10, -20, -30, -40};
+    int selectedTool = -1;
+    int need_coin[NumOfToolType] = {-50, -50, -25, -150, -100};
     int level = 1;
     int score = 0;
     double volume = 1.0;

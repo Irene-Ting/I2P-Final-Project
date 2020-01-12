@@ -11,7 +11,7 @@ class Slider : public Object
 {
 public:
     Slider(int, int);
-    ~Slider();
+    virtual ~Slider();
 
     void Draw();
     void set_color(ALLEGRO_COLOR);

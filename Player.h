@@ -19,7 +19,7 @@ enum {LEFT=0, RIGHT, UP, DOWN};
 class Player: public Object {
 public:
     Player();
-    ~Player();
+    virtual ~Player();
     void Draw();
     bool Load_Move(Node*, Menu*, int);
     int getWidth() { return 40; }

@@ -28,7 +28,7 @@ public:
     virtual int getHeight() { return 40; }
 
     // show selected tower image on cursor position
-    static void SelectedTower(int, int, int);
+    static void SelectedTool(int, int, int);
 
 protected:
     int type;

@@ -6,8 +6,8 @@ const int ThumbWidth = 50;
 const int ThumbHeight = 50;
 const int gapX = 40, gapY = 36;
 const int offsetX = 10 + field_width, offsetY = 150;
-const int Initial_Energy = 500;
-const int Initial_Coin = 100;
+const int Initial_Energy = 10;
+const int Initial_Coin = 10;
 const int Initial_Time = 0;
 const int Initial_Score = 0;
 
@@ -40,13 +40,14 @@ Menu::Menu()
 
     for(int i=0;i<NumOfToolType; i++)
     {
-        ALLEGRO_BITMAP *tower;
+        ALLEGRO_BITMAP *tool;
         //sprintf(filename, "./Tower/%s_Menu.png", TowerClass[i]);
         sprintf(filename, "./Tool/%s_menu.png", ToolClass[i]);
-        tower = al_load_bitmap(filename);
-        menu_tower.push_back(tower);
+        tool = al_load_bitmap(filename);
+        menu_tool.push_back(tool);
     }
     stopIcon = al_load_bitmap("./Material/stop_40.png");
+    infoIcon = al_load_bitmap("./Material/info_40.png");
     pauseIcon = al_load_bitmap("./Material/pause_40.png");
     menuFont = al_load_ttf_font("Caviar_Dreams_Bold.ttf", 18, 0);
     introFont = al_load_ttf_font("Caviar_Dreams_Bold.ttf", 14, 0);
@@ -55,10 +56,17 @@ Menu::Menu()
 Menu::~Menu()
 {
     al_destroy_bitmap(energy);
+    al_destroy_bitmap(pauseIcon);
+    al_destroy_bitmap(infoIcon);
+    al_destroy_bitmap(coin);
+    al_destroy_bitmap(stopIcon);
+
+    al_destroy_font(introFont);
     al_destroy_font(menuFont);
+
     for(int i=0; i < NumOfToolType; i++)
-        al_destroy_bitmap(menu_tower[i]);
-    menu_tower.clear();
+        al_destroy_bitmap(menu_tool[i]);
+    menu_tool.clear();
 }
 
 void
@@ -98,28 +106,31 @@ Menu::Draw()
         int pos_x = offsetX;
         int pos_y = offsetY + (ThumbHeight + 8) * i;
         al_draw_filled_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255));
-        al_draw_text(introFont, al_map_rgb(255, 255, 255), pos_x+56, pos_y+15, 0, intro[i]);
+        al_draw_text(introFont, al_map_rgb(255, 255, 255), pos_x+56, pos_y+27, 0, intro[i]);
+        sprintf(buffer, "$%d", need_coin[i]*-1);
+        al_draw_text(introFont, al_map_rgb(255, 255, 255), pos_x+56, pos_y+6, 0, buffer);
         if(!Enough_Coin(i))
         {
-            al_draw_bitmap(menu_tower[i], pos_x, pos_y, 0);
+            al_draw_bitmap(menu_tool[i], pos_x, pos_y, 0);
             al_draw_filled_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgba(100, 100, 100, 100));
         }
-        else if(i == selectedTower)
+        else if(i == selectedTool)
             al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 0, 0), 0);
         else
         {
-            al_draw_bitmap(menu_tower[i], pos_x, pos_y, 0);
+            al_draw_bitmap(menu_tool[i], pos_x, pos_y, 0);
             al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255), 0);
         }
     }
     al_draw_bitmap(pauseIcon, field_width+8, 440, 0);
     al_draw_bitmap(stopIcon, field_width+54, 440, 0);
+    al_draw_bitmap(infoIcon, field_width+100, 440, 0);
 }
 
 int
 Menu::MouseIn(int mouse_x, int mouse_y)
 {
-    selectedTower = -1;
+    selectedTool = -1;
     if(mouse_x>0 && mouse_x<field_width && mouse_y>0 && mouse_y<field_height)
         return -1;
     for(int i=0; i < NumOfToolType; i++)
@@ -131,12 +142,12 @@ Menu::MouseIn(int mouse_x, int mouse_y)
         {
             if(Enough_Coin(i))
             {
-                selectedTower = i;
+                selectedTool = i;
                 break;
             }
         }
     }
-    return selectedTower;
+    return selectedTool;
 }
 
 void

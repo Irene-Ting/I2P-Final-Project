@@ -32,14 +32,14 @@ GameWindow::game_init()
     for(int i = 0; i < NumOfToolType; i++)
     {
         sprintf(buffer, "./Tool/%s.png", ToolClass[i]);
-        tower[i] = al_load_bitmap(buffer);
+        tool[i] = al_load_bitmap(buffer);
     }
 
     srand(time(NULL));
     for(int i = 0; i<1000; ++i) ran[i] = rand()%100;
 
     al_set_display_icon(display, icon);
-    al_reserve_samples(10);///?
+    al_reserve_samples(10);
     sample = al_load_sample("./Music/Intro.wav");
     startSound = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(startSound, ALLEGRO_PLAYMODE_LOOP);
@@ -94,8 +94,16 @@ GameWindow::stopClicked()
         return true;
     return false;
 }
+
+bool
+GameWindow::infoClicked()
+{
+    if((mouse_x-(field_width+120))*(mouse_x-(field_width+120))+(mouse_y-460)*(mouse_y-460)<=400)
+        return true;
+    return false;
+}
 Tool*
-GameWindow::create_tower(int type)
+GameWindow::create_tool(int type)
 {
     Tool *t = NULL;
 
@@ -122,7 +130,7 @@ GameWindow::create_tower(int type)
         break;
     }
 
-    menu->Change_Coin(menu->getTowerCoin(type));
+    menu->Change_Coin(menu->getToolCoin(type));
 
     return t;
 }
@@ -244,7 +252,7 @@ GameWindow::game_begin()
             }
             else if(level->levelMap[i].type==SOFT)
             {
-                if(random(10)) level->levelMap[i].func = COIN;
+                if(random(6)) level->levelMap[i].func = COIN;
             }
         }
         player = create_player(theme);
@@ -301,10 +309,10 @@ GameWindow::game_run()
 void
 GameWindow::game_reset()
 {
-    selectedTower = -1;
+    selectedTool = -1;
     lastClicked = -1;
-    Time_Inc_Count = 0;
-    Energy_Inc_Count = 0;
+    Time_Inc_Count = 1;
+    Energy_Inc_Count = 1;
     mute = false;
     redraw = false;
     scene = ACTIVATE;
@@ -322,8 +330,6 @@ GameWindow::game_destroy()
 
     al_destroy_display(display);
     al_destroy_event_queue(event_queue);
-    al_destroy_font(font);
-    al_destroy_font(Medium_font);
     al_destroy_font(Large_font);
     al_destroy_font(OJ_font);
 
@@ -331,14 +337,29 @@ GameWindow::game_destroy()
     al_destroy_timer(timer_g);
 
     for(int i=0;i<5; i++)
-        al_destroy_bitmap(tower[i]);
+        al_destroy_bitmap(tool[i]);
 
     al_destroy_bitmap(icon);
     al_destroy_bitmap(background);
+    al_destroy_bitmap(themeImg);
+    al_destroy_bitmap(finish);
+    al_destroy_bitmap(start);
+    al_destroy_bitmap(start_page);
+    al_destroy_bitmap(win_page);
+    al_destroy_bitmap(lose_page);
+    al_destroy_bitmap(path);
+    al_destroy_bitmap(softImg);
+    al_destroy_bitmap(hardImg);
+    al_destroy_bitmap(coinImg);
+    al_destroy_bitmap(energyImg);
 
     al_destroy_sample(sample);
     al_destroy_sample_instance(startSound);
     al_destroy_sample_instance(backgroundSound);
+    al_destroy_sample_instance(gapSound);
+    al_destroy_sample_instance(winSound);
+    al_destroy_sample_instance(loseSound);
+    al_destroy_sample_instance(alarm);
     delete slider_back;
     delete slider_eff;
     delete level;
@@ -366,7 +387,18 @@ GameWindow::process_event()
             Time_Inc_Count = (Time_Inc_Count + 1) % TimeSpeed;
 
             if(Energy_Inc_Count==0)
+            {
                 menu->Change_Energy(-1);
+                for(int i = 0; i<NumOfGrid; ++i)
+                {
+                    if(level->levelMap[i].type==PATH && level->levelMap[i].func==NORMAL)
+                    {
+                        if(random(20))
+                            level->levelMap[i].func = ENERGY;
+                    }
+                }
+            }
+
             Energy_Inc_Count = (Energy_Inc_Count + 1) % EnergySpeed;
 
             if(menu->getEnergy()<=0) scene = GAMELOSE;
@@ -437,7 +469,7 @@ GameWindow::process_event()
                 }
                 else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
 
-                        if(al_get_timer_started(timer_g)) selectedTower = menu->MouseIn(mouse_x, mouse_y);
+                        if(al_get_timer_started(timer_g)) selectedTool = menu->MouseIn(mouse_x, mouse_y);
                         if(slider_back->isClicked(mouse_x, mouse_y))
                         {
                             slider_back->toggleDrag();
@@ -463,10 +495,14 @@ GameWindow::process_event()
                         {
                             scene = GAMELOSE;
                         }
+                        else if(infoClicked())
+                        {
+
+                        }
                     }
             else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-                if(selectedTower != -1){
-                    Tool *t = create_tower(selectedTower);
+                if(selectedTool != -1){
+                    Tool *t = create_tool(selectedTool);
                     if(t == NULL)
                     {
                         printf("Wrong place\n");
@@ -481,16 +517,16 @@ GameWindow::process_event()
                             if(i>=0 && i<=NumOfGrid)
                             {
                                 if(level->levelMap[i].type == HARD)
-                                    if(random(2)) level->levelMap[i].func = COIN;
+                                    if(random(3)) level->levelMap[i].func = COIN;
                                 level->levelMap[i].type = PATH;
                             }
                         }
-                        if(selectedTower==4) win = player->goHere(level->levelMap, menu, mouse_x/40, mouse_y/40);
+                        if(selectedTool==4) win = player->goHere(level->levelMap, menu, mouse_x/40, mouse_y/40);
                         al_start_timer(timer_g);
                         al_register_event_source(event_queue, al_get_keyboard_event_source());
                     }
                     menu->MouseIn(field_width/2, field_height/2);
-                    selectedTower = -1;
+                    selectedTool = -1;
 
                 }
                 else if(slider_back->isDragged())
@@ -624,11 +660,8 @@ GameWindow::draw_running_map()
     {
         for(j = 0; j < field_width/40; j++)
         {
-            char buffer[50];
-            //sprintf(buffer, "%d", i*field_width/40 + j);
             switch(level->levelMap[i*field_width/40 + j].type)
             {
-                //printf("here");
                 case PATH:
                     al_draw_bitmap(path, j*40, ground+i*40, 0);
                     break;
@@ -651,13 +684,12 @@ GameWindow::draw_running_map()
             }
         }
     }
-
+    player->Draw();
     menu->Draw();
     slider_back->Draw();
     slider_eff->Draw();
-    if(selectedTower != -1)
-        Tool::SelectedTower(mouse_x, mouse_y, selectedTower);
-    player->Draw();
+    if(selectedTool != -1)
+        Tool::SelectedTool(mouse_x, mouse_y, selectedTool);
     al_flip_display();
 }
 
@@ -673,6 +705,8 @@ GameWindow::draw_start_map()
 void
 GameWindow::draw_win_map()
 {
+    al_stop_sample_instance(backgroundSound);
+    al_stop_sample_instance(alarm);
     al_play_sample_instance(winSound);
     al_draw_bitmap(win_page, 0, 0, 0);
     char buffer[50];
@@ -685,6 +719,7 @@ void
 GameWindow::draw_lose_map()
 {
     al_stop_sample_instance(backgroundSound);
+    al_stop_sample_instance(alarm);
     al_play_sample_instance(loseSound);
     al_draw_bitmap(lose_page, 0, 0, 0);
     al_flip_display();

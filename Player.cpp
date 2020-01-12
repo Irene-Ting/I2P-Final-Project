@@ -31,10 +31,12 @@ Player::Player()
 }
 Player::~Player()
 {
+    al_destroy_sample(sample);
     al_destroy_sample_instance(walkSound);
     al_destroy_sample_instance(softSound);
     al_destroy_sample_instance(coinSound);
     al_destroy_sample_instance(energySound);
+    al_destroy_sample_instance(hitSound);
 }
 
 void
@@ -95,7 +97,7 @@ Player::Load_Move(Node* levelMap, Menu* menu, int d)
         al_attach_sample_instance_to_mixer(energySound, al_get_default_mixer());
         al_stop_sample_instance(energySound);
         al_play_sample_instance(energySound);
-        menu->Change_Energy(5);
+        menu->Change_Energy(2);
         levelMap[(next_x/grid_width)+((next_y-ground)/grid_height)*field_width/40].func = NORMAL;
     }
     //destination

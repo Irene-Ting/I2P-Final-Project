@@ -3,10 +3,6 @@
 #include "Slider.h"
 #include "global.h"
 
-#define max(a, b) ((a) > (b)? (a) : (b))
-#define min(a, b) ((a) < (b)? (a) : (b))
-#define font_size 18
-
 const int widthOftarget = 15;
 const int heightOftarget = 30;
 

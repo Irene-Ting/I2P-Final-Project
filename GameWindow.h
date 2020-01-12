@@ -71,8 +71,9 @@ public:
     bool isAbove();
     bool pauseClicked();
     bool stopClicked();
+    bool infoClicked();
 
-    Tool* create_tower(int);
+    Tool* create_tool(int);
     Player* create_player(int);
 
 public:
@@ -80,7 +81,7 @@ public:
 
 private:
     ALLEGRO_BITMAP *icon;
-    ALLEGRO_BITMAP *tower[NumOfToolType];
+    ALLEGRO_BITMAP *tool[NumOfToolType];
     ALLEGRO_BITMAP *background = NULL;
     ALLEGRO_BITMAP *themeImg = NULL;
     ALLEGRO_BITMAP *finish = NULL;
@@ -95,8 +96,6 @@ private:
     ALLEGRO_BITMAP *energyImg;
 
     ALLEGRO_DISPLAY* display = NULL;
-    ALLEGRO_FONT *font = NULL;
-    ALLEGRO_FONT *Medium_font = NULL;
     ALLEGRO_FONT *Large_font = NULL;
     ALLEGRO_FONT *OJ_font = NULL;
 
@@ -122,7 +121,7 @@ private:
     int Time_Inc_Count = 0;
     int Energy_Inc_Count = 0;
     int mouse_x, mouse_y;
-    int selectedTower = -1, lastClicked = -1;
+    int selectedTool = -1, lastClicked = -1;
 
     bool redraw = false;
     bool mute = false;
