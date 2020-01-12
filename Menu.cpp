@@ -7,7 +7,7 @@ const int ThumbHeight = 50;
 const int gapX = 40, gapY = 36;
 const int offsetX = 10 + field_width, offsetY = 150;
 const int Initial_Energy = 10;
-const int Initial_Coin = 1000;//10
+const int Initial_Coin = 10;//10
 const int Initial_Time = 0;
 const int Initial_Score = 0;
 

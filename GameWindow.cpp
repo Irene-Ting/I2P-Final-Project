@@ -8,6 +8,7 @@
 const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
 bool random(int);
+bool before_instruct;
 int ran[1000];// store the random numbers
 
 void
@@ -506,10 +507,10 @@ GameWindow::process_event()
                         else if(infoClicked())
                         {
                             instruct++;
-                            printf("instruction %d\n", instruct);
                             char buf[20];
                             sprintf(buf, "./Material/instruction%d.png", instruct);
                             instructionImg = al_load_bitmap(buf);
+                            before_instruct = al_get_timer_started(timer_g);
                             al_stop_timer(timer_g);
                             scene = INSTRUCTION;
                         }
@@ -614,7 +615,7 @@ GameWindow::process_event()
                 {
                     instruct = 0;
                     scene = GAMERUN;
-                    al_start_timer(timer_g);
+                    if(before_instruct) al_start_timer(timer_g);
                 }
                 break;
             }
@@ -635,7 +636,7 @@ GameWindow::process_event()
         {
             draw_running_map();
             al_flip_display();
-            if(win)
+            /*if(win)
             {
                 int curLevel = level->getLevel();
                 al_stop_sample_instance(backgroundSound);
@@ -649,7 +650,7 @@ GameWindow::process_event()
                     game_begin();
                 }
                 else scene = GAMEWIN;
-            }
+            }*/
         }
 
         else if(scene==ACTIVATE)
@@ -675,6 +676,23 @@ GameWindow::process_event()
         }
         redraw = false;
     }
+
+    if(win)
+            {
+                int curLevel = level->getLevel();
+                al_stop_sample_instance(backgroundSound);
+                al_stop_timer(timer_g);
+                al_unregister_event_source(event_queue, al_get_keyboard_event_source());
+                al_play_sample_instance(gapSound);
+                while(al_get_sample_instance_playing(gapSound));
+                if(curLevel<LevelNum)
+                {
+                    level->setLevel(curLevel+1);
+                    game_begin();
+                }
+                else scene = GAMEWIN;
+            }
+
 
     return instruction;
 }

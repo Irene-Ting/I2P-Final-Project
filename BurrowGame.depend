@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1578841845 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1578845950 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	"Level.h"
@@ -365,12 +365,12 @@
 1578799685 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
 	"GameWindow.h"
 
-1578842000 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
+1578845285 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
 	"Menu.h"
 	"Slider.h"
 	"Level.h"
 
-1578822490 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
+1578842167 source:d:\nthu\programming\practice\allegro\i2p-final-project\player.cpp
 	"Player.h"
 	"GameWindow.h"
 

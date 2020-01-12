@@ -38,36 +38,28 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Arcane.h" />
-		<Unit filename="Archer.h" />
-		<Unit filename="Canon.h" />
+		<Unit filename="Bomb.h" />
+		<Unit filename="Dokodemo.h" />
+		<Unit filename="Explosive.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
-		<Unit filename="Hua.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="Hua.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
-		<Unit filename="NUNU.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="Null.h" />
 		<Unit filename="Object.h" />
 		<Unit filename="Player.cpp" />
-		<Unit filename="Player.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Player1.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Poison.h" />
+		<Unit filename="Player.h" />
+		<Unit filename="Shovel.h" />
 		<Unit filename="Slider.cpp" />
 		<Unit filename="Slider.h" />
-		<Unit filename="Storm.h" />
+		<Unit filename="Spade.h" />
 		<Unit filename="Tool.cpp" />
-		<Unit filename="Tower.h" />
+		<Unit filename="Tool.h" />
+		<Unit filename="Tsing.h" />
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
 		<Extensions>
