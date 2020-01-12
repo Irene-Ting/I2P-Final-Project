@@ -28,6 +28,7 @@ GameWindow::game_init()
     background = al_load_bitmap("./Material/Background.png");
     finish = al_load_bitmap("./Material/end_60.png");
     start = al_load_bitmap("./Material/start_60.png");
+    talkImg = al_load_bitmap("./Material/talk.png");
 
     for(int i = 0; i < NumOfToolType; i++)
     {
@@ -239,6 +240,7 @@ GameWindow::game_begin()
         al_play_sample_instance(startSound);
         level->setLevel(1);
         draw_start_map();
+        al_flip_display();
     }
     else
     {
@@ -268,6 +270,8 @@ GameWindow::game_begin()
         energyImg = al_load_bitmap(buffer);
         sprintf(buffer, "./Material/theme%d.png", theme);
         themeImg = al_load_bitmap(buffer);
+        sprintf(buffer, "./Material/%s_big.png", PlayerClass[theme-1]);
+        playerImg = al_load_bitmap(buffer);
 
         draw_running_map();
 
@@ -352,6 +356,9 @@ GameWindow::game_destroy()
     al_destroy_bitmap(hardImg);
     al_destroy_bitmap(coinImg);
     al_destroy_bitmap(energyImg);
+    al_destroy_bitmap(instructionImg);
+    al_destroy_bitmap(playerImg);
+    al_destroy_bitmap(talkImg);
 
     al_destroy_sample(sample);
     al_destroy_sample_instance(startSound);
@@ -370,6 +377,7 @@ GameWindow::game_destroy()
 int
 GameWindow::process_event()
 {
+    static int instruct = 0;
     int instruction = GAME_CONTINUE;
     int coin_bef = menu->getCoin();
     int energy_bef = menu->getEnergy();
@@ -497,7 +505,13 @@ GameWindow::process_event()
                         }
                         else if(infoClicked())
                         {
-
+                            instruct++;
+                            printf("instruction %d\n", instruct);
+                            char buf[20];
+                            sprintf(buf, "./Material/instruction%d.png", instruct);
+                            instructionImg = al_load_bitmap(buf);
+                            al_stop_timer(timer_g);
+                            scene = INSTRUCTION;
                         }
                     }
             else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
@@ -588,7 +602,21 @@ GameWindow::process_event()
                     }
                 }
                 break;
-
+            case INSTRUCTION:
+                if(event.type==ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+                {
+                        instruct++;
+                        char buf[20];
+                        sprintf(buf, "./Material/instruction%d.png", instruct);
+                        instructionImg = al_load_bitmap(buf);
+                }
+                if(instruct==4)
+                {
+                    instruct = 0;
+                    scene = GAMERUN;
+                    al_start_timer(timer_g);
+                }
+                break;
             }
     }
 
@@ -606,6 +634,7 @@ GameWindow::process_event()
         if(scene==GAMERUN)
         {
             draw_running_map();
+            al_flip_display();
             if(win)
             {
                 int curLevel = level->getLevel();
@@ -614,7 +643,7 @@ GameWindow::process_event()
                 al_unregister_event_source(event_queue, al_get_keyboard_event_source());
                 al_play_sample_instance(gapSound);
                 while(al_get_sample_instance_playing(gapSound));
-                if(curLevel<3)
+                if(curLevel<LevelNum)
                 {
                     level->setLevel(curLevel+1);
                     game_begin();
@@ -626,14 +655,23 @@ GameWindow::process_event()
         else if(scene==ACTIVATE)
         {
             draw_start_map();
+            al_flip_display();
         }
         else if(scene==GAMEWIN)
         {
             draw_win_map();
+            al_flip_display();
         }
         else if(scene==GAMELOSE)
         {
             draw_lose_map();
+            al_flip_display();
+        }
+        else if(scene==INSTRUCTION)
+        {
+            draw_running_map();
+            show_instruction(instruct);
+            al_flip_display();
         }
         redraw = false;
     }
@@ -645,7 +683,6 @@ void
 GameWindow::draw_running_map()
 {
     unsigned int i, j;
-
     al_draw_bitmap(background, 0, 0, 0);
     al_draw_bitmap(themeImg, 0, 0, 0);
 
@@ -690,16 +727,12 @@ GameWindow::draw_running_map()
     slider_eff->Draw();
     if(selectedTool != -1)
         Tool::SelectedTool(mouse_x, mouse_y, selectedTool);
-    al_flip_display();
 }
 
 void
 GameWindow::draw_start_map()
 {
-    //al_clear_to_color(BLACK);
     al_draw_bitmap(start_page, 0, 0, 0);
-    //al_draw_text(Large_font, WHITE, 270, 400, 0, "press S to start");
-    al_flip_display();
 }
 
 void
@@ -712,7 +745,6 @@ GameWindow::draw_win_map()
     char buffer[50];
     sprintf(buffer, "Time: %d   Score: %d", menu->getTime(), menu->getScore());
     al_draw_text(Large_font, WHITE, 600, 530, ALLEGRO_ALIGN_CENTER, buffer);
-    al_flip_display();
 }
 
 void
@@ -722,9 +754,37 @@ GameWindow::draw_lose_map()
     al_stop_sample_instance(alarm);
     al_play_sample_instance(loseSound);
     al_draw_bitmap(lose_page, 0, 0, 0);
-    al_flip_display();
 }
 
+void
+GameWindow::show_instruction(int n)
+{
+    int width = 1000, height = 500;
+    int posX = 10, posY = 10;
+    al_draw_filled_rectangle(0, 0, window_width, window_height, al_map_rgba(100, 100, 100, 0));
+    al_draw_bitmap(instructionImg, posX, posY, 0);
+    al_draw_rectangle(posX, posY, posX+width, posY+height, al_map_rgb(255, 202, 24), 15);
+    al_draw_bitmap(playerImg, 930, 380, 0);
+    al_draw_bitmap(talkImg, 500, 410, 0);
+
+    if(n==1)
+        al_draw_text(Large_font, WHITE, 735,442, ALLEGRO_ALIGN_CENTER, "click to continue");
+    if(n==2)
+    {
+        al_draw_text(Large_font, WHITE, 735,442, ALLEGRO_ALIGN_CENTER, "click to continue");
+        al_draw_bitmap(path, 100, 180, 0);
+        al_draw_bitmap(softImg, 100, 270, 0);
+        al_draw_bitmap(hardImg, 100, 360, 0);
+    }
+    else if(n==3)
+    {
+        al_draw_filled_rectangle(100, 180, 140, 220, WHITE);
+        al_draw_filled_rectangle(100, 300, 140, 340, WHITE);
+        al_draw_text(Large_font, WHITE, 735,442, ALLEGRO_ALIGN_CENTER, "click to start");
+        al_draw_bitmap(energyImg, 100, 180, 0);
+        al_draw_bitmap(coinImg, 100, 300, 0);
+    }
+}
 bool random(int x)
 {
     static int seed = 0;

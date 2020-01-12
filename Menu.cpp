@@ -7,7 +7,7 @@ const int ThumbHeight = 50;
 const int gapX = 40, gapY = 36;
 const int offsetX = 10 + field_width, offsetY = 150;
 const int Initial_Energy = 10;
-const int Initial_Coin = 10;
+const int Initial_Coin = 1000;//10
 const int Initial_Time = 0;
 const int Initial_Score = 0;
 
@@ -155,12 +155,12 @@ Menu::setPauseIcon()
 {
     pauseIcon = al_load_bitmap("./Material/pause_40.png");
     al_draw_bitmap(pauseIcon, field_width+8, 440, 0);
-    al_flip_display();
+    //al_flip_display();
 }
 void
 Menu::setResumeIcon()
 {
     pauseIcon = al_load_bitmap("./Material/resume_40.png");
     al_draw_bitmap(pauseIcon, field_width+8, 440, 0);
-    al_flip_display();
+    //al_flip_display();
 }

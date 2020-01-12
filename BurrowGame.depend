@@ -1,12 +1,16 @@
 # depslib dependency file v1.0
-1578822939 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1578841845 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	"Level.h"
 	<iostream>
 
-1578824132 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
+1578839085 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
 	<ctime>
+	<allegro5/allegro.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_primitives.h>
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
 	<vector>
@@ -280,7 +284,7 @@
 
 1578799988 d:\nthu\programming\practice\allegro\i2p-final-project\object.h
 
-1578814674 d:\nthu\programming\practice\allegro\i2p-final-project\global.h
+1578838253 d:\nthu\programming\practice\allegro\i2p-final-project\global.h
 	<allegro5/allegro_font.h>
 
 1578822939 d:\nthu\programming\practice\allegro\i2p-final-project\slider.h
@@ -352,7 +356,7 @@
 1578644774 d:\nthu\programming\practice\allegro\i2p-final-project\nunu.h
 	"Player.h"
 
-1578821939 source:d:\nthu\programming\practice\allegro\i2p-final-project\global.cpp
+1578838128 source:d:\nthu\programming\practice\allegro\i2p-final-project\global.cpp
 	"global.h"
 
 1578799685 source:d:\nthu\programming\practice\allegro\i2p-final-project\level.cpp
@@ -361,7 +365,7 @@
 1578799685 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
 	"GameWindow.h"
 
-1578823989 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
+1578842000 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
 	"Menu.h"
 	"Slider.h"
 	"Level.h"

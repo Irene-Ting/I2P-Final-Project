@@ -43,6 +43,7 @@ void
 Player::Draw()
 {
     al_draw_bitmap(img, cur_x, cur_y, 0);
+    //al_flip_display();
 }
 
 bool

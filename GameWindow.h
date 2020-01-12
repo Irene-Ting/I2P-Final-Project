@@ -1,6 +1,10 @@
 #ifndef MAINWINDOW_H_INCLUDED
 #define MAINWINDOW_H_INCLUDED
 #include <ctime>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <vector>
@@ -28,7 +32,7 @@
 #define GAME_NEXT_LEVEL 6
 #define GAME_EXIT 7
 
-enum {ACTIVATE = 0, GAMERUN, GAMEWIN, GAMELOSE};
+enum {ACTIVATE = 0, GAMERUN, GAMEWIN, GAMELOSE, INSTRUCTION};
 
 // clock rate
 const float FPS = 60;
@@ -64,6 +68,7 @@ public:
     void draw_start_map();
     void draw_win_map();
     void draw_lose_map();
+    void show_instruction(int);
     // process of updated event
     int process_event();
     // detect if mouse hovers over a rectangle
@@ -89,11 +94,14 @@ private:
     ALLEGRO_BITMAP *start_page = NULL;
     ALLEGRO_BITMAP *win_page = NULL;
     ALLEGRO_BITMAP *lose_page = NULL;
-    ALLEGRO_BITMAP *path;
-    ALLEGRO_BITMAP *softImg;
-    ALLEGRO_BITMAP *hardImg;
-    ALLEGRO_BITMAP *coinImg;
-    ALLEGRO_BITMAP *energyImg;
+    ALLEGRO_BITMAP *path = NULL;;
+    ALLEGRO_BITMAP *softImg = NULL;;
+    ALLEGRO_BITMAP *hardImg = NULL;;
+    ALLEGRO_BITMAP *coinImg = NULL;;
+    ALLEGRO_BITMAP *energyImg = NULL;;
+    ALLEGRO_BITMAP *instructionImg = NULL;
+    ALLEGRO_BITMAP *playerImg = NULL;
+    ALLEGRO_BITMAP *talkImg = NULL;
 
     ALLEGRO_DISPLAY* display = NULL;
     ALLEGRO_FONT *Large_font = NULL;

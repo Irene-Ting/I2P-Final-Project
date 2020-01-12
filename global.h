@@ -20,6 +20,7 @@ extern int ToolRadius[];
 extern char ToolClass[][20];
 extern int ToolWidth[];
 extern int ToolHeight[];
+extern char PlayerClass[][20];
 
 enum {SHOVEL = 0, SPADE, BOMB, EXPLOSIVE, DOKODEMO};
 enum {TSING = 1, HUA, NULL_};
