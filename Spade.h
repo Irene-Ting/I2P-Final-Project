@@ -1,22 +1,22 @@
-#ifndef ARCANE_H_INCLUDED
-#define ARCANE_H_INCLUDED
-#include<vector>
-#include "Tower.h"
+#ifndef SPADE_H_INCLUDED
+#define SPADE_H_INCLUDED
 
-class Arcane : public Tower
+#include "Tool.h"
+
+class Spade : public Tool
 {
 public:
-    Arcane(int mouse_x, int mouse_y) : Tower(mouse_x, mouse_y)
+    Spade(int mouse_x = 0, int mouse_y = 0) : Tool(mouse_x, mouse_y)
     {
-        type = ARCANE;
-        img = al_load_bitmap("./Tower/Arcane.png");
+        type = SPADE;
+        img = al_load_bitmap("./Tool/Spade.png");
         sample = al_load_sample("./Music/bang_2.wav");
         toolSound = al_create_sample_instance(sample);
         al_set_sample_instance_playmode(toolSound, ALLEGRO_PLAYMODE_ONCE);
     }
 
-    int getWidth() override { return TowerWidth[ARCANE]; }
-    int getHeight() override { return TowerHeight[ARCANE]; }
+    int getWidth() override { return ToolWidth[SPADE]; }
+    int getHeight() override { return ToolHeight[SPADE]; }
     std::vector<int> Utilize(int x, int y, double d)
     {
         al_attach_sample_instance_to_mixer(toolSound, al_get_default_mixer());
@@ -26,10 +26,10 @@ public:
         x/=40;
         y/=40;
         std::vector<int> change;
-        for(int i = 0; i<field_height/40; ++i)
-            change.push_back(i*field_width/40+x);
+        for(int i = 0; i<field_width/40; ++i)
+            change.push_back((y-ground/40)*field_width/40+i);
         return change;
     }
 };
 
-#endif // ARCANE_H_INCLUDED
+#endif // SPADE_H_INCLUDED

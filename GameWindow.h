@@ -8,15 +8,15 @@
 #include <time.h>
 #include "Menu.h"
 #include "Level.h"
-#include "Arcane.h"
-#include "Archer.h"
-#include "Canon.h"
-#include "Poison.h"
-#include "Storm.h"
+#include "Shovel.h"
+#include "Spade.h"
+#include "Bomb.h"
+#include "Explosive.h"
+#include "Dokodemo.h"
 #include "Slider.h"
-#include "Player1.h"
+#include "Tsing.h"
 #include "Hua.h"
-#include "NUNU.h"
+#include "Null.h"
 
 #define GAME_INIT -1
 #define GAME_SETTING 0
@@ -34,7 +34,7 @@ enum {ACTIVATE = 0, GAMERUN, GAMEWIN, GAMELOSE};
 const float FPS = 60;
 
 // total number of level
-const int LevelNum = 4;
+const int LevelNum = 3;
 
 // 1 coin every 2 seconds
 const int TimeSpeed = FPS;
@@ -72,7 +72,7 @@ public:
     bool pauseClicked();
     bool stopClicked();
 
-    Tower* create_tower(int);
+    Tool* create_tower(int);
     Player* create_player(int);
 
 public:
@@ -80,7 +80,7 @@ public:
 
 private:
     ALLEGRO_BITMAP *icon;
-    ALLEGRO_BITMAP *tower[Num_TowerType];
+    ALLEGRO_BITMAP *tower[NumOfToolType];
     ALLEGRO_BITMAP *background = NULL;
     ALLEGRO_BITMAP *themeImg = NULL;
     ALLEGRO_BITMAP *finish = NULL;

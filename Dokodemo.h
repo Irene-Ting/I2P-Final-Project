@@ -1,22 +1,22 @@
-#ifndef STORM_H_INCLUDED
-#define STORM_H_INCLUDED
+#ifndef DOKODEMO_H_INCLUDED
+#define DOKODEMO_H_INCLUDED
 
-#include "Tower.h"
+#include "Tool.h"
 
-class Storm : public Tower
+class Dokodemo : public Tool
 {
 public:
-    Storm(int mouse_x = 0, int mouse_y = 0) : Tower(mouse_x, mouse_y)
+    Dokodemo(int mouse_x = 0, int mouse_y = 0) : Tool(mouse_x, mouse_y)
     {
-        type = STORM;
-        img = al_load_bitmap("./Tower/Storm.png");
+        type = DOKODEMO;
+        img = al_load_bitmap("./Tool/Dokodemo.png");
         sample = al_load_sample("./Music/tool.wav");
         toolSound = al_create_sample_instance(sample);
         al_set_sample_instance_playmode(toolSound, ALLEGRO_PLAYMODE_ONCE);
     }
 
-    int getWidth() override { return TowerWidth[STORM]; }
-    int getHeight() override { return TowerHeight[STORM]; }
+    int getWidth() override { return ToolWidth[DOKODEMO]; }
+    int getHeight() override { return ToolHeight[DOKODEMO]; }
     std::vector<int> Utilize(int x, int y, double d)
     {
         al_attach_sample_instance_to_mixer(toolSound, al_get_default_mixer());
@@ -32,4 +32,4 @@ public:
     }
 };
 
-#endif // STORM_H_INCLUDED
+#endif // DOKODEMO_H_INCLUDED

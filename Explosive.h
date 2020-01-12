@@ -1,22 +1,22 @@
-#ifndef POISON_H_INCLUDED
-#define POISON_H_INCLUDED
+#ifndef EXPLOSIVE_H_INCLUDED
+#define EXPLOSIVE_H_INCLUDED
 
-#include "Tower.h"
+#include "Tool.h"
 
-class Poison : public Tower
+class Explosive : public Tool
 {
 public:
-    Poison(int mouse_x = 0, int mouse_y = 0) : Tower(mouse_x, mouse_y)
+    Explosive(int mouse_x = 0, int mouse_y = 0) : Tool(mouse_x, mouse_y)
     {
-        type = POISON;
-        img = al_load_bitmap("./Tower/Poison.png");
+        type = EXPLOSIVE;
+        img = al_load_bitmap("./Tool/Explosive.png");
         sample = al_load_sample("./Music/bang_6.wav");
         toolSound = al_create_sample_instance(sample);
         al_set_sample_instance_playmode(toolSound, ALLEGRO_PLAYMODE_ONCE);
     }
 
-    int getWidth() override { return TowerWidth[POISON]; }
-    int getHeight() override { return TowerHeight[POISON]; }
+    int getWidth() override { return ToolWidth[EXPLOSIVE]; }
+    int getHeight() override { return ToolHeight[EXPLOSIVE]; }
     std::vector<int> Utilize(int x, int y, double d)
     {
         al_attach_sample_instance_to_mixer(toolSound, al_get_default_mixer());

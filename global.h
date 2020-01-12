@@ -13,15 +13,14 @@
 #define field_width 1000
 #define field_height 480
 
-#define Num_TowerType 5
-#define Num_MonsterType 4
+#define NumOfToolType 5
 #define NumOfGrid (field_width / grid_width) * (field_height / grid_height)
 
-extern int TowerRadius[];
-extern char TowerClass[][20];
-extern int TowerWidth[];
-extern int TowerHeight[];
+extern int ToolRadius[];
+extern char ToolClass[][20];
+extern int ToolWidth[];
+extern int ToolHeight[];
 
-enum {ARCANE = 0, ARCHER, CANON, POISON, STORM};
-enum {PLAYER1 = 1, HuaHua, NUNU};
+enum {SHOVEL = 0, SPADE, BOMB, EXPLOSIVE, DOKODEMO};
+enum {TSING = 1, HUA, NULL_};
 #endif // GLOBAL_H_INCLUDED

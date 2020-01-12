@@ -24,7 +24,7 @@ bool
 Menu::Enough_Coin(int type)
 {
 
-    if(type < 0 || type >= Num_TowerType)
+    if(type < 0 || type >= NumOfToolType)
         return false;
 
     return (Coin + need_coin[type] >= 0);
@@ -38,11 +38,11 @@ Menu::Menu()
     Coin = 0;
     Time = 0;
 
-    for(int i=0;i<Num_TowerType; i++)
+    for(int i=0;i<NumOfToolType; i++)
     {
         ALLEGRO_BITMAP *tower;
         //sprintf(filename, "./Tower/%s_Menu.png", TowerClass[i]);
-        sprintf(filename, "./Tower/%s_menu.png", TowerClass[i]);
+        sprintf(filename, "./Tool/%s_menu.png", ToolClass[i]);
         tower = al_load_bitmap(filename);
         menu_tower.push_back(tower);
     }
@@ -56,7 +56,7 @@ Menu::~Menu()
 {
     al_destroy_bitmap(energy);
     al_destroy_font(menuFont);
-    for(int i=0; i < Num_TowerType; i++)
+    for(int i=0; i < NumOfToolType; i++)
         al_destroy_bitmap(menu_tower[i]);
     menu_tower.clear();
 }
@@ -93,7 +93,7 @@ Menu::Draw()
     char intro[5][25] = {"Digging(Vertical)", "Digging(Horizontal)", "Bomb(3*3)",
     "Bomb(All)", "Dokodemo Door"};
 
-    for(int i=0; i < Num_TowerType; i++)
+    for(int i=0; i < NumOfToolType; i++)
     {
         int pos_x = offsetX;
         int pos_y = offsetY + (ThumbHeight + 8) * i;
@@ -122,7 +122,7 @@ Menu::MouseIn(int mouse_x, int mouse_y)
     selectedTower = -1;
     if(mouse_x>0 && mouse_x<field_width && mouse_y>0 && mouse_y<field_height)
         return -1;
-    for(int i=0; i < Num_TowerType; i++)
+    for(int i=0; i < NumOfToolType; i++)
     {
         int pos_x = offsetX;
         int pos_y = offsetY + (ThumbHeight + 8) * i;

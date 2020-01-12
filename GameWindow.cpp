@@ -29,9 +29,9 @@ GameWindow::game_init()
     finish = al_load_bitmap("./Material/end_60.png");
     start = al_load_bitmap("./Material/start_60.png");
 
-    for(int i = 0; i < Num_TowerType; i++)
+    for(int i = 0; i < NumOfToolType; i++)
     {
-        sprintf(buffer, "./Tower/%s.png", TowerClass[i]);
+        sprintf(buffer, "./Tool/%s.png", ToolClass[i]);
         tower[i] = al_load_bitmap(buffer);
     }
 
@@ -94,29 +94,29 @@ GameWindow::stopClicked()
         return true;
     return false;
 }
-Tower*
+Tool*
 GameWindow::create_tower(int type)
 {
-    Tower *t = NULL;
+    Tool *t = NULL;
 
     if(isAbove())
         return t;
     switch(type)
     {
-    case ARCANE:
-        t = new Arcane(mouse_x, mouse_y);
+    case SHOVEL:
+        t = new Shovel(mouse_x, mouse_y);
         break;
-    case ARCHER:
-        t = new Archer(mouse_x, mouse_y);
+    case SPADE:
+        t = new Spade(mouse_x, mouse_y);
         break;
-    case CANON:
-        t = new Canon(mouse_x, mouse_y);
+    case BOMB:
+        t = new Bomb(mouse_x, mouse_y);
         break;
-    case POISON:
-        t = new Poison(mouse_x, mouse_y);
+    case EXPLOSIVE:
+        t = new Explosive(mouse_x, mouse_y);
         break;
-    case STORM:
-        t = new Storm(mouse_x, mouse_y);
+    case DOKODEMO:
+        t = new Dokodemo(mouse_x, mouse_y);
         break;
     default:
         break;
@@ -134,14 +134,14 @@ GameWindow::create_player(int type)
 
     switch(type)
     {
-    case PLAYER1:
-        p = new Player1();
+    case TSING:
+        p = new Tsing();
         break;
-    case HuaHua:
+    case HUA:
         p = new Hua();
         break;
-    case NUNU:
-        p = new Nunu();
+    case NULL_:
+        p = new Null();
         break;
 
     default:
@@ -466,7 +466,7 @@ GameWindow::process_event()
                     }
             else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
                 if(selectedTower != -1){
-                    Tower *t = create_tower(selectedTower);
+                    Tool *t = create_tower(selectedTower);
                     if(t == NULL)
                     {
                         printf("Wrong place\n");
@@ -540,13 +540,13 @@ GameWindow::process_event()
                 if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
                     mouse_x = event.mouse.x;
                     mouse_y = event.mouse.y;
-                    if(mouse_hover(550, 100, 350, 170))
+                    if(mouse_hover(550, 150, 450, 130))
                     {
                         scene = ACTIVATE;
                         al_stop_sample_instance(loseSound);
                         game_play();
                     }
-                    else if(mouse_hover(550, 330, 350, 170))
+                    else if(mouse_hover(550, 320, 450, 130))
                     {
                         return GAME_EXIT;
                     }
@@ -656,7 +656,7 @@ GameWindow::draw_running_map()
     slider_back->Draw();
     slider_eff->Draw();
     if(selectedTower != -1)
-        Tower::SelectedTower(mouse_x, mouse_y, selectedTower);
+        Tool::SelectedTower(mouse_x, mouse_y, selectedTower);
     player->Draw();
     al_flip_display();
 }

@@ -9,7 +9,7 @@ public:
     Hua() : Player()
     {
         step = 40;
-        img = al_load_bitmap("./Material/Player2.png");
+        img = al_load_bitmap("./Material/Hua.png");
     }
 };
 

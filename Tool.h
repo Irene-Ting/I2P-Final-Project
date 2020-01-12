@@ -1,5 +1,5 @@
-#ifndef TOWER_H_INCLUDED
-#define TOWER_H_INCLUDED
+#ifndef TOOL_H_INCLUDED
+#define TOOL_H_INCLUDED
 
 #include <stdio.h>
 #include <vector>
@@ -13,11 +13,11 @@
 #include "Object.h"
 #include "global.h"
 
-class Tower : public Object
+class Tool : public Object
 {
 public:
-    Tower(int, int);
-    virtual ~Tower();
+    Tool(int, int);
+    virtual ~Tool();
 
     // override virtual function "Object::Draw"
     void Draw();
@@ -38,4 +38,4 @@ protected:
     ALLEGRO_SAMPLE_INSTANCE *toolSound = NULL;
 };
 
-#endif // TOWER_H_INCLUDED
+#endif // TOOL_H_INCLUDED

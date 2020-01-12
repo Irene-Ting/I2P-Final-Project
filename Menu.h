@@ -9,7 +9,6 @@
 #include <allegro5/allegro_primitives.h>
 #include <vector>
 #include "Object.h"
-//#include "Square.h"
 #include "global.h"
 #include "Slider.h"
 class Menu : public Object
@@ -55,7 +54,7 @@ private:
     int Time = 0;
     int Coin = 0;
     int selectedTower = -1;
-    int need_coin[Num_TowerType] = {-5, -10, -20, -30, -40};
+    int need_coin[NumOfToolType] = {-5, -10, -20, -30, -40};
     int level = 1;
     int score = 0;
     double volume = 1.0;

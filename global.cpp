@@ -1,5 +1,5 @@
 #include "global.h"
 
-char TowerClass[][20] = {"Arcane", "Archer", "Canon", "Poison", "Storm"};
-int TowerWidth[] = {50, 50, 50, 50, 50, 50};
-int TowerHeight[] = {50, 50, 50, 50, 50, 50};
+char ToolClass[][20] = {"SHOVEL", "SPADE", "BOMB", "EXPLOSIVE", "DOKODEMO"};
+int ToolWidth[] = {50, 50, 50, 50, 50, 50};
+int ToolHeight[] = {50, 50, 50, 50, 50, 50};
