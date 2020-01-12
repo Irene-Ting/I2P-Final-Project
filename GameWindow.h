@@ -8,21 +8,14 @@
 #include <time.h>
 #include "Menu.h"
 #include "Level.h"
-#include "WolfKnight.h"
-#include "CaveMan.h"
-#include "Wolf.h"
-#include "DemonNijia.h"
-#include "Ntower.h"
 #include "Arcane.h"
 #include "Archer.h"
 #include "Canon.h"
 #include "Poison.h"
 #include "Storm.h"
-#include "Attack.h"
 #include "Slider.h"
 #include "Player1.h"
 #include "Hua.h"
-#include "HuaHua.h"
 #include "NUNU.h"
 
 #define GAME_INIT -1
@@ -75,14 +68,12 @@ public:
     int process_event();
     // detect if mouse hovers over a rectangle
     bool mouse_hover(int, int, int, int);
-    // detect if a tower will be constructed on road
     bool isAbove();
     bool pauseClicked();
     bool stopClicked();
 
     Tower* create_tower(int);
     Player* create_player(int);
-    //Monster* create_monster();
 
 public:
     bool initial = true;
@@ -93,6 +84,7 @@ private:
     ALLEGRO_BITMAP *background = NULL;
     ALLEGRO_BITMAP *themeImg = NULL;
     ALLEGRO_BITMAP *finish = NULL;
+    ALLEGRO_BITMAP *start = NULL;
     ALLEGRO_BITMAP *start_page = NULL;
     ALLEGRO_BITMAP *win_page = NULL;
     ALLEGRO_BITMAP *lose_page = NULL;
@@ -106,16 +98,15 @@ private:
     ALLEGRO_FONT *font = NULL;
     ALLEGRO_FONT *Medium_font = NULL;
     ALLEGRO_FONT *Large_font = NULL;
+    ALLEGRO_FONT *OJ_font = NULL;
 
     ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_EVENT event;
-    ALLEGRO_TIMER *timer = NULL;
-    //ALLEGRO_TIMER *monster_pro = NULL;
+    ALLEGRO_TIMER *timer_d = NULL;
+    ALLEGRO_TIMER *timer_g = NULL;
 
     ALLEGRO_SAMPLE *sample = NULL;
     ALLEGRO_SAMPLE_INSTANCE *startSound = NULL;
-    //ALLEGRO_SAMPLE_INSTANCE *clearSound = NULL;
-    //ALLEGRO_SAMPLE_INSTANCE *failSound = NULL;
     ALLEGRO_SAMPLE_INSTANCE *backgroundSound = NULL;
     ALLEGRO_SAMPLE_INSTANCE *gapSound = NULL;
     ALLEGRO_SAMPLE_INSTANCE *winSound = NULL;
@@ -127,11 +118,7 @@ private:
     Slider *slider_back = NULL;
     Slider *slider_eff = NULL;
     Player *player = NULL;
-    //std::vector<Monster*> monsterSet;
-    //std::list<Tower*> towerSet;
 
-    //int Monster_Pro_Count = 0;
-    //int Coin_Inc_Count = 0;
     int Time_Inc_Count = 0;
     int Energy_Inc_Count = 0;
     int mouse_x, mouse_y;
@@ -140,10 +127,8 @@ private:
     bool redraw = false;
     bool mute = false;
     bool win = false;
-    //bool act = false;
     int scene = 0;
     int theme = 1;
 };
-
 
 #endif // MAINWINDOW_H_INCLUDED

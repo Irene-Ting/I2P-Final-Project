@@ -9,13 +9,7 @@ public:
     Poison(int mouse_x = 0, int mouse_y = 0) : Tower(mouse_x, mouse_y)
     {
         type = POISON;
-
-        //circle->r = 110;
-        /*attack_frequency = 50;
-        attack_velocity = 10;
-        attack_harm_point = 3;*/
         img = al_load_bitmap("./Tower/Poison.png");
-        //attack_img = al_load_bitmap("./Tower/Poison_Beam.png");
         sample = al_load_sample("./Music/bang_6.wav");
         toolSound = al_create_sample_instance(sample);
         al_set_sample_instance_playmode(toolSound, ALLEGRO_PLAYMODE_ONCE);

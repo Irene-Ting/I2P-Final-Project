@@ -9,7 +9,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <vector>
 #include "Object.h"
-#include "Square.h"
+//#include "Square.h"
 #include "global.h"
 #include "Slider.h"
 class Menu : public Object
@@ -20,14 +20,8 @@ public:
 
     void Reset();
     void Draw();
-
-    // Detect if cursor hovers over any of tower on menu
-    // If so, return its type
-    // Otherwise, return -1
     int MouseIn(int, int);
 
-    // static function that detect if one point is on a line
-    // This function is just used to simplify "MouseIn"
     static bool isInRange(int, int, int);
 
     // Check if current coin is not less than needed coin
@@ -36,7 +30,6 @@ public:
     void Change_Time(int change) { Time += change; }
     void Change_Energy(int change) { EnergyPoint += change; }
     void Set_Level(int num) { level = num; }
-    //bool Subtract_HP(int escapeNum = 1);
     void Gain_Score(int n) {score+=n; };
 
     int getTowerCoin(int type) { return need_coin[type]; }
@@ -49,7 +42,6 @@ public:
     void adjustVolume(double d){volume = d;}
     void setPauseIcon();
     void setResumeIcon();
-    //int getKilled() { return killedMonster; }
 
 private:
     std::vector<ALLEGRO_BITMAP*> menu_tower;
@@ -57,15 +49,13 @@ private:
     ALLEGRO_BITMAP *coin = NULL;
     ALLEGRO_BITMAP *stopIcon = NULL;
     ALLEGRO_BITMAP *pauseIcon = NULL;
-    //ALLEGRO_BITMAP *resumeIcon = NULL;
     ALLEGRO_FONT *menuFont;
     ALLEGRO_FONT *introFont;
     int EnergyPoint = 10;
-    //int killedMonster = 0;
     int Time = 0;
     int Coin = 0;
     int selectedTower = -1;
-    int need_coin[Num_TowerType] = {-5, -10, -20, -40, -70};
+    int need_coin[Num_TowerType] = {-5, -10, -20, -30, -40};
     int level = 1;
     int score = 0;
     double volume = 1.0;

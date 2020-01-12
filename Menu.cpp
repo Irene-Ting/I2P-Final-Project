@@ -46,14 +46,8 @@ Menu::Menu()
         tower = al_load_bitmap(filename);
         menu_tower.push_back(tower);
     }
-    //char buffer[50];
-    /*sprintf(buffer, "./Material/energy1.png", level->getlevel());
-    energy = al_load_bitmap("./Material/energy1.png");
-    coin = al_load_bitmap(buffer);*/
-    //menuFont = al_load_ttf_font("pirulen.ttf", 20, 0); // load font
     stopIcon = al_load_bitmap("./Material/stop_40.png");
     pauseIcon = al_load_bitmap("./Material/pause_40.png");
-    //resumeIcon = al_load_bitmap("./Material/resume_40.png");
     menuFont = al_load_ttf_font("Caviar_Dreams_Bold.ttf", 18, 0);
     introFont = al_load_ttf_font("Caviar_Dreams_Bold.ttf", 14, 0);
 }
@@ -62,10 +56,8 @@ Menu::~Menu()
 {
     al_destroy_bitmap(energy);
     al_destroy_font(menuFont);
-
     for(int i=0; i < Num_TowerType; i++)
         al_destroy_bitmap(menu_tower[i]);
-
     menu_tower.clear();
 }
 
@@ -76,7 +68,6 @@ Menu::Reset()
     Coin = Initial_Coin;
     Time = Initial_Time;
     score = Initial_Score;
-    //killedMonster = 0;
 }
 
 void
@@ -107,7 +98,6 @@ Menu::Draw()
         int pos_x = offsetX;
         int pos_y = offsetY + (ThumbHeight + 8) * i;
         al_draw_filled_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255));
-        //al_draw_bitmap(menu_tower[i], pos_x, pos_y, 0);
         al_draw_text(introFont, al_map_rgb(255, 255, 255), pos_x+56, pos_y+15, 0, intro[i]);
         if(!Enough_Coin(i))
         {
@@ -129,8 +119,6 @@ Menu::Draw()
 int
 Menu::MouseIn(int mouse_x, int mouse_y)
 {
-    //bool enoughCoin;
-
     selectedTower = -1;
     if(mouse_x>0 && mouse_x<field_width && mouse_y>0 && mouse_y<field_height)
         return -1;
@@ -165,19 +153,3 @@ Menu::setResumeIcon()
     al_draw_bitmap(pauseIcon, field_width+8, 440, 0);
     al_flip_display();
 }
-/*bool
-Menu::Subtract_HP(int escapeNum)
-{
-    HealthPoint -= escapeNum;
-
-    return (HealthPoint == 0);
-}*/
-
-/*void
-Menu::Gain_Score(int scoreWorth)
-{
-    killedMonster++;
-    Score += scoreWorth;
-}*/
-
-

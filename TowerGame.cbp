@@ -40,28 +40,18 @@
 		</Compiler>
 		<Unit filename="Arcane.h" />
 		<Unit filename="Archer.h" />
-		<Unit filename="Attack.cpp" />
-		<Unit filename="Attack.h" />
 		<Unit filename="Canon.h" />
-		<Unit filename="CaveMan.h" />
-		<Unit filename="DemonNijia.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
 		<Unit filename="Hua.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="HuaHua.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
-		<Unit filename="Monster.cpp" />
-		<Unit filename="Monster.h" />
 		<Unit filename="NUNU.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Ntower.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="Object.h" />
@@ -75,18 +65,9 @@
 		<Unit filename="Poison.h" />
 		<Unit filename="Slider.cpp" />
 		<Unit filename="Slider.h" />
-		<Unit filename="Square.cpp" />
-		<Unit filename="Square.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="Storm.h" />
 		<Unit filename="Tower.cpp" />
 		<Unit filename="Tower.h" />
-		<Unit filename="Wolf.h" />
-		<Unit filename="WolfKnight.h" />
-		<Unit filename="block.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
 		<Extensions>

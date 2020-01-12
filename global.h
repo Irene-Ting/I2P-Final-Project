@@ -8,11 +8,6 @@
 #define grid_height 40
 #define ground 120
 
-/*#define window_width 800
-#define window_height 600
-#define field_width 600
-#define field_height 600*/
-
 #define window_width 1200
 #define window_height 600
 #define field_width 1000
@@ -28,6 +23,5 @@ extern int TowerWidth[];
 extern int TowerHeight[];
 
 enum {ARCANE = 0, ARCHER, CANON, POISON, STORM};
-//enum {WOLF = 0, WOLFKNIGHT, DEMONNIJIA, CAVEMAN};
 enum {PLAYER1 = 1, HuaHua, NUNU};
 #endif // GLOBAL_H_INCLUDED

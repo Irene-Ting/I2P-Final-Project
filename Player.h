@@ -9,7 +9,6 @@
 #include <allegro5/allegro_acodec.h>
 #include <vector>
 #include "Object.h"
-#include "Circle.h"
 #include "global.h"
 #include "Object.h"
 #include "level.h"

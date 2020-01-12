@@ -9,13 +9,7 @@ public:
     Canon(int mouse_x = 0, int mouse_y = 0) : Tower(mouse_x, mouse_y)
     {
         type = CANON;
-
-        //square->r = 70;
-        /*attack_frequency = 30;
-        attack_velocity = 6;
-        attack_harm_point = 15;*/
         img = al_load_bitmap("./Tower/Canon.png");
-        //attack_img = al_load_bitmap("./Tower/Canon_Beam.png");
         sample = al_load_sample("./Music/bang_6.wav");
         toolSound = al_create_sample_instance(sample);
         al_set_sample_instance_playmode(toolSound, ALLEGRO_PLAYMODE_ONCE);
