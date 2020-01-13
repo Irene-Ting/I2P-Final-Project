@@ -102,6 +102,7 @@ private:
     ALLEGRO_BITMAP *instructionImg = NULL;
     ALLEGRO_BITMAP *playerImg = NULL;
     ALLEGRO_BITMAP *talkImg = NULL;
+    ALLEGRO_BITMAP *sourceImg = NULL;
 
     ALLEGRO_DISPLAY* display = NULL;
     ALLEGRO_FONT *Large_font = NULL;

@@ -7,7 +7,7 @@ const int ThumbHeight = 50;
 const int gapX = 40, gapY = 36;
 const int offsetX = 10 + field_width, offsetY = 150;
 const int Initial_Energy = 10;
-const int Initial_Coin = 10;//10
+const int Initial_Coin = 10;
 const int Initial_Time = 0;
 const int Initial_Score = 0;
 
@@ -41,7 +41,6 @@ Menu::Menu()
     for(int i=0;i<NumOfToolType; i++)
     {
         ALLEGRO_BITMAP *tool;
-        //sprintf(filename, "./Tower/%s_Menu.png", TowerClass[i]);
         sprintf(filename, "./Tool/%s_menu.png", ToolClass[i]);
         tool = al_load_bitmap(filename);
         menu_tool.push_back(tool);

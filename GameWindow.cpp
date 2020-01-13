@@ -30,6 +30,7 @@ GameWindow::game_init()
     finish = al_load_bitmap("./Material/end_60.png");
     start = al_load_bitmap("./Material/start_60.png");
     talkImg = al_load_bitmap("./Material/talk.png");
+    sourceImg = al_load_bitmap("./Material/source.png");
 
     for(int i = 0; i < NumOfToolType; i++)
     {
@@ -360,6 +361,7 @@ GameWindow::game_destroy()
     al_destroy_bitmap(instructionImg);
     al_destroy_bitmap(playerImg);
     al_destroy_bitmap(talkImg);
+    al_destroy_bitmap(sourceImg);
 
     al_destroy_sample(sample);
     al_destroy_sample_instance(startSound);
@@ -460,7 +462,7 @@ GameWindow::process_event()
                 }
                 break;
             case GAMERUN:
-                if(event.type == ALLEGRO_EVENT_KEY_DOWN && al_get_timer_started(timer_g)) {
+                if(event.type == ALLEGRO_EVENT_KEY_UP && al_get_timer_started(timer_g)) {
                     switch(event.keyboard.keycode) {
                         case ALLEGRO_KEY_LEFT:
                             win = player->Load_Move(level->levelMap, menu, LEFT);
@@ -473,6 +475,12 @@ GameWindow::process_event()
                             break;
                         case ALLEGRO_KEY_DOWN:
                             win = player->Load_Move(level->levelMap, menu, DOWN);
+                            break;
+                        case ALLEGRO_KEY_C:
+                            menu->Change_Coin(100);
+                            break;
+                        case ALLEGRO_KEY_E:
+                            menu->Change_Energy(100);
                             break;
                     }
                 }
@@ -524,7 +532,7 @@ GameWindow::process_event()
                     }
                     else {
                         al_stop_timer(timer_g);
-                        al_unregister_event_source(event_queue, al_get_keyboard_event_source());
+                        //al_unregister_event_source(event_queue, al_get_keyboard_event_source());
                         std::vector<int> change;
                         change = t->Utilize(mouse_x, mouse_y, menu->getVolume());
                         for(auto i : change)
@@ -538,7 +546,7 @@ GameWindow::process_event()
                         }
                         if(selectedTool==4) win = player->goHere(level->levelMap, menu, mouse_x/40, mouse_y/40);
                         al_start_timer(timer_g);
-                        al_register_event_source(event_queue, al_get_keyboard_event_source());
+                        //al_register_event_source(event_queue, al_get_keyboard_event_source());
                     }
                     menu->MouseIn(field_width/2, field_height/2);
                     selectedTool = -1;
@@ -583,6 +591,10 @@ GameWindow::process_event()
                     }
                     else if(mouse_hover(550, 330, 350, 170))
                     {
+                        al_stop_timer(timer_d);
+                        al_draw_bitmap(sourceImg, 0, 0, 0);
+                        al_flip_display();
+                        al_rest(2);
                         return GAME_EXIT;
                     }
                 }
@@ -599,6 +611,10 @@ GameWindow::process_event()
                     }
                     else if(mouse_hover(550, 320, 450, 130))
                     {
+                        al_stop_timer(timer_d);
+                        al_draw_bitmap(sourceImg, 0, 0, 0);
+                        al_flip_display();
+                        al_rest(2);
                         return GAME_EXIT;
                     }
                 }
@@ -636,7 +652,7 @@ GameWindow::process_event()
         {
             draw_running_map();
             al_flip_display();
-            /*if(win)
+            if(win)
             {
                 int curLevel = level->getLevel();
                 al_stop_sample_instance(backgroundSound);
@@ -650,7 +666,7 @@ GameWindow::process_event()
                     game_begin();
                 }
                 else scene = GAMEWIN;
-            }*/
+            }
         }
 
         else if(scene==ACTIVATE)
@@ -676,24 +692,6 @@ GameWindow::process_event()
         }
         redraw = false;
     }
-
-    if(win)
-            {
-                int curLevel = level->getLevel();
-                al_stop_sample_instance(backgroundSound);
-                al_stop_timer(timer_g);
-                al_unregister_event_source(event_queue, al_get_keyboard_event_source());
-                al_play_sample_instance(gapSound);
-                while(al_get_sample_instance_playing(gapSound));
-                if(curLevel<LevelNum)
-                {
-                    level->setLevel(curLevel+1);
-                    game_begin();
-                }
-                else scene = GAMEWIN;
-            }
-
-
     return instruction;
 }
 
@@ -735,7 +733,6 @@ GameWindow::draw_running_map()
                 case COIN:
                     al_draw_bitmap(coinImg, j*40, ground+i*40, 0);
                     break;
-
             }
         }
     }

@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1578845950 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
+1578879019 source:d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	"Level.h"
 	<iostream>
 
-1578839085 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
+1578877587 d:\nthu\programming\practice\allegro\i2p-final-project\gamewindow.h
 	<ctime>
 	<allegro5/allegro.h>
 	<allegro5/allegro_font.h>
@@ -365,7 +365,7 @@
 1578799685 source:d:\nthu\programming\practice\allegro\i2p-final-project\main.cpp
 	"GameWindow.h"
 
-1578845285 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
+1578877587 source:d:\nthu\programming\practice\allegro\i2p-final-project\menu.cpp
 	"Menu.h"
 	"Slider.h"
 	"Level.h"
