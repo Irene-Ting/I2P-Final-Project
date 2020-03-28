@@ -1,5 +1,5 @@
 # Oh Burrow
-> This is my final project of Introduction to Programming 2
+> This is my first game. - learning OOP in C++ https://github.com/Irene-Ting/Oh-Burrow
 ## Proposal
 - Name of the Game:
 Oh Burrow
