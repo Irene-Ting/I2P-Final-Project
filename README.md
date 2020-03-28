@@ -1,5 +1,4 @@
 # Oh Burrow
-> This is my first game. - learning OOP in C++ https://github.com/Irene-Ting/Oh-Burrow
 ## Proposal
 - Name of the Game:
 Oh Burrow
