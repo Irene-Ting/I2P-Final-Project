@@ -45,5 +45,5 @@ The player is expected to arrive at the exit of the burrow before running out of
    
 ## Sources
 - referring to mini-project 2 
-- images and audio sorces are written in the source.txt
+- images and audio sources are written in the source.txt
 
