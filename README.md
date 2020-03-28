@@ -1,27 +1,49 @@
-# I2P-Final-Project
+# Oh Burrow
+> This is my final project of Introduction to Programming 2
 ## Proposal
-- 遊戲名稱
+- Name of the Game:
 Oh Burrow
-- 遊戲內容 ：
-玩家要在能量消耗完前，從地道入口走到地道出口，地道是可以走的地方，地道會出現能量，吃能量可以增加能量。玩家可以在地道壁挖新地道，但需要消耗較多能量，或使用工具，挖地道的時候，可能會得到金幣，金幣可以用來買工具，加快破關速度。
-- 遊戲功能：
-    - 開始畫面
-        - 選擇外觀（玩家、能量、錢幣、地道等外觀）
-        - 背景音樂
-        - 切換開始畫面到遊戲
-    - 遊戲畫面
-        - 玩家
-            - 鍵盤控制角色上下左右移動
-        - 地道
-            - 出現能量，玩家吃能量，能量上升
-        - 地道壁
-            - 有些透過工具可以挖出地道
-            - 有些消耗能量可以挖出地道
-        - 顯示能量/金幣/時間
-        - 工具
-            - 直達終點
-            - 直線開路
-            - 炸彈
-    - 結束畫面
-        - 是否在能量消耗前完成
-        - 背景音樂
+- Abstract:
+The player is expected to arrive at the exit of the burrow before running out of the energy. Burrow is the place the player can walk and the energy will randomly appear in it. The player can also dig the burrow wall to shorten the distance between the entrance and the exit. While the hard burrow wall is able to be dug only by tools, the soft one can be dug by costing energy. Every time you dig, it's possible to gain some money, which is essential to buy tools.
+- Functions:
+    - Start Page
+        - Theme Selection (player/energy logo/coin logo/burrow colors...)
+        - Background Music
+    - Game Page
+        - Player
+            - controlled by keyboard arrow key
+        - Burrow
+            - energy randomly appears in the burrow
+            - burrow walls
+                - Hard: digged by tools
+                - Soft: cost energy to dig
+        - Menu
+            - showing energy/coins/time
+        - Tools
+            - Dokodemo Door 
+            - Shovel
+            - Bomb
+    - End Page
+        - Win or Lose (whether finish the tasks before running out of energy)
+        - Background Music
+## Game Screen
+- Start Page
+    ![](https://i.imgur.com/eNwy47M.png)
+- Theme 1
+    ![](https://i.imgur.com/kDNOOqc.png)
+- Theme 2
+    ![](https://i.imgur.com/OS2FUMF.png)
+- Theme 3
+    ![](https://i.imgur.com/NvirAKC.png)
+- Instructions (different from theme to theme)
+    ![](https://i.imgur.com/avoFpXy.png)
+    ![](https://i.imgur.com/3QwOwYl.png)
+    ![](https://i.imgur.com/px4PYQk.png)
+- End Page
+    ![](https://i.imgur.com/hzx0tMa.png)
+    ![](https://i.imgur.com/tfi4q1Y.png)
+   
+## Sources
+- referring to mini-project 2 
+- images and audio sorces are written in the source.txt
+
